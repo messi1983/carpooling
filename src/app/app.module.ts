@@ -3,14 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { AppFirebaseModule } from './/app-firebase-module';
+import { AppNavbarComponent } from './app-navbar/app-navbar.component';
+import { AppBootstrapModule } from './/app-bootstrap.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppNavbarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppFirebaseModule,
+    AppBootstrapModule
   ],
   providers: [],
   bootstrap: [AppComponent]
