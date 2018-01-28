@@ -1,0 +1,73 @@
+.carpooling {
+	padding: 4px 0px 10px 0px;
+	margin-bottom: 0px
+}
+
+.carpooling .content {
+	margin-bottom: 2px;
+}
+
+.carpooling .content .detail {
+	padding: 0px 0px 0px 15px
+}
+
+.carpooling .content .route {
+	border-bottom: solid 1px #e8e8e8;
+	padding-bottom: 5px;
+}
+
+.carpooling .content .place,
+.carpooling .header .price {
+	padding: 0px 15px 0px 0px;
+	text-align: right;
+}
+
+.carpooling .content .driver {
+	border-right: solid 1px #e8e8e8
+}
+
+.carpooling .content .driver .photo,
+.carpooling .content .driver .profil {
+	width: 100%; 
+	height: 100%;
+	padding:0px;
+}
+
+.carpooling .content .driver .photo {
+	padding:0px;
+}
+
+.carpooling .content .driver .photo img {
+	height: 70px; 
+	width: 70px
+}
+
+.carpooling .content .place .multiple {
+	font-size: x-large;
+	color:red
+}
+
+.carpooling .action {
+	text-align : right;
+	padding: 0px; 
+	margin: 0px 15px 0px 15px;
+}
+
+.carpooling .action button {
+	color: blue;
+}
+
+.carpooling .footer {
+	margin: 3px 15px 0px 15px;
+	background-color: yellow
+}
+
+.tp-box_front {
+/*   background: #f30d36; */
+}
+
+.tp-box_back {
+  background: #23262d;
+  transform: rotateY(179.9deg);
+}
+

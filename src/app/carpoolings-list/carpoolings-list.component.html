@@ -1,0 +1,48 @@
+<div class="starter-template listing">
+ 
+    <h3>110 résultats</h3>
+    
+    <!-- Main panel -->
+    <mat-drawer-container>
+	  
+	  <!-- SideBar -->
+	  <mat-drawer mode="side" opened="true" class="col-3 side-bar">
+	  </mat-drawer>
+	  <!-- End SideBar -->
+	  
+	  <!-- Content -->
+	  <mat-drawer-content class="col-9 global-panel">
+	  	<tabset [justified]="false">
+	    	<tab *ngFor="let tabDay of tabsDays" heading="{{tabDay}}" class="tab-day">
+	  			<mat-tab-group>
+	  				<mat-tab *ngFor="let tabCarpooling of tabsCarpoolings" label="{{tabCarpooling}}">
+	  		 			
+	  		 			<div class="tab-container">
+			  				<!-- result list -->
+			  				<div *ngFor="let carpooling of carpoolingsObservable | async" class="cp">
+			  					<carpooling-card (showDetail)="onSelect($event, template)" [carpooling]="carpooling"></carpooling-card>
+			  				</div>
+			  				<!-- End result list -->
+						</div>
+				
+						<br>
+			
+						<!-- Pagination -->
+						<app-paginator></app-paginator>
+						<!-- End Pagination -->
+			
+					</mat-tab>
+				</mat-tab-group>
+			</tab>
+		</tabset>
+	  </mat-drawer-content>
+	  <!-- End Content -->
+	  
+	</mat-drawer-container>
+	<!-- End Main panel -->
+	
+</div>
+
+<ng-template #template>
+	<carpooling-detail-dialog></carpooling-detail-dialog>
+</ng-template>
