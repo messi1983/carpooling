@@ -7,7 +7,7 @@ import { AppFirebaseModule } from './/app-firebase-module';
 
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
-import { CarpoolingsListComponent } from './carpoolings-list/carpoolings-list.component';
+//import { CarpoolingsListComponent } from './carpoolings-list/carpoolings-list.component';
 import { CarpoolingCardComponent } from './carpooling-card/carpooling-card.component';
 
 
@@ -15,7 +15,7 @@ import { CarpoolingCardComponent } from './carpooling-card/carpooling-card.compo
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    CarpoolingsListComponent,
+//    CarpoolingsListComponent,
     CarpoolingCardComponent
   ],
   imports: [
