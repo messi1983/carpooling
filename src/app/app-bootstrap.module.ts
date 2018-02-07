@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: []
+      imports: [
+        TabsModule.forRoot(),
+         PaginationModule.forRoot()
+      ],
+      exports: [
+        TabsModule, 
+         PaginationModule
+      ],
+      declarations: []
 })
 export class AppBootstrapModule { }
