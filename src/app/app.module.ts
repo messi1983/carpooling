@@ -7,18 +7,17 @@ import { AppFirebaseModule } from './/app-firebase-module';
 
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
-//import { CarpoolingsListComponent } from './carpoolings-list/carpoolings-list.component';
+import { CarpoolingsListComponent } from './carpoolings-list/carpoolings-list.component';
 import { CarpoolingCardComponent } from './carpooling-card/carpooling-card.component';
-import { AppPaginatorComponent } from './app-paginator/app-paginator.component';
-
+//import { AppPaginatorComponent } from './app-paginator/app-paginator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    AppPaginatorComponent,
-//    CarpoolingsListComponent,
-//    CarpoolingCardComponent
+//    AppPaginatorComponent,
+    CarpoolingsListComponent,
+    CarpoolingCardComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +25,7 @@ import { AppPaginatorComponent } from './app-paginator/app-paginator.component';
     AppBootstrapModule,
     AppMaterialModule
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

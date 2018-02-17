@@ -26,7 +26,8 @@ export class CarpoolingsListComponent implements OnInit {
         ignoreBackdropClick: false
     };
     
-    constructor(private db: AngularFireDatabase, private modalService: BsModalService) { }
+//    constructor(private db: AngularFireDatabase, private modalService: BsModalService) { }
+    constructor(private db: AngularFireDatabase) { }
 
     ngOnInit() {
         this.carpoolingsObservable = this.getCarpoolings('/18-12-2017');
@@ -36,10 +37,10 @@ export class CarpoolingsListComponent implements OnInit {
        return this.db.list(path).valueChanges();
     }
     
-    openCarpoolingDetailModal(template: TemplateRef<any>) {
-        this.bsModalRef = this.modalService.show(template,  Object.assign({}, this.config, { class: 'gray modal-lg' }));
-    }
-    
+//    openCarpoolingDetailModal(template: TemplateRef<any>) {
+//        this.bsModalRef = this.modalService.show(template,  Object.assign({}, this.config, { class: 'gray modal-lg' }));
+//    }
+//    
     onSelect(carpooling: any): void {
       this.selectedCarpooling = carpooling;
     }
