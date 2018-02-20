@@ -42,7 +42,7 @@ export class CarpoolingsListComponent implements OnInit {
     getCarpoolings(path): Observable<any[]> {
         if(! this.full) {
              this.full = true;
-            return Observable.of([])l;
+            return Observable.of([]);
         }
          this.full = false;
        return this.db.list(path).valueChanges();

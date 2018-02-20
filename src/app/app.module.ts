@@ -9,13 +9,11 @@ import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { CarpoolingsListComponent } from './carpoolings-list/carpoolings-list.component';
 import { CarpoolingCardComponent } from './carpooling-card/carpooling-card.component';
-//import { AppPaginatorComponent } from './app-paginator/app-paginator.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppNavbarComponent,
-//    AppPaginatorComponent,
     CarpoolingsListComponent,
     CarpoolingCardComponent
   ],
