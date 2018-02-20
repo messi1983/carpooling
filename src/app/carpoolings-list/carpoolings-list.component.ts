@@ -16,6 +16,12 @@ export class CarpoolingsListComponent implements OnInit {
     tabsCarpoolings : string[] = [ 'DISPONIBLES (110)', 'COMPLETS (0)' ];
     tabsDays : string[] = [ "Aujourd'hui", "Demain" ];
     
+    // TODO : A supprimer
+    full : boolean = true;
+    
+    currentPage = 4;
+    totalItems : number = 5;
+    itemsPerPage : number = 2;
     selectedCarpooling: any;
     
     bsModalRef : BsModalRef;
@@ -34,15 +40,26 @@ export class CarpoolingsListComponent implements OnInit {
     }
     
     getCarpoolings(path): Observable<any[]> {
+        if(! this.full) {
+             this.full = true;
+            return Observable.of([])l;
+        }
+         this.full = false;
        return this.db.list(path).valueChanges();
     }
     
-//    openCarpoolingDetailModal(template: TemplateRef<any>) {
+    openCarpoolingDetailModal(template: TemplateRef<any>) {
 //        this.bsModalRef = this.modalService.show(template,  Object.assign({}, this.config, { class: 'gray modal-lg' }));
-//    }
-//    
+    }
+    
     onSelect(carpooling: any): void {
       this.selectedCarpooling = carpooling;
+    }
+    
+    pageChanged(event: any): void {
+        console.log('Page changed to: ' + event.page);
+        console.log('Number items per page: ' + event.itemsPerPage);
+        this.carpoolingsObservable = this.getCarpoolings('/18-12-2017');
     }
     
 }
