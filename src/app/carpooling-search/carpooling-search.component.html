@@ -1,0 +1,78 @@
+<form>
+
+	<mat-card>
+		<div class="search-form-content">
+			<mat-card-content>
+				<div  class="cov-options">
+					<mat-radio-group>
+						<mat-radio-button value="1">Aller simple</mat-radio-button>
+						  <mat-radio-button value="2">Aller retour</mat-radio-button>
+					</mat-radio-group>
+				</div>
+				
+				<br />
+				
+				<div id="cov-routes">
+					<div *ngFor="let trajet of trajets">
+						<fieldset class="scheduler-border">
+							<legend class="scheduler-border">Aller</legend>
+							<div class="cov">
+								<ng-container *ngTemplateOutlet="villeDepartTemplate; context:trajet"></ng-container>
+								<ng-container *ngTemplateOutlet="villeDestinationTemplate; context:trajet"></ng-container>
+								<ng-container *ngTemplateOutlet="datepickerTemplate; context:trajet"></ng-container>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+			</mat-card-content>
+		</div>
+		
+		<mat-card-actions  style="text-align: center">
+			<button mat-button>
+  				<i class="fa fa-undo" aria-hidden="true"></i>
+      			Rechercher
+  			</button>
+		</mat-card-actions>
+		
+	</mat-card>
+	
+</form>
+
+<ng-template #villeDepartTemplate let-trajet="trajet">
+	<span class="fa fa-map-marker fa-lg color-green" aria-hidden="true"></span>
+	<mat-form-field class="example-form-field">
+		<input matInput type="text" name="villedepart"  *ngIf="trajet === 'Aller'" #villedepart="ngModel" placeholder="Clearable input" [(ngModel)]="villeDepart" required="required"/>
+		<input matInput type="text" name="villedepart"  *ngIf="trajet === 'Retour'" #villedepart="ngModel" placeholder="Clearable input" [(ngModel)]="villeDestination" required="required"/>
+		
+		<button mat-button *ngIf="trajet === 'Aller'" matSuffix mat-icon-button aria-label="Clear" (click)="villeDepart=''" style="border:none; background: white">
+			<mat-icon>close</mat-icon>
+		</button>
+		<button mat-button *ngIf="trajet === 'Retour'" matSuffix mat-icon-button aria-label="Clear" (click)="villeDestination=''" style="border:none; background: white">
+			<mat-icon>close</mat-icon>
+		</button>
+	</mat-form-field>
+</ng-template>
+
+<ng-template #villeDestinationTemplate let-trajet="trajet">
+	<span class="fa fa-map-marker fa-lg color-red" aria-hidden="true"></span>
+	 <mat-form-field class="example-form-field">
+		<input matInput type="text" name="villedestination"  *ngIf="trajet === 'Aller'" #villedestination="ngModel" placeholder="Clearable input" [(ngModel)]="villeDestination"  required="required"/>
+		<input matInput type="text" name="villedestination"  *ngIf="trajet === 'Retour'" #villedestination="ngModel" placeholder="Clearable input" [(ngModel)]="villeDepart"  required="required"/>
+		
+		<button mat-button *ngIf="trajet === 'Aller'" matSuffix mat-icon-button aria-label="Clear" (click)="villeDestination=''" style="border:none; background: white">
+			<mat-icon>close</mat-icon>
+		</button>
+		<button mat-button *ngIf="trajet === 'Retour'" matSuffix mat-icon-button aria-label="Clear" (click)="villeDepart=''" style="border:none; background: white">
+			<mat-icon>close</mat-icon>
+		</button>
+	</mat-form-field>
+</ng-template>
+
+<ng-template #datepickerTemplate let-trajet="trajet">
+	<mat-form-field>
+	  <input *ngIf="trajet === 'Aller'" matInput  [matDatepicker]="picker"  placeholder="Choose a date">
+	  <input *ngIf="trajet === 'Retour'" matInput [matDatepicker]="picker"  placeholder="Choose a date">
+	  <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+	  <mat-datepicker  #picker></mat-datepicker>
+	</mat-form-field>
+</ng-template>

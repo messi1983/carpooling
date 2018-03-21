@@ -3,6 +3,10 @@
 	margin-bottom: 0px
 }
 
+.carpooling .header {
+	border-bottom: solid 1px #e8e8e8;
+}
+
 .carpooling .content {
 	margin-bottom: 2px;
 }
@@ -13,7 +17,7 @@
 
 .carpooling .content .route {
 	border-bottom: solid 1px #e8e8e8;
-	padding-bottom: 5px;
+	padding: 6px 0px 5px 0px;
 }
 
 .carpooling .content .place,
@@ -23,7 +27,7 @@
 }
 
 .carpooling .content .driver {
-	border-right: solid 1px #e8e8e8
+	padding-top: 6px;
 }
 
 .carpooling .content .driver .photo,
@@ -70,4 +74,3 @@
   background: #23262d;
   transform: rotateY(179.9deg);
 }
-

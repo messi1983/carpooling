@@ -9,3 +9,19 @@ body {
     padding: 3rem 1.5rem;
     text-align: center;
 }
+
+.color-green {
+	color: green;
+}
+
+.color-red {
+	color: red;
+}
+
+.left-alignment {
+	text-align: left;
+}
+
+.full-width {
+	width: 100%;
+}

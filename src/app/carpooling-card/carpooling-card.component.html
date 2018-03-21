@@ -68,13 +68,16 @@
        		</div>
         		
 			<!-- Route infos -->
-			<div class="col-7 left-alignment">
-				<div class="route">
- 					<i class="fa fa-map-marker color-green" aria-hidden="true"></i>
- 					<span class="small-font"><b>{{carpooling.trajet.pointDepart}}</b>,</span><span class="color-green"> {{carpooling.trajet.villeDepart}}</span>
- 					<br>
- 					<i class="fa fa-map-marker color-red" aria-hidden="true"></i>
- 					<span class="small-font"><b>{{carpooling.trajet.pointArrivee}}</b>,</span><span class="color-red"> {{carpooling.trajet.villeArrivee}}</span>
+			<div class="col-7 left-alignment" style="width:100%;border-right: solid 1px #e8e8e8;border-left: solid 1px #e8e8e8">
+			
+				<div class="row route">
+					<div class="col-12">
+	 					<i class="fa fa-map-marker color-green" aria-hidden="true"></i>
+	 					<span class="small-font"><b>{{carpooling.trajet.pointDepart}}</b>,</span><span class="color-green"> {{carpooling.trajet.villeDepart}}</span>
+	 					<br>
+	 					<i class="fa fa-map-marker color-red" aria-hidden="true"></i>
+	 					<span class="small-font"><b>{{carpooling.trajet.pointArrivee}}</b>,</span><span class="color-red"> {{carpooling.trajet.villeArrivee}}</span>
+ 					</div>
 				</div>
       							
       			<mat-card-actions class="action">
@@ -87,6 +90,7 @@
 		        		<u>Detail</u>
 		      		</button>
 				</mat-card-actions>
+				
         	</div>
         	<!-- End route infos -->
         			
