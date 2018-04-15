@@ -4,9 +4,10 @@
 		<div class="search-form-content">
 			<mat-card-content>
 				<div  class="cov-options">
-					<mat-radio-group>
-						<mat-radio-button value="1">Aller simple</mat-radio-button>
-						  <mat-radio-button value="2">Aller retour</mat-radio-button>
+					<mat-radio-group [(ngModel)]="selectedOption" name="covOption">
+						<mat-radio-button *ngFor="let op of listCovsOptions" [checked]="op.checked" [value]="op.value" (change)="radioChange($event)" name="covOption">
+							{{ op.name}}
+						</mat-radio-button>
 					</mat-radio-group>
 				</div>
 				
@@ -15,7 +16,7 @@
 				<div id="cov-routes">
 					<div *ngFor="let trajet of trajets">
 						<fieldset class="scheduler-border">
-							<legend class="scheduler-border">Aller</legend>
+							<legend class="scheduler-border">{{ trajet.trajet }}</legend>
 							<div class="cov">
 								<ng-container *ngTemplateOutlet="villeDepartTemplate; context:trajet"></ng-container>
 								<ng-container *ngTemplateOutlet="villeDestinationTemplate; context:trajet"></ng-container>

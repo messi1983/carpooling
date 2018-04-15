@@ -1,4 +1,6 @@
 import { Component, TemplateRef, OnInit } from '@angular/core';
+import {MatChipInputEvent} from '@angular/material';
+import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import { AngularFireDatabase } from 'angularfire2/database'; 
 import { Observable } from 'rxjs/Observable';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -15,6 +17,27 @@ export class CarpoolingsListComponent implements OnInit {
     carpoolingsObservable : Observable<any[]>;
     tabsCarpoolings : string[] = [ 'DISPONIBLES (110)', 'COMPLETS (0)' ];
     tabsDays : string[] = [ "Aujourd'hui", "Demain" ];
+    
+    visible: boolean = true;
+    selectable: boolean = true;
+    removable: boolean = true;
+    addOnBlur: boolean = true;
+
+    // Enter, comma
+    separatorKeysCodes = [ENTER, COMMA];
+
+    covsAller = [
+         { trajet: 'Bx -> Tlse', heure: '18h30', prix: '12,00$'  },
+         { trajet: 'Lyon -> Tlse', heure: '17h30', prix: '12,00$'  },
+         { trajet: 'Bx -> Tlse', heure: '18h30', prix: '12,00$'  }
+    ];
+    
+     covsRetour = [
+         { trajet: 'Bx -> Tlse', heure: '18h30', prix: '12,00$'  },
+         { trajet: 'Lyon -> Tlse', heure: '17h30', prix: '12,00$'  },
+         { trajet: 'Bx -> Tlse', heure: '18h30', prix: '12,00$'  }
+    ];
+
     
     // TODO : A supprimer
     full : boolean = true;
@@ -52,7 +75,26 @@ export class CarpoolingsListComponent implements OnInit {
 //        this.bsModalRef = this.modalService.show(template,  Object.assign({}, this.config, { class: 'gray modal-lg' }));
     }
     
-    onSelect(carpooling: any): void {
+    onSelect(selection: any): void {
+        this.selectedCarpooling = selection.carpooling;
+        
+        if(selection.check) {
+             this.covsAller.push({ 
+                trajet: this.selectedCarpooling.trajet.villeDepart + ' -> ' +  this.selectedCarpooling.trajet.villeArrivee , 
+                 heure: '12h00',
+                 prix: this.selectedCarpooling.price + '$'
+             });
+          } else {
+            console.log(selection);
+                 this.remove({ 
+                    trajet: this.selectedCarpooling.trajet.villeDepart + ' -> ' +  this.selectedCarpooling.trajet.villeArrivee , 
+                     heure: '12h00',
+                     prix: this.selectedCarpooling.price + '$'
+                 });
+          }
+    }
+    
+    onShowDetailt(carpooling: any): void {
       this.selectedCarpooling = carpooling;
     }
     
@@ -61,5 +103,15 @@ export class CarpoolingsListComponent implements OnInit {
         console.log('Number items per page: ' + event.itemsPerPage);
         this.carpoolingsObservable = this.getCarpoolings('/18-12-2017');
     }
+
+    remove(cov: any): void {
+        let index = this.covsAller.indexOf(cov);
+        
+        console.log('Index = ' + index);
+
+        if (index >= 0) {
+         this.covsAller.splice(index, 1);
+        }
+     }
     
 }

@@ -23,7 +23,7 @@
 		<div class="row full-width">
 	
 			<!-- departure Hour -->
-			<mat-checkbox class="col-3 left-alignment departure-hour"><b>{{carpooling.heureDepart}}</b></mat-checkbox>
+			<mat-checkbox (change)="onNotifySelection($event)" class="col-3 left-alignment departure-hour"><b>{{carpooling.heureDepart}}</b></mat-checkbox>
 			<!-- End departure Hour -->
 		
 			<!-- Route -->
@@ -68,7 +68,7 @@
        		</div>
         		
 			<!-- Route infos -->
-			<div class="col-7 left-alignment" style="width:100%;border-right: solid 1px #e8e8e8;border-left: solid 1px #e8e8e8">
+			<div class="col-7 left-alignment route-infos-container">
 			
 				<div class="row route">
 					<div class="col-12">

@@ -20,3 +20,14 @@
 .listing .global-panel {
 	background-color: white
 }
+
+.listing-chip {
+	width: 200px;
+	margin: 5px
+}
+
+.listing-chip > div {
+	width: 100%;
+	display: flex;
+	justify-content: space-between
+}

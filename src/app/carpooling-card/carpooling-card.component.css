@@ -15,6 +15,11 @@
 	padding: 0px 0px 0px 15px
 }
 
+.route-infos-container {
+	width:100%;
+	border-right: solid 1px #e8e8e8;
+	border-left: solid 1px #e8e8e8
+}
 .carpooling .content .route {
 	border-bottom: solid 1px #e8e8e8;
 	padding: 6px 0px 5px 0px;

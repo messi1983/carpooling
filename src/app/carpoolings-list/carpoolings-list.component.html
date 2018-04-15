@@ -7,6 +7,41 @@
 	  
 	  <!-- SideBar -->
 	  <mat-drawer mode="side" opened="true" class="col-3 side-bar">
+	  
+	  		<!-- -------------------- -->
+	  		<!-- Covoiturages Aller -->
+	  		<!-- -------------------- -->
+	  		<fieldset class="scheduler-border">
+				<legend class="scheduler-border">Vos covs Aller</legend>
+				
+	  			<mat-chip-list #chipList>
+	    			<mat-chip class="listing-chip" *ngFor="let cov of covsAller" [selectable]="selectable"
+	             		[removable]="removable" (remove)="remove(cov)"  style="width: 200px; margin: 3px;font-size: 11px;">
+	             		<div>
+	      					<span>Auj {{cov.heure}} : {{cov.trajet}},  {{cov.prix}}</span>
+	      					<span><mat-icon matChipRemove *ngIf="removable">cancel</mat-icon></span>
+	      				</div>
+	    			</mat-chip>
+	  			</mat-chip-list>
+	  		</fieldset>
+	  		
+	  		<!-- ---------------------- -->
+	  		<!-- Covoiturages Retour -->
+	  		<!-- ---------------------- -->
+	  		<fieldset class="scheduler-border">
+				<legend class="scheduler-border">Vos covs Retour</legend>
+				
+	  			<mat-chip-list #chipList>
+	    			<mat-chip class="listing-chip" *ngFor="let cov of covsRetour" [selectable]="selectable"
+	             		[removable]="removable" (remove)="remove(cov)"  style="width: 200px; margin: 3px;font-size: 11px;">
+	             		<div>
+	      					<span>Auj {{cov.heure}} : {{cov.trajet}},  {{cov.prix}}</span>
+	      					<span><mat-icon matChipRemove *ngIf="removable">cancel</mat-icon></span>
+	      				</div>
+	    			</mat-chip>
+	  			</mat-chip-list>
+	  		</fieldset>
+	  		
 	  </mat-drawer>
 	  <!-- End SideBar -->
 	  
@@ -14,18 +49,19 @@
 	  		<mat-drawer-content class="col-9 global-panel">
 	  		
 	  			<tabset [justified]="false">
-	    	
 	    			<tab *ngFor="let tabDay of tabsDays" heading="{{tabDay}}" class="tab-day">
-	  			
 	  					<mat-tab-group>
-	  				
 	  						<mat-tab *ngFor="let tabCarpooling of tabsCarpoolings" label="{{tabCarpooling}}">
-	  		 			
 	  		 				<div class="tab-container">
 	  		 				
 			  					<!-- result list -->
 			  					<div *ngFor="let carpooling of carpoolingsObservable  | async " class="cp">
-			  						<carpooling-card (showDetail)="onSelect($event, template)" [carpooling]="carpooling"></carpooling-card>
+			  						<carpooling-card
+			  							(showDetail)="onShowDetailt($event, template)"
+			  							(notifySelection)="onSelect($event)"
+			  						    [carpooling]="carpooling"
+			  						 >
+			  						</carpooling-card>
 			  					</div>
 			  					<!-- End result list -->
 			  					
@@ -34,13 +70,9 @@
 							    <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
 			  					
 							</div>
-				
 						</mat-tab>
-						
 					</mat-tab-group>
-					
 				</tab>
-				
 			</tabset>
 	  	</mat-drawer-content>
 	  <!-- End Content -->

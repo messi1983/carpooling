@@ -6,25 +6,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carpooling-search.component.css']
 })
 export class CarpoolingSearchComponent implements OnInit {
-   allerSimple: boolean = false;
-   allerRetour: boolean = true;
     
-   villeDepart = 'Oyem';
-   villeDestination = 'Libreville';
+    villeDepart = 'Oyem';
+    villeDestination = 'Libreville';
     
-   trajets = [{trajet: 'Aller'}, {trajet: 'Retour'}];
+    listCovsOptions = [
+        {"name": "Aller simple", "checked": false, value: "1"},
+        {"name": "Aller retour", "checked": false, value: "2"}
+    ]
     
-   minDate: Date;
-   maxDate: Date;
+    selectedOption: string = "1";
+    
+    trajets = [{trajet: 'Aller'}];
+    
+    minDate: Date;
+    maxDate: Date;
 
-  constructor() {
-      this.minDate = new Date();
-      this.maxDate = new Date();
-      this.minDate.setDate(this.minDate.getDate() - 1);
-      this.maxDate.setDate(this.maxDate.getDate() + 7);
-  }
+    constructor() {
+        this.minDate = new Date();
+        this.maxDate = new Date();
+        this.minDate.setDate(this.minDate.getDate() - 1);
+         this.maxDate.setDate(this.maxDate.getDate() + 7);
+    }
+    
+    radioChange(event: any) {
+        if(event.value === "2") {
+           this. trajets = [{trajet: 'Aller'}, {trajet: 'Retour'}];
+        } else {
+             this. trajets = [{trajet: 'Aller'}];
+        }
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }
