@@ -23,7 +23,13 @@
 		<div class="row full-width">
 	
 			<!-- departure Hour -->
-			<mat-checkbox (change)="onNotifySelection($event)" class="col-3 left-alignment departure-hour"><b>{{carpooling.heureDepart}}</b></mat-checkbox>
+			<mat-checkbox
+				class="col-3 text-left departure-hour"
+				[(ngModel)]="carpooling.checked"
+				[disabled]="disabled"
+				(change)="onNotifySelection($event)">
+					<b>{{carpooling.heureDepart}}</b>
+			</mat-checkbox>
 			<!-- End departure Hour -->
 		
 			<!-- Route -->
@@ -38,9 +44,7 @@
 			<!-- End Route -->
 		
 			<!-- Price -->
-			<div  class="col-2 left-alignment price">
-				{{carpooling.price}} &euro;
-			</div>
+			<div  class="col-2  price">{{carpooling.price}} &euro;</div>
 			<!-- End Price -->
 	
 		</div>
@@ -52,32 +56,15 @@
 		<div class="row detail">
 
 			<!-- Driver Infos -->
-			<div class="col-3 container">
-           		<div class="row driver">
-            		<div class="col-6 left-alignment photo">
-			    		<img src="assets/canard.jpg" alt="canard" class="rounded-circle">
-			  		</div>
-			  		<div class="col-6 left-alignment profil small-font">
-			    		{{carpooling.driver.firstname}}
-		  				<br>
-		  				{{carpooling.driver.age}} ans
-		  				<br>
-		  				Note: {{carpooling.driver.note}}/5
-			  		</div>
-		  		</div>
+			<div class="col-3  driver">
+				<driver-info [driver]="carpooling.driver"></driver-info>
        		</div>
         		
 			<!-- Route infos -->
-			<div class="col-7 left-alignment route-infos-container">
+			<div class="col-7 text-left route-infos-container">
 			
 				<div class="row route">
-					<div class="col-12">
-	 					<i class="fa fa-map-marker color-green" aria-hidden="true"></i>
-	 					<span class="small-font"><b>{{carpooling.trajet.pointDepart}}</b>,</span><span class="color-green"> {{carpooling.trajet.villeDepart}}</span>
-	 					<br>
-	 					<i class="fa fa-map-marker color-red" aria-hidden="true"></i>
-	 					<span class="small-font"><b>{{carpooling.trajet.pointArrivee}}</b>,</span><span class="color-red"> {{carpooling.trajet.villeArrivee}}</span>
- 					</div>
+					<route-detail [trajet]="carpooling.trajet" [restrictDesc]="true"></route-detail>
 				</div>
       							
       			<mat-card-actions class="action">
@@ -94,26 +81,18 @@
         	</div>
         	<!-- End route infos -->
         			
-        				<!-- Places -->
-			<div  class="col-2 left-alignment place">
-				<span class="multiple"><b>{{carpooling.nbPlacesRestantes}}</b></span>
-				<span *ngIf="carpooling.nbPlacesRestantes > 1; else unePlaceRestante" class="small-font">pl. restantes</span>
-				<ng-template #unePlaceRestante>
-					<span class="small-font">pl. restante</span>
-				</ng-template>
-			</div>
-			<!-- End Places -->
+        	<!-- Places -->
+        	<div class="col-2 no-space">
+        		<places-dispo [nbPlacesRestantes]="carpooling.nbPlacesRestantes"></places-dispo>
+        	</div>
 				
     	</div>
     </mat-card-content>
     <!-- End Cp Content -->
         		
 	<!-- Footer -->
-    <mat-card-footer *ngIf="carpooling.linkedEvent" class="footer small-font">
-    	<div class="border border-secondary rounded">
-    		<i class="fa fa-info-circle" aria-hidden="true"></i>
-    		Covoiturage pour l'èvenement : <b>{{carpooling.linkedEvent}}</b>
-    	</div>
+    <mat-card-footer *ngIf="carpooling.linkedEvent" class="footer small-font border border-secondary rounded">
+    	<cov-infos-barre [linkedEvent]="carpooling.linkedEvent"></cov-infos-barre>
     </mat-card-footer>
 	<!-- Footer -->
 </ng-template>

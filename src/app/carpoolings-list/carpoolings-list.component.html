@@ -5,49 +5,16 @@
     <!-- Main panel -->
     <mat-drawer-container>
 	  
-	  <!-- SideBar -->
-	  <mat-drawer mode="side" opened="true" class="col-3 side-bar">
-	  
-	  		<!-- -------------------- -->
-	  		<!-- Covoiturages Aller -->
-	  		<!-- -------------------- -->
-	  		<fieldset class="scheduler-border">
-				<legend class="scheduler-border">Vos covs Aller</legend>
-				
-	  			<mat-chip-list #chipList>
-	    			<mat-chip class="listing-chip" *ngFor="let cov of covsAller" [selectable]="selectable"
-	             		[removable]="removable" (remove)="remove(cov)"  style="width: 200px; margin: 3px;font-size: 11px;">
-	             		<div>
-	      					<span>Auj {{cov.heure}} : {{cov.trajet}},  {{cov.prix}}</span>
-	      					<span><mat-icon matChipRemove *ngIf="removable">cancel</mat-icon></span>
-	      				</div>
-	    			</mat-chip>
-	  			</mat-chip-list>
-	  		</fieldset>
-	  		
-	  		<!-- ---------------------- -->
-	  		<!-- Covoiturages Retour -->
-	  		<!-- ---------------------- -->
-	  		<fieldset class="scheduler-border">
-				<legend class="scheduler-border">Vos covs Retour</legend>
-				
-	  			<mat-chip-list #chipList>
-	    			<mat-chip class="listing-chip" *ngFor="let cov of covsRetour" [selectable]="selectable"
-	             		[removable]="removable" (remove)="remove(cov)"  style="width: 200px; margin: 3px;font-size: 11px;">
-	             		<div>
-	      					<span>Auj {{cov.heure}} : {{cov.trajet}},  {{cov.prix}}</span>
-	      					<span><mat-icon matChipRemove *ngIf="removable">cancel</mat-icon></span>
-	      				</div>
-	    			</mat-chip>
-	  			</mat-chip-list>
-	  		</fieldset>
-	  		
-	  </mat-drawer>
-	  <!-- End SideBar -->
+		  <!-- SideBar -->
+		  <mat-drawer mode="side" opened="true" class="col-3 side-bar">
+		  		<div *ngFor="let cov of covoiturages">
+						<ng-container *ngTemplateOutlet="matChipListTemplate; context:cov"></ng-container>
+				</div>
+		  </mat-drawer>
+		  <!-- End SideBar -->
 	  
 	  		<!-- Content -->
 	  		<mat-drawer-content class="col-9 global-panel">
-	  		
 	  			<tabset [justified]="false">
 	    			<tab *ngFor="let tabDay of tabsDays" heading="{{tabDay}}" class="tab-day">
 	  					<mat-tab-group>
@@ -55,11 +22,12 @@
 	  		 				<div class="tab-container">
 	  		 				
 			  					<!-- result list -->
-			  					<div *ngFor="let carpooling of carpoolingsObservable  | async " class="cp">
+			  					<div *ngFor="let carpooling of carpoolings" class="cp">
 			  						<carpooling-card
-			  							(showDetail)="onShowDetailt($event, template)"
-			  							(notifySelection)="onSelect($event)"
+			  							(showDetail)="showDetailt($event, template)"
+			  							(notifySelection)="select($event)"
 			  						    [carpooling]="carpooling"
+			  						    [disabled]="(covsAller.length === 4 || autoriserSelection) && !carpooling.checked"
 			  						 >
 			  						</carpooling-card>
 			  					</div>
@@ -84,4 +52,19 @@
 
 <ng-template #template>
 <!-- 	<carpooling-detail-dialog></carpooling-detail-dialog> -->
+</ng-template>
+
+<ng-template #matChipListTemplate let-covs="covs" let-title="title">
+	<fieldset *ngIf="covs.length > 0"class="scheduler-border">
+		<legend class="scheduler-border">{{title}}</legend>
+		<mat-chip-list #chipList>
+ 				<mat-chip class="listing-chip" *ngFor="let cov of covs" [selectable]="selectable"
+          			[removable]="removable" (remove)="removeChip(cov)"  style="width: 200px; margin: 3px;font-size: 11px;">
+          			<div>
+   					<span>Auj {{cov.heure}} : {{cov.trajet.villeDepart}} ->{{cov.trajet.villeArrivee}},  {{cov.price}}</span>
+   					<span><mat-icon matChipRemove *ngIf="removable">cancel</mat-icon></span>
+   				</div>
+ 				</mat-chip>
+		</mat-chip-list>
+	</fieldset>
 </ng-template>

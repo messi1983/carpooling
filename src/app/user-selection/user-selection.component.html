@@ -1,0 +1,97 @@
+<div class="selection">
+	
+	 <!-- Main panel -->
+    <mat-drawer-container>
+	  
+		<!-- SideBar -->
+		<mat-drawer mode="side" opened="true" class="col-3 side-bar" style="border: solid 1px">
+		  		Left-content
+		</mat-drawer>
+		<!-- End SideBar -->
+		  
+		<!-- Content -->
+		<mat-drawer-content class="col-9 global-panel">
+			<h2 class="title">Vos sélections</h2>
+			
+			<div *ngFor="let cov of covoiturages">
+				<ng-container *ngTemplateOutlet="selectedCarpoolingTemplate; context:cov"></ng-container>
+				<br />
+			</div>
+			
+			<div class="buttons">
+  				<button mat-button class="border border-secondary rounded">Valider</button>
+  				<button mat-button class="border border-secondary rounded" style="margin-left: 3em">Retour au résultat de la recherche</button>
+  			</div>
+				 
+		</mat-drawer-content>
+  		<!-- End Content -->
+	  		
+	</mat-drawer-container>
+	<!-- End Main panel -->
+</div>
+
+<ng-template #selectedCarpoolingTemplate let-covs="covs" let-title="title">
+	<h3 style="color:orange; text-align: center">{{ title }}</h3>
+	<mat-accordion class="header-content">
+		<mat-expansion-panel *ngFor="let cov of covs" #matExpansionPanel>
+			<mat-expansion-panel-header (click)="expandPanel(matExpansionPanel, $event)">
+		     	<mat-panel-title>
+		     		<span class="departure-hour"><b>{{ cov.heureDepart}}</b></span>
+		     		<span>
+		     			Nb Places:
+		      			<select id="monselect">
+					  		<option value="1">1</option> 
+					  		<option value="2" selected>2</option>
+					  		<option value="3">3</option>
+						</select> <span style="color: gray">/ 4</span>
+		     		</span>
+		     	</mat-panel-title>
+		     	
+		      	<mat-panel-description>
+					<div class="route">
+						<div class="row">
+							<div class="col-5">
+								<span class="color-green">{{cov.trajet.villeDepart}}</span>
+							</div>
+							<div class="col-2">
+								<span class="fa fa-long-arrow-right fa-lg color-green" aria-hidden="true"></span>
+							</div>
+							<div class="col-5 pull-right">
+								<span  class="color-red pull-right">{{cov.trajet.villeArrivee}}</span>
+							</div>
+						</div>
+					</div>
+		     		<span>{{cov.price}} &euro;</span>
+		        	<mat-icon>account_circle</mat-icon>
+		      	</mat-panel-description>
+		      
+		    </mat-expansion-panel-header>
+		
+			<div class="content">
+				<div class="row detail">
+		
+					<!-- Driver Infos -->
+					<div class="col-3 driver border border-secondary rounded">
+						<driver-info [driver]="cov.driver"></driver-info>
+					</div>
+					
+					<div class="col-6 route">
+						<route-detail [trajet]="cov.trajet"></route-detail>
+					</div>
+					
+					<!-- Places -->
+					<div  class="col-3">
+						<places-dispo [nbPlacesRestantes]="cov.nbPlacesRestantes"></places-dispo>
+					</div>
+					<!-- End Places -->
+					
+				</div>
+				
+				<div *ngIf="cov.linkedEvent" class="row small-font full-width selection linked-event-zone">
+					<cov-infos-barre [linkedEvent]="cov.linkedEvent"></cov-infos-barre>
+				</div>
+			</div>
+		    
+		</mat-expansion-panel>
+	</mat-accordion>
+</ng-template>

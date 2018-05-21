@@ -1,20 +1,19 @@
-import { Component, TemplateRef, OnInit } from '@angular/core';
-import {MatChipInputEvent} from '@angular/material';
-import {ENTER, COMMA} from '@angular/cdk/keycodes';
-import { AngularFireDatabase } from 'angularfire2/database'; 
-import { Observable } from 'rxjs/Observable';
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { Component, OnInit } from '@angular/core';
+import { MatChipInputEvent } from '@angular/material';
+import { ENTER, COMMA} from '@angular/cdk/keycodes';
+
+import { ICarpooling } from 'app/model/carpooling';
+import { CarpoolingService } from 'app/service/carpooling.service';
 
 
 @Component({
   selector: 'carpoolings-list',
   templateUrl: './carpoolings-list.component.html',
-  styleUrls: ['./carpoolings-list.component.css']
+  styleUrls: ['./carpoolings-list.component.css'],
+  providers: [CarpoolingService]
 })
 export class CarpoolingsListComponent implements OnInit {
-        
-    carpoolingsObservable : Observable<any[]>;
+    carpoolings: ICarpooling[];
     tabsCarpoolings : string[] = [ 'DISPONIBLES (110)', 'COMPLETS (0)' ];
     tabsDays : string[] = [ "Aujourd'hui", "Demain" ];
     
@@ -27,91 +26,65 @@ export class CarpoolingsListComponent implements OnInit {
     separatorKeysCodes = [ENTER, COMMA];
 
     covsAller = [
-         { trajet: 'Bx -> Tlse', heure: '18h30', prix: '12,00$'  },
-         { trajet: 'Lyon -> Tlse', heure: '17h30', prix: '12,00$'  },
-         { trajet: 'Bx -> Tlse', heure: '18h30', prix: '12,00$'  }
     ];
     
      covsRetour = [
-         { trajet: 'Bx -> Tlse', heure: '18h30', prix: '12,00$'  },
-         { trajet: 'Lyon -> Tlse', heure: '17h30', prix: '12,00$'  },
-         { trajet: 'Bx -> Tlse', heure: '18h30', prix: '12,00$'  }
     ];
-
     
-    // TODO : A supprimer
-    full : boolean = true;
+    covoiturages = [
+        { title: 'Vos covs Aller', covs: this.covsAller },
+        { title: 'Vos covs Retour', covs: this.covsRetour }
+    ];
     
     currentPage = 4;
     totalItems : number = 5;
     itemsPerPage : number = 2;
-    selectedCarpooling: any;
+    selectedCarpooling: ICarpooling;
+    autoriserSelection: boolean = false;
     
-    bsModalRef : BsModalRef;
-    config = {
-        animated: true,
-        keyboard: true,
-        backdrop: true,
-        ignoreBackdropClick: false
-    };
-    
-//    constructor(private db: AngularFireDatabase, private modalService: BsModalService) { }
-    constructor(private db: AngularFireDatabase) { }
+    constructor(private _carpoolingService: CarpoolingService) { }
 
     ngOnInit() {
-        this.carpoolingsObservable = this.getCarpoolings('/18-12-2017');
+        this._carpoolingService.getCarpoolings('/18-12-2017').subscribe(carpoolings =>this.carpoolings=carpoolings);
     }
     
-    getCarpoolings(path): Observable<any[]> {
-        if(! this.full) {
-             this.full = true;
-            return Observable.of([]);
-        }
-         this.full = false;
-       return this.db.list(path).valueChanges();
-    }
-    
-    openCarpoolingDetailModal(template: TemplateRef<any>) {
-//        this.bsModalRef = this.modalService.show(template,  Object.assign({}, this.config, { class: 'gray modal-lg' }));
-    }
-    
-    onSelect(selection: any): void {
+    select(selection: any): void {
         this.selectedCarpooling = selection.carpooling;
-        
         if(selection.check) {
-             this.covsAller.push({ 
-                trajet: this.selectedCarpooling.trajet.villeDepart + ' -> ' +  this.selectedCarpooling.trajet.villeArrivee , 
-                 heure: '12h00',
-                 prix: this.selectedCarpooling.price + '$'
-             });
-          } else {
-            console.log(selection);
-                 this.remove({ 
-                    trajet: this.selectedCarpooling.trajet.villeDepart + ' -> ' +  this.selectedCarpooling.trajet.villeArrivee , 
-                     heure: '12h00',
-                     prix: this.selectedCarpooling.price + '$'
-                 });
-          }
+            if(this.selectedCarpooling.acceptationAuto) {
+                this.removeChips();
+                this.autoriserSelection = true;
+            }
+            this.covsAller.push(this.selectedCarpooling);
+        } else {
+            this.removeChip(this.selectedCarpooling);
+            this.autoriserSelection = false;
+        }
     }
     
-    onShowDetailt(carpooling: any): void {
+    showDetailt(carpooling: any): void {
       this.selectedCarpooling = carpooling;
     }
     
-    pageChanged(event: any): void {
-        console.log('Page changed to: ' + event.page);
-        console.log('Number items per page: ' + event.itemsPerPage);
-        this.carpoolingsObservable = this.getCarpoolings('/18-12-2017');
-    }
-
-    remove(cov: any): void {
+     removeChip(cov: any): void {
+        cov.checked = false;
         let index = this.covsAller.indexOf(cov);
-        
-        console.log('Index = ' + index);
-
         if (index >= 0) {
          this.covsAller.splice(index, 1);
         }
      }
     
+    removeChips(): void {
+        while(this.covsAller.length > 0) { 
+           this.removeChip(this.covsAller[0]);
+        } 
+     }
+    
+    pageChanged(event: any): void {
+        console.log('Page changed to: ' + event.page);
+        console.log('Number items per page: ' + event.itemsPerPage);
+//        this.carpoolings = this._carpoolingService.getCarpoolings('/18-12-2017').subscribe(carpoolings =>this.carpoolings=carpoolings);;
+    }
+    
 }
+

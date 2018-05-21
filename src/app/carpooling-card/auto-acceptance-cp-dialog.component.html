@@ -1,0 +1,20 @@
+<div>
+	<h2 mat-dialog-title class="color-red">
+		Avertissement
+		<i class="fa fa-warning"></i>
+	</h2>
+	<mat-dialog-content>
+		<alert type="warning">
+			Ce covoiturage est en <span class="color-red">acceptation automatique</span>, 
+			en le sélectionnant vous ne pourrez plus sélectionner d'autres covoiturages et renoncez aux de facto aux covoiturages précédemment sélectionnés
+		</alert>
+		<p>Etes-vous sur de vouloir continuer ?</p>
+	</mat-dialog-content>
+	
+	<mat-dialog-actions>
+  		<button mat-button [mat-dialog-close]="true">Oui</button>
+  		<button mat-button mat-dialog-close>Non</button>
+	</mat-dialog-actions>
+</div>
+ 
+	

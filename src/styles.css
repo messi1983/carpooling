@@ -18,12 +18,12 @@ body {
 	color: red;
 }
 
-.left-alignment {
-	text-align: left;
-}
-
 .full-width {
 	width: 100%;
+}
+
+.no-space {
+	padding: 0px;
 }
 
 fieldset.scheduler-border  {

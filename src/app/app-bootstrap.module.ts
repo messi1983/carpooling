@@ -2,17 +2,20 @@ import { NgModule } from '@angular/core';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
       imports: [
-         TabsModule.forRoot(),
-         BsDatepickerModule.forRoot(),
-         PaginationModule.forRoot()
+        TabsModule.forRoot(),
+        AlertModule.forRoot(),
+        BsDatepickerModule.forRoot(),
+        PaginationModule.forRoot()
       ],
       exports: [
         TabsModule,
-         BsDatepickerModule,
-         PaginationModule
+        AlertModule,
+        BsDatepickerModule,
+        PaginationModule
       ],
       declarations: []
 })

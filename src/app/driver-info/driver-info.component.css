@@ -1,0 +1,12 @@
+.driver-info-container {
+	display: flex;
+}
+
+.driver-info-container img {
+	height: 70px; 
+	width: 70px;
+}
+
+.driver-info-container > div {
+	margin-left: 4px;
+}

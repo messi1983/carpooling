@@ -1,0 +1,46 @@
+.header-content .mat-expansion-panel-header-title, 
+.header-content .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.header-content .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content .mat-expansion-panel-header-description .route {
+	display: inline; 
+	width: 65%; 
+}
+
+.selection .buttons {
+	margin-bottom: 4px;
+	display: flex;
+	justify-content: center;
+}
+
+.selection .title {
+	text-align: center;
+	color: blue;
+}
+
+.selection .driver {
+	padding-top: 5px;
+	background-color:orange;
+}
+
+.selection .content .route {
+	border-right: solid 1px #e8e8e8;
+	padding-top: 5px;
+}
+
+.selection .departure-hour {
+	margin-right: 1em;
+	padding-right: 2em;
+}
+
+.selection .linked-event-zone {
+	border: solid 1px green;
+	margin-top: 5px;
+	padding-left: 5px;
+}
