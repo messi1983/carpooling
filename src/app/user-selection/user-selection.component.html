@@ -1,44 +1,19 @@
 <div class="selection">
-	
-	 <!-- Main panel -->
-    <mat-drawer-container>
-	  
-		<!-- SideBar -->
-		<mat-drawer mode="side" opened="true" class="col-3 side-bar" style="border: solid 1px">
-		  		Left-content
-		</mat-drawer>
-		<!-- End SideBar -->
-		  
-		<!-- Content -->
-		<mat-drawer-content class="col-9 global-panel">
-			<h2 class="title">Vos sélections</h2>
-			
-			<div *ngFor="let cov of covoiturages">
-				<ng-container *ngTemplateOutlet="selectedCarpoolingTemplate; context:cov"></ng-container>
-				<br />
-			</div>
-			
-			<div class="buttons">
-  				<button mat-button class="border border-secondary rounded">Valider</button>
-  				<button mat-button class="border border-secondary rounded" style="margin-left: 3em">Retour au résultat de la recherche</button>
-  			</div>
-				 
-		</mat-drawer-content>
-  		<!-- End Content -->
-	  		
-	</mat-drawer-container>
-	<!-- End Main panel -->
+		<div *ngFor="let cov of covoiturages">
+			<ng-container *ngTemplateOutlet="selectedCarpoolingTemplate; context:cov"></ng-container>
+			<br />
+		</div>
 </div>
 
 <ng-template #selectedCarpoolingTemplate let-covs="covs" let-title="title">
-	<h3 style="color:orange; text-align: center">{{ title }}</h3>
+	<h3 style="color:orange;">{{ title }}</h3>
 	<mat-accordion class="header-content">
 		<mat-expansion-panel *ngFor="let cov of covs" #matExpansionPanel>
 			<mat-expansion-panel-header (click)="expandPanel(matExpansionPanel, $event)">
 		     	<mat-panel-title>
 		     		<span class="departure-hour"><b>{{ cov.heureDepart}}</b></span>
 		     		<span>
-		     			Nb Places:
+		     			Nb Pl. :
 		      			<select id="monselect">
 					  		<option value="1">1</option> 
 					  		<option value="2" selected>2</option>

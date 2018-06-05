@@ -1,3 +1,7 @@
+.selection {
+	padding: 0px 10px 0px 10px;
+}
+
 .header-content .mat-expansion-panel-header-title, 
 .header-content .mat-expansion-panel-header-description {
   flex-basis: 0;
@@ -11,6 +15,10 @@
 .header-content .mat-expansion-panel-header-description .route {
 	display: inline; 
 	width: 65%; 
+}
+
+#mat-expansion-panel-header-0 {
+	height: 28px;
 }
 
 .selection .buttons {

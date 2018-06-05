@@ -6,7 +6,7 @@
 				<div  class="cov-options">
 					<mat-radio-group [(ngModel)]="selectedOption" name="covOption">
 						<mat-radio-button *ngFor="let op of listCovsOptions" [checked]="op.checked" [value]="op.value" (change)="radioChange($event)" name="covOption">
-							{{ op.name}}
+							<span>{{ op.name}}</span>
 						</mat-radio-button>
 					</mat-radio-group>
 				</div>
@@ -29,7 +29,7 @@
 		</div>
 		
 		<mat-card-actions  style="text-align: center">
-			<button mat-button>
+			<button mat-button routerLink="/resultSearch" routerLinkActive="active">
   				<i class="fa fa-undo" aria-hidden="true"></i>
       			Rechercher
   			</button>

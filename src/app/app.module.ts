@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-
 import { AppBootstrapModule } from './/app-bootstrap.module';
 import { AppMaterialModule } from './/app-material.module';
 import { AppFirebaseModule } from './/app-firebase-module';
+import { AppRoutingModule } from './/app-routing.module';
 
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
@@ -16,6 +16,8 @@ import { DriverInfoComponent } from './driver-info/driver-info.component';
 import { RouteDetailComponent } from './route-detail/route-detail.component';
 import { PlacesDispoComponent } from './places-dispo/places-dispo.component';
 import { CovInfosBarreComponent } from './cov-infos-barre/cov-infos-barre.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ResultSearchComponent } from './result-search/result-search.component';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,15 @@ import { CovInfosBarreComponent } from './cov-infos-barre/cov-infos-barre.compon
     PlacesDispoComponent,
     CovInfosBarreComponent,
     AutoAcceptanceCarpoolingDialog,
+    PageNotFoundComponent,
+    ResultSearchComponent,
   ],
   imports: [
     HttpModule,
     AppFirebaseModule,
     AppBootstrapModule,
-    AppMaterialModule
+    AppMaterialModule,
+    AppRoutingModule
   ],
   providers: [ ],
   bootstrap: [AppComponent],

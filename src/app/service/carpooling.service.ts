@@ -30,4 +30,18 @@ export class CarpoolingService {
          this.full = false;
        return this.db.list(path).valueChanges();
     }
+    
+     removeFromList(cov: any, listCovs:any[]): void {
+        cov.checked = false;
+        let index = listCovs.indexOf(cov);
+        if (index >= 0) {
+            listCovs.splice(index, 1);
+        }
+     }
+    
+    cleanList(listCovs:any[]): void {
+        while(listCovs.length > 0) { 
+           this.removeFromList(listCovs[0], listCovs);
+        } 
+     }
 }

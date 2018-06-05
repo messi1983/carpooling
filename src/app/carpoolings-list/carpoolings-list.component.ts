@@ -13,7 +13,6 @@ import { CarpoolingService } from 'app/service/carpooling.service';
   providers: [CarpoolingService]
 })
 export class CarpoolingsListComponent implements OnInit {
-    carpoolings: ICarpooling[];
     tabsCarpoolings : string[] = [ 'DISPONIBLES (110)', 'COMPLETS (0)' ];
     tabsDays : string[] = [ "Aujourd'hui", "Demain" ];
     
@@ -21,10 +20,13 @@ export class CarpoolingsListComponent implements OnInit {
     selectable: boolean = true;
     removable: boolean = true;
     addOnBlur: boolean = true;
+    
+    selectionAller:ICarpooling[];
+    selectionRetour:ICarpooling[];
 
     // Enter, comma
     separatorKeysCodes = [ENTER, COMMA];
-
+    
     covsAller = [
     ];
     
@@ -32,59 +34,41 @@ export class CarpoolingsListComponent implements OnInit {
     ];
     
     covoiturages = [
-        { title: 'Vos covs Aller', covs: this.covsAller },
-        { title: 'Vos covs Retour', covs: this.covsRetour }
+        { 
+            title: 'Vos covs Aller',
+            covs: this.covsAller,
+            tabsDays: this.tabsDays,
+            tabsCarpoolings: this.tabsCarpoolings,
+            carpoolings: null,
+            selection: null
+        },
+        {
+            title: 'Vos covs Retour',
+            covs: this.covsRetour,
+            tabsDays: this.tabsDays,
+            tabsCarpoolings: this.tabsCarpoolings,
+            carpoolings: null,
+            selection: null
+         }
     ];
-    
-    currentPage = 4;
-    totalItems : number = 5;
-    itemsPerPage : number = 2;
-    selectedCarpooling: ICarpooling;
-    autoriserSelection: boolean = false;
     
     constructor(private _carpoolingService: CarpoolingService) { }
 
     ngOnInit() {
-        this._carpoolingService.getCarpoolings('/18-12-2017').subscribe(carpoolings =>this.carpoolings=carpoolings);
+        this._carpoolingService.getCarpoolings('/18-12-2017').subscribe(carpoolings => {
+            this.covoiturages[0].carpoolings = carpoolings;
+            this.covoiturages[1].carpoolings = carpoolings;
+        });
+        
+         this._carpoolingService.getSelectedCarpoolings().subscribe(carpoolings => { 
+            this.covoiturages[0].selection = carpoolings;
+            this.covoiturages[1].selection = carpoolings;
+        });
     }
     
-    select(selection: any): void {
-        this.selectedCarpooling = selection.carpooling;
-        if(selection.check) {
-            if(this.selectedCarpooling.acceptationAuto) {
-                this.removeChips();
-                this.autoriserSelection = true;
-            }
-            this.covsAller.push(this.selectedCarpooling);
-        } else {
-            this.removeChip(this.selectedCarpooling);
-            this.autoriserSelection = false;
-        }
-    }
-    
-    showDetailt(carpooling: any): void {
-      this.selectedCarpooling = carpooling;
-    }
-    
-     removeChip(cov: any): void {
-        cov.checked = false;
-        let index = this.covsAller.indexOf(cov);
-        if (index >= 0) {
-         this.covsAller.splice(index, 1);
-        }
+    removeChip(cov: any): void {
+        this._carpoolingService.removeFromList(cov, this.covsAller);
      }
-    
-    removeChips(): void {
-        while(this.covsAller.length > 0) { 
-           this.removeChip(this.covsAller[0]);
-        } 
-     }
-    
-    pageChanged(event: any): void {
-        console.log('Page changed to: ' + event.page);
-        console.log('Number items per page: ' + event.itemsPerPage);
-//        this.carpoolings = this._carpoolingService.getCarpoolings('/18-12-2017').subscribe(carpoolings =>this.carpoolings=carpoolings);;
-    }
     
 }
 

@@ -16,6 +16,12 @@ export class UserSelectionComponent implements OnInit {
     covoiturages = [];
     covsRetour = [];
     
+    heureDepartCroissant: boolean = false;
+    heureDepartDecroissant: boolean = false;
+    
+    prixPlaceCroissant: boolean = false;
+    prixPlaceDecroissant: boolean = false;
+    
     constructor(private _carpoolingService: CarpoolingService) { }
     
     ngOnInit() {

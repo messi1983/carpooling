@@ -1,0 +1,32 @@
+.listing .tab-day {
+	padding: 5px;
+	border-left: 1px solid #e8e8e8;
+	border-right: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8
+}
+
+.listing .tab-container {
+	padding: 10px
+}
+
+.listing .side-bar {
+	border: 1px solid #e8e8e8;
+}
+
+.listing .cp {
+	padding: 0px 0px 5px 0px;
+}
+
+.listing .global-panel {
+	background-color: white
+}
+
+.listing-chip {
+
+}
+
+.listing-chip > div {
+	width: 100%;
+	display: flex;
+	justify-content: space-between
+}

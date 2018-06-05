@@ -18,6 +18,7 @@ import { MatNativeDateModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
       imports: [
@@ -38,7 +39,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         MatCheckboxModule,
         MatDatepickerModule,
         MatExpansionModule,
-        MatDialogModule
+        MatDialogModule,
+        MatStepperModule
       ],
       exports: [
         BrowserModule,
@@ -57,7 +59,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
         MatCheckboxModule,
         MatDatepickerModule,
         MatExpansionModule,
-        MatDialogModule
+        MatDialogModule,
+        MatStepperModule
       ],
       declarations: []
 })

@@ -1,0 +1,30 @@
+<div class="starter-template listing">
+
+	<tabset [justified]="false">
+   		<tab *ngFor="let tabDay of covoiturages.tabsDays" heading="{{tabDay}}" class="tab-day">
+ 			<mat-tab-group>
+ 				<mat-tab *ngFor="let tabCarpooling of covoiturages.tabsCarpoolings" label="{{tabCarpooling}}">
+	 		 		<div class="tab-container">
+	 		 				
+			  			<!-- result list -->
+			  			<div *ngFor="let carpooling of covoiturages.carpoolings" class="cp">
+			  				<carpooling-card
+			  					(notifySelection)="select($event)"
+			  					[carpooling]="carpooling"
+			  					[disabled]="(covoiturages.covs.length === 4 || autoriserSelection) && !carpooling.checked"
+			  				>
+			  				</carpooling-card>
+		  				</div>
+		  				<!-- End result list -->
+		  					
+	 					<br>
+	 					
+				    	<pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
+		  					
+					</div>
+				</mat-tab>
+			</mat-tab-group>
+		</tab>
+	</tabset>
+
+</div>
