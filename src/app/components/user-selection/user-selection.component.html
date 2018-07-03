@@ -1,6 +1,6 @@
 <div class="selection">
-		<div *ngFor="let cov of covoiturages">
-			<ng-container *ngTemplateOutlet="selectedCarpoolingTemplate; context:cov"></ng-container>
+		<div *ngFor="let item of covoiturages">
+			<ng-container *ngTemplateOutlet="selectedCarpoolingTemplate; context:item"></ng-container>
 			<br />
 		</div>
 </div>

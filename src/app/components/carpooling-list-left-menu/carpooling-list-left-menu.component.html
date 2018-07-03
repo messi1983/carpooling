@@ -1,0 +1,96 @@
+<div>
+	<div class="rounded-top" style="border: solid 1px green; margin-bottom: 10px; padding: 0px">
+		<label style="width:100%;background-color: yellow;text-align: center;font-weight: bold;color:green">Votre sélection</label>
+		<div  style="padding: 5px">
+	  		<div *ngFor="let cov of covoiturages">
+					<ng-container *ngTemplateOutlet="matChipListTemplate; context:cov"></ng-container>
+			</div>
+		</div>
+	</div>
+					
+	<div class="rounded-top" style="border: solid 1px green; margin-bottom: 10px; padding: 0px">
+		<label style="width:100%;background-color: yellow;text-align: center;font-weight: bold;color:green">Tris et filtres</label>
+		<mat-accordion>
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+			     	<p style="border-bottom: solid 1px; width: 98%; color:gray">Ordonner par</p>
+			    </mat-expansion-panel-header>
+			    <div style="padding-left: 5px">
+			    	<!-- Heure départ croissant -->
+					<mat-checkbox
+						[(ngModel)]="heureDepartCroissant">
+							H. départ croissant
+					</mat-checkbox>
+					
+					<!-- Heure départ décroissant -->
+					<mat-checkbox
+						[(ngModel)]="heureDepartDecroissant">
+							H. départ décroissant
+					</mat-checkbox>
+			    </div>
+			    
+			    <hr />
+			    
+			    <div style="padding-left: 5px">
+			    	<!-- Prix place croissant -->
+					<mat-checkbox
+						[(ngModel)]="prixPlaceCroissant">
+							Prix pl. croissant
+					</mat-checkbox>
+					
+					<!-- Prix place décroissant -->
+					<mat-checkbox
+						[(ngModel)]="prixPlaceDecroissant">
+							Prix pl. décroissant
+					</mat-checkbox>
+			    </div>
+			</mat-expansion-panel>
+			
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<p style="border-bottom: solid 1px gray; width: 98%;;color:gray">Selection Nb Pl.</p>
+			    </mat-expansion-panel-header>
+			    <div style="padding-left: 5px">
+			    	<label>Aller :</label>
+			    	<div style="padding-left: 10px">
+				    	<label>Nb Places :</label>
+		      			<select id="monselect">
+					  		<option value="1">1</option> 
+					  		<option value="2" selected>2</option>
+					  		<option value="3">3</option>
+						</select> <span style="color: gray">/ 4</span>
+					</div>
+			    </div>
+			    
+			    <hr />
+			    
+			    <div style="padding-left: 5px">
+			    	<label>Retour :</label>
+			    	<div style="padding-left: 10px">
+				    	<label>Nb Places :</label>
+		      			<select id="monselect">
+					  		<option value="1">1</option> 
+					  		<option value="2" selected>2</option>
+					  		<option value="3">3</option>
+						</select> <span style="color: gray">/ 4</span>
+					</div>
+			    </div>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
+</div>
+
+<ng-template #matChipListTemplate let-covs="covs" let-title="title">
+	<fieldset *ngIf="covs.length > 0"class="scheduler-border">
+		<legend class="scheduler-border">{{title}}</legend>
+		<mat-chip-list #chipList>
+ 				<mat-chip class="listing-chip" *ngFor="let cov of covs" [selectable]="selectable"
+          			[removable]="removable" (remove)="removeChip(cov)"  style="width: 200px; margin: 3px;font-size: 11px;">
+          			<div>
+   					<span>Auj {{cov.heure}} : {{cov.trajet.villeDepart}} ->{{cov.trajet.villeArrivee}},  {{cov.price}}</span>
+   					<span><mat-icon matChipRemove *ngIf="removable">cancel</mat-icon></span>
+   				</div>
+ 				</mat-chip>
+		</mat-chip-list>
+	</fieldset>
+</ng-template>

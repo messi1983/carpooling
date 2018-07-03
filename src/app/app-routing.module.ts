@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CarpoolingSearchComponent } from './carpooling-search/carpooling-search.component';
-import { UserSelectionComponent } from './user-selection/user-selection.component';
-import { CarpoolingsListComponent } from './carpoolings-list/carpoolings-list.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CarpoolingSearchComponent } from './components/carpooling-search/carpooling-search.component';
+import { UserSelectionComponent } from './components/user-selection/user-selection.component';
+import { CarpoolingsListComponent } from './components/carpoolings-list/carpoolings-list.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
     { path: 'search', component: CarpoolingSearchComponent },

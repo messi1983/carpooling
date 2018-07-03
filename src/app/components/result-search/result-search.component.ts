@@ -15,8 +15,6 @@ export class ResultSearchComponent implements OnInit {
     @Input() covoiturages: any;
     
     visible: boolean = true;
-    selectable: boolean = true;
-    removable: boolean = true;
     addOnBlur: boolean = true;
     
     heureDepartCroissant: boolean = false;

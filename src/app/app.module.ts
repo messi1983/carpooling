@@ -7,17 +7,19 @@ import { AppFirebaseModule } from './/app-firebase-module';
 import { AppRoutingModule } from './/app-routing.module';
 
 import { AppComponent } from './app.component';
-import { AppNavbarComponent } from './app-navbar/app-navbar.component';
-import { CarpoolingsListComponent } from './carpoolings-list/carpoolings-list.component';
-import { CarpoolingCardComponent, AutoAcceptanceCarpoolingDialog } from './carpooling-card/carpooling-card.component';
-import { CarpoolingSearchComponent } from './carpooling-search/carpooling-search.component';
-import { UserSelectionComponent } from './user-selection/user-selection.component';
-import { DriverInfoComponent } from './driver-info/driver-info.component';
-import { RouteDetailComponent } from './route-detail/route-detail.component';
-import { PlacesDispoComponent } from './places-dispo/places-dispo.component';
-import { CovInfosBarreComponent } from './cov-infos-barre/cov-infos-barre.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ResultSearchComponent } from './result-search/result-search.component';
+import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
+import { CarpoolingsListComponent } from './components/carpoolings-list/carpoolings-list.component';
+import { CarpoolingCardComponent } from './components/carpooling-card/carpooling-card.component';
+import { CarpoolingSearchComponent } from './components/carpooling-search/carpooling-search.component';
+import { UserSelectionComponent } from './components/user-selection/user-selection.component';
+import { DriverInfoComponent } from './components/driver-info/driver-info.component';
+import { RouteDetailComponent } from './components/route-detail/route-detail.component';
+import { PlacesDispoComponent } from './components/places-dispo/places-dispo.component';
+import { CovInfosBarreComponent } from './components/cov-infos-barre/cov-infos-barre.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ResultSearchComponent } from './components/result-search/result-search.component';
+import { CarpoolingListLeftMenuComponent } from './components/carpooling-list-left-menu/carpooling-list-left-menu.component';
+import { AutoAcceptanceCpDialogComponent } from './dialogboxes/auto-acceptance-cp-dialog/auto-acceptance-cp-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,10 @@ import { ResultSearchComponent } from './result-search/result-search.component';
     RouteDetailComponent,
     PlacesDispoComponent,
     CovInfosBarreComponent,
-    AutoAcceptanceCarpoolingDialog,
     PageNotFoundComponent,
     ResultSearchComponent,
+    CarpoolingListLeftMenuComponent,
+    AutoAcceptanceCpDialogComponent,
   ],
   imports: [
     HttpModule,
@@ -45,7 +48,7 @@ import { ResultSearchComponent } from './result-search/result-search.component';
   providers: [ ],
   bootstrap: [AppComponent],
   entryComponents: [
-    AutoAcceptanceCarpoolingDialog
+    AutoAcceptanceCpDialogComponent
   ]
 })
 export class AppModule { }

@@ -1,0 +1,45 @@
+<div class="starter-template listing">
+ 
+    <!-- Main panel -->
+    <mat-drawer-container class="row">
+	  		
+		  <!-- SideBar -->
+		  <mat-drawer mode="side" opened="true" class="col-3 side-bar border-secondary rounded">
+				<carpooling-list-left-menu [covoiturages]="covoiturages"></carpooling-list-left-menu>
+		  </mat-drawer>
+		  <!-- End SideBar -->
+	  
+	  	<!-- Content -->
+	  	<mat-drawer-content class="col-9 global-panel" style="padding:0px;margin:0px;">
+	  		<mat-horizontal-stepper  #stepper>
+				<mat-step *ngFor="let cov of covoiturages">
+	  				<ng-template matStepLabel>{{cov.title}}</ng-template>
+	  				<result-search [covoiturages]="cov"></result-search>
+					<div class="buttons">
+				      	<button *ngIf="cov.title === 'Vos covs Retour'" mat-button matStepperPrevious>Back</button>
+        				<button  mat-button matStepperNext [disabled]="cov.covs.length === 0">Next</button>
+				    </div>
+				</mat-step>
+				<mat-step>
+					<ng-template matStepLabel>Selection</ng-template>
+					<user-selection  [covoiturages]="covoiturages"></user-selection>
+					<div class="buttons">
+						<button  mat-button matStepperPrevious>Back</button>
+        				<button  mat-button matStepperNext>Next</button>
+		  			</div>
+				</mat-step>
+				<mat-step>
+					<ng-template matStepLabel>Paiement</ng-template>
+					<div>Paiement</div>
+					<div class="buttons">
+						<button  mat-button matStepperPrevious>Back</button>
+		  			</div>
+				</mat-step>
+			</mat-horizontal-stepper>
+	  </mat-drawer-content>
+	  <!-- End Content -->
+	  
+	</mat-drawer-container>
+	<!-- End Main panel -->
+	
+</div>

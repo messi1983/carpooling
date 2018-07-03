@@ -18,8 +18,8 @@ export class CarpoolingService {
     getSelectedCarpoolings(): Observable<ICarpooling[]>
     {
         return this._http.get(this._carpoolingurl)
-        .map((response: Response) => <ICarpooling[]> response.json())
-        .do(data => console.log(JSON.stringify(data)));
+            .map((response: Response) => <ICarpooling[]> response.json())
+            .do(data => console.log(JSON.stringify(data)));
     }
     
     getCarpoolings(path): Observable<any[]> {

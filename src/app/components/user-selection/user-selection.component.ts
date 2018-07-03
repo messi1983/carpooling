@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { ICarpooling } from 'app/model/carpooling';
 import { CarpoolingService } from 'app/service/carpooling.service';
@@ -11,10 +11,7 @@ import { CarpoolingService } from 'app/service/carpooling.service';
 })
 export class UserSelectionComponent implements OnInit {
     panelOpenState: boolean = false;
-    covsAller: ICarpooling[];
-    
-    covoiturages = [];
-    covsRetour = [];
+    @Input() covoiturages: any;
     
     heureDepartCroissant: boolean = false;
     heureDepartDecroissant: boolean = false;
@@ -22,18 +19,10 @@ export class UserSelectionComponent implements OnInit {
     prixPlaceCroissant: boolean = false;
     prixPlaceDecroissant: boolean = false;
     
-    constructor(private _carpoolingService: CarpoolingService) { }
+    constructor() { }
     
     ngOnInit() {
-        this._carpoolingService.getSelectedCarpoolings().subscribe(carpoolings => { 
-            this.covsAller=carpoolings;
-            this.covsRetour=carpoolings;
-            
-             this.covoiturages = [
-                { title: 'Covoiturages Aller sélectionnés', covs: this.covsAller },
-                { title: 'Covoiturages Retour sélectionnés', covs: this.covsRetour }
-            ];
-        });
+        
     }
     
     expandPanel(matExpansionPanel: any, event: Event): void {

@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit, trigger, state, style, 
 import { MatCheckboxChange } from '@angular/material/checkbox'
 import { animation } from './carpooling-card.animation'
 import { MatDialog, MatCheckbox } from '@angular/material';
+import { AutoAcceptanceCpDialogComponent } from '../../dialogboxes/auto-acceptance-cp-dialog/auto-acceptance-cp-dialog.component';
 
 
 @Component({
@@ -43,7 +44,7 @@ export class CarpoolingCardComponent implements OnInit {
     }
     
     openDialog() {
-        const dialogRef = this._dialog.open(AutoAcceptanceCarpoolingDialog, {
+        const dialogRef = this._dialog.open(AutoAcceptanceCpDialogComponent, {
             width: '500px',
         });
 
@@ -61,12 +62,4 @@ export class CarpoolingCardComponent implements OnInit {
         this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
     }
     
-}
-
-@Component({
-  selector: 'auto-acceptance-cp-dialog',
-  templateUrl: './auto-acceptance-cp-dialog.component.html',
-})
-export class AutoAcceptanceCarpoolingDialog {
-    constructor() { }
 }
