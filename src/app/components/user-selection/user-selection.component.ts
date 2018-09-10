@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ICarpooling } from 'app/model/carpooling';
+import { SimpleCarpooling } from 'app/model/simple.carpooling';
+
+import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
+
 import { CarpoolingService } from 'app/service/carpooling.service';
 
 @Component({
@@ -9,9 +12,9 @@ import { CarpoolingService } from 'app/service/carpooling.service';
   styleUrls: ['./user-selection.component.css'],
   providers: [CarpoolingService]
 })
-export class UserSelectionComponent implements OnInit {
+export class UserSelectionComponent {
     panelOpenState: boolean = false;
-    @Input() covoiturages: any;
+    @Input() selections: CarpoolingViewModel[];
     
     heureDepartCroissant: boolean = false;
     heureDepartDecroissant: boolean = false;
@@ -19,11 +22,7 @@ export class UserSelectionComponent implements OnInit {
     prixPlaceCroissant: boolean = false;
     prixPlaceDecroissant: boolean = false;
     
-    constructor() { }
-    
-    ngOnInit() {
-        
-    }
+    constructor( private _carpoolingService: CarpoolingService) { }
     
     expandPanel(matExpansionPanel: any, event: Event): void {
         event.stopPropagation(); 
@@ -31,6 +30,14 @@ export class UserSelectionComponent implements OnInit {
         if (!this._isExpansionIndicator(event.target)) {
             matExpansionPanel.toggle(); 
         }
+    }
+    
+    getSelectionsAller(): CarpoolingViewModel[] {
+        return this._carpoolingService.filterSelectionsAller(this.selections);
+    }
+    
+    getSelectionsRetour(): CarpoolingViewModel[] {
+        return this._carpoolingService.filterSelectionsRetour(this.selections);
     }
   
     private _isExpansionIndicator(target: EventTarget): boolean {

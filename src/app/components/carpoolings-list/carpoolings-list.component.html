@@ -5,36 +5,52 @@
 	  		
 		  <!-- SideBar -->
 		  <mat-drawer mode="side" opened="true" class="col-3 side-bar border-secondary rounded">
-				<carpooling-list-left-menu [covoiturages]="covoiturages"></carpooling-list-left-menu>
+				<carpooling-list-left-menu [selections]="selections"></carpooling-list-left-menu>
 		  </mat-drawer>
 		  <!-- End SideBar -->
 	  
 	  	<!-- Content -->
 	  	<mat-drawer-content class="col-9 global-panel" style="padding:0px;margin:0px;">
 	  		<mat-horizontal-stepper  #stepper>
-				<mat-step *ngFor="let cov of covoiturages">
-	  				<ng-template matStepLabel>{{cov.title}}</ng-template>
-	  				<result-search [covoiturages]="cov"></result-search>
+	  			
+	  			<!-- ----------------------------------- -->
+				<!-- Step 1-2 : Sélection aller/retour  -->
+				<!-- ----------------------------------- -->
+				<mat-step *ngFor="let rs of resultsSearch">
+	  				<ng-template matStepLabel>{{rs.title}}</ng-template>
+	  				<result-search [resultSearch]="rs"></result-search>
 					<div class="buttons">
-				      	<button *ngIf="cov.title === 'Vos covs Retour'" mat-button matStepperPrevious>Back</button>
-        				<button  mat-button matStepperNext [disabled]="cov.covs.length === 0">Next</button>
+				      	<button *ngIf="rs.title === 'Vos covs Retour'" mat-stroked-button matStepperPrevious>Back</button>
+        				<button  mat-stroked-button matStepperNext 
+        					(click)="getRetours()"
+        					[disabled]="countSelections(rs.title === 'Vos covs Aller') === 0"
+        				>Next</button>
 				    </div>
 				</mat-step>
+				
+				<!-- ------------------------------------------- -->
+				<!-- Step 3 : Visualisation de la sélection et  -->
+				<!-- ------------------------------------------- -->
 				<mat-step>
 					<ng-template matStepLabel>Selection</ng-template>
-					<user-selection  [covoiturages]="covoiturages"></user-selection>
+					<user-selection  [selections]="selections"></user-selection>
 					<div class="buttons">
-						<button  mat-button matStepperPrevious>Back</button>
-        				<button  mat-button matStepperNext>Next</button>
+						<button  mat-stroked-button matStepperPrevious>Back</button>
+        				<button  mat-stroked-button matStepperNext>Next</button>
 		  			</div>
 				</mat-step>
+				
+				<!-- -------------------- -->
+				<!-- Step 4 : Paiement  -->
+				<!-- -------------------- -->
 				<mat-step>
 					<ng-template matStepLabel>Paiement</ng-template>
-					<div>Paiement</div>
+					<app-paiement></app-paiement>
 					<div class="buttons">
-						<button  mat-button matStepperPrevious>Back</button>
+						<button  mat-stroked-button matStepperPrevious>Back</button>
 		  			</div>
 				</mat-step>
+				
 			</mat-horizontal-stepper>
 	  </mat-drawer-content>
 	  <!-- End Content -->

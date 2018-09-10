@@ -1,8 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
 import { ENTER, COMMA} from '@angular/cdk/keycodes';
 
-import { ICarpooling } from 'app/model/carpooling';
+import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
+import { ResultSearchViewModel } from 'app/modelview/result.search.view.model';
+
+import { CarpoolingEvent } from 'app/event/carpooling.event';
+
 import { CarpoolingService } from 'app/service/carpooling.service';
 
 @Component({
@@ -10,9 +14,8 @@ import { CarpoolingService } from 'app/service/carpooling.service';
   templateUrl: './result-search.component.html',
   styleUrls: ['./result-search.component.css']
 })
-export class ResultSearchComponent implements OnInit {
-
-    @Input() covoiturages: any;
+export class ResultSearchComponent {
+    @Input() resultSearch: ResultSearchViewModel;
     
     visible: boolean = true;
     addOnBlur: boolean = true;
@@ -29,30 +32,20 @@ export class ResultSearchComponent implements OnInit {
     currentPage = 4;
     totalItems : number = 5;
     itemsPerPage : number = 2;
-    selectedCarpooling: ICarpooling;
-    autoriserSelection: boolean = false;
     
     constructor(private _carpoolingService: CarpoolingService) { }
-
-    ngOnInit() {
-    }
     
-    select(selection: any): void {
-        this.selectedCarpooling = selection.carpooling;
-        if(selection.check) {
-            if(this.selectedCarpooling.acceptationAuto) {
-                this._carpoolingService.cleanList(this.covoiturages.covs);
-                this.autoriserSelection = true;
+    select(event: CarpoolingEvent): void {
+        let isAller = event.isAller;
+        let selection = event.carpooling.getSimpleCarpooling(isAller);
+        if(selection.checked) {
+            if(selection.acceptationAuto) {
+                this._carpoolingService.cleanList(this.resultSearch.selections, isAller);
             }
-            this.covoiturages.covs.push(this.selectedCarpooling);
+            this._carpoolingService.addToList(event.carpooling, this.resultSearch.selections);
         } else {
-            this._carpoolingService.removeFromList(this.selectedCarpooling, this.covoiturages.covs);
-            this.autoriserSelection = false;
+            this._carpoolingService.removeFromList(event.carpooling, this.resultSearch.selections, isAller);
         }
-    }
-    
-    showDetailt(carpooling: any): void {
-      this.selectedCarpooling = carpooling;
     }
     
     pageChanged(event: any): void {
@@ -60,5 +53,5 @@ export class ResultSearchComponent implements OnInit {
         console.log('Number items per page: ' + event.itemsPerPage);
 //        this.carpoolings = this._carpoolingService.getCarpoolings('/18-12-2017').subscribe(carpoolings =>this.carpoolings=carpoolings);;
     }
-
+    
 }

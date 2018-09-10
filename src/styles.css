@@ -6,8 +6,12 @@ body {
    padding-top: 80px; 
 }
 .starter-template {
-    padding: 3rem 1.5rem;
+/*     padding: 3rem 1.5rem; */
     text-align: center;
+}
+
+.tp-box_back {
+  	transform: rotateY(179.9deg);
 }
 
 .color-green {
@@ -37,4 +41,12 @@ legend.scheduler-border {
     padding: 0px 5px 0px 5px;
     border-bottom: none;
     font-size: 12px !important;
+}
+
+.ctrl-boutons {
+	width:100%;
+	display:flex;
+	flex-direction: row;
+	align-items:center;
+	justify-content: center
 }

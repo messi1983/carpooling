@@ -3,18 +3,18 @@
 	<h3>110 résultats</h3>
 	
 	<tabset [justified]="false">
-   		<tab *ngFor="let tabDay of covoiturages.tabsDays" heading="{{tabDay}}" class="tab-day">
+   		<tab *ngFor="let tabDay of resultSearch.tabsDays" heading="{{tabDay}}" class="tab-day">
  			<mat-tab-group>
- 				<mat-tab *ngFor="let tabCarpooling of covoiturages.tabsCarpoolings" label="{{tabCarpooling}}">
+ 				<mat-tab *ngFor="let tabCarpooling of resultSearch.tabsCarpoolings" label="{{tabCarpooling}}">
 	 		 		<div class="tab-container">
 	 		 				
 			  			<!-- result list -->
-			  			<div *ngFor="let carpooling of covoiturages.carpoolings" class="cp">
+			  			<div *ngFor="let carpooling of resultSearch.carpoolings" class="cp">
 			  				<carpooling-card
 			  					(notifySelection)="select($event)"
+			  					[isAller]="resultSearch.title==='Vos covs Aller'"
 			  					[carpooling]="carpooling"
-			  					[disabled]="(covoiturages.covs.length === 4 || autoriserSelection) && !carpooling.checked"
-			  				>
+			  					[selections]="resultSearch.selections">
 			  				</carpooling-card>
 		  				</div>
 		  				<!-- End result list -->

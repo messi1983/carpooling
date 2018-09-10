@@ -37,7 +37,7 @@
 .carpooling .action {
 	text-align : right;
 	padding: 0px; 
-	margin: 0px 15px 0px 15px;
+	height: 20px;
 }
 
 .carpooling .action button {
@@ -46,14 +46,9 @@
 
 .carpooling .footer {
 	margin: 3px 15px 0px 15px;
-	background-color: yellow
+	background-color: #ccc
 }
 
-.tp-box_front {
-/*   background: #f30d36; */
-}
-
-.tp-box_back {
-  background: #23262d;
-  transform: rotateY(179.9deg);
+.carpooling button {
+	text-decoration: underline;
 }

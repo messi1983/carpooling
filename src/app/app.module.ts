@@ -20,6 +20,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ResultSearchComponent } from './components/result-search/result-search.component';
 import { CarpoolingListLeftMenuComponent } from './components/carpooling-list-left-menu/carpooling-list-left-menu.component';
 import { AutoAcceptanceCpDialogComponent } from './dialogboxes/auto-acceptance-cp-dialog/auto-acceptance-cp-dialog.component';
+import { DetailDialogComponent } from './dialogboxes/detail-dialog/detail-dialog.component';
+import { RouteInLineComponent } from './components/route-in-line/route-in-line.component';
+import { AppPassengerItemComponent } from './components/passenger-item/app-passenger-item.component';
+import { MapDialogComponent } from './dialogboxes/map-dialog/map-dialog.component';
+import { PaiementComponent } from './components/paiement/paiement.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +42,11 @@ import { AutoAcceptanceCpDialogComponent } from './dialogboxes/auto-acceptance-c
     ResultSearchComponent,
     CarpoolingListLeftMenuComponent,
     AutoAcceptanceCpDialogComponent,
+    DetailDialogComponent,
+    RouteInLineComponent,
+    AppPassengerItemComponent,
+    MapDialogComponent,
+    PaiementComponent,
   ],
   imports: [
     HttpModule,
@@ -48,7 +58,9 @@ import { AutoAcceptanceCpDialogComponent } from './dialogboxes/auto-acceptance-c
   providers: [ ],
   bootstrap: [AppComponent],
   entryComponents: [
-    AutoAcceptanceCpDialogComponent
+    AutoAcceptanceCpDialogComponent,
+    DetailDialogComponent,
+    MapDialogComponent
   ]
 })
 export class AppModule { }

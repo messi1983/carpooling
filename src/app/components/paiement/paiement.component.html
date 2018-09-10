@@ -1,0 +1,111 @@
+<div class="paiement">
+
+	<div class="block">
+		<div class="title">Récapitulatif des demandes</div>
+		
+		<ng-container 
+			*ngTemplateOutlet="tableTemplate;context:{data: {'title': 'Vous avez fait 4 choix pour l\'aller:'}}">
+		</ng-container>
+		
+		<hr>
+		
+		<ng-container 
+			*ngTemplateOutlet="tableTemplate;context:{data: {'title': 'Vous avez fait 4 choix pour le retour:'}}">
+		</ng-container>
+		
+	</div>
+		
+	<div class="block">
+		<div class="title">Paiement</div>
+		<form>
+			<div class="buttons">
+				<button  mat-stroked-button color="primary">Visa</button>
+				<button  mat-stroked-button class="button-right">CB</button>
+				<button  mat-stroked-button color="accent" class="button-right">Maestro</button>
+			</div>
+			
+			<div class="row">
+				<div class="col-6">
+					<div id="num-carte">
+						<label>Numéro de carte</label>
+						<input  type="number">
+					</div>
+					<div id="date-expiration">
+						<label>Date expiration</label>
+						<input  type="number">
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="cryptographie">
+						<label>Cryptographie</label>
+						<input  type="number">
+					</div>
+				</div>
+			</div>
+			
+		</form>
+	</div>
+	
+</div>
+
+<ng-template #tableTemplate let-data="data">
+	<div class="resume-table">
+		<span class="color-green">{{ data.title }}</span>
+		<table>
+			<thead>
+				<tr>
+					<th></th>
+					<th>
+						<div>
+							Bordeaux
+							<span class="fa fa-long-arrow-right fa-lg" aria-hidden="true"></span>
+							Toulouse
+						</div>
+						<div class="date-heure-depart">14 juin à 17h30</div>
+					</th>
+					<th>
+						<div>
+							Bordeaux
+							<span class="fa fa-long-arrow-right fa-lg" aria-hidden="true"></span>
+							Toulouse
+						</div>
+						<div class="date-heure-depart">14 juin à 14h30</div>
+					</th>
+					<th>
+						<div>
+							Bordeaux
+							<span class="fa fa-long-arrow-right fa-lg" aria-hidden="true"></span>
+							Toulouse
+						</div>
+						<div class="date-heure-depart">14 juin à 11h30</div>
+					</th>
+					<th>
+						<div>
+							Bordeaux
+							<span class="fa fa-long-arrow-right fa-lg" aria-hidden="true"></span>
+							Toulouse
+						</div>
+						<div class="date-heure-depart">14 juin à 09h30</div>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="background-color:white"></td>
+					<td>1 place x 15,00 &euro;</td>
+					<td>1 place x 15,00 &euro;</td>
+					<td>1 place x 15,00 &euro;</td>
+					<td>1 place x 15,00 &euro;</td>
+				</tr>
+				<tr>
+					<td><b>Total : </b></td>
+					<td><b>15,00 &euro;</b></td>
+					<td><b>25,00 &euro;</b></td>
+					<td><b>21,00 &euro;</b></td>
+					<td><b>15,00 &euro;</b></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</ng-template>
+

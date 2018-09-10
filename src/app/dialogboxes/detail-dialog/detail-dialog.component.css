@@ -1,0 +1,43 @@
+.cov-detail {
+	font-size: 14px;
+}
+
+.cov-detail .carpooler-list-container {
+	margin: 3px 0px 5px 0px;
+}
+
+.cov-detail .carpooler-list { 
+	padding: 4px;
+	height: 90px;
+	overflow:  auto
+}
+
+.cov-detail .title {
+	text-align: center
+}
+
+.cp-route-detail table {
+	width: 100%;
+}
+
+.cp-route-detail td {
+	width: 50%
+}
+
+.cp-route-detail table tbody tr:nth-child(odd) {
+	color: navy;
+  	background-color: #ccc;
+}
+
+.cp-route-detail table tbody tr td:nth-child(odd) {
+  	font-style: italic;
+  	padding-left: 10px;
+}
+
+.cp-route-detail .choice {
+	margin-top: 10px;
+}
+
+mat-card > .tp-box_back  .title {
+	background-color: yellow;
+}

@@ -19,6 +19,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
       imports: [
@@ -40,7 +41,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatDatepickerModule,
         MatExpansionModule,
         MatDialogModule,
-        MatStepperModule
+        MatStepperModule,
+        MatListModule
       ],
       exports: [
         BrowserModule,
@@ -60,7 +62,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatDatepickerModule,
         MatExpansionModule,
         MatDialogModule,
-        MatStepperModule
+        MatStepperModule,
+        MatListModule
       ],
       declarations: []
 })

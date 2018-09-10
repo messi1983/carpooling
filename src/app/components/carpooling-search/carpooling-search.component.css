@@ -1,6 +1,7 @@
 .search-form-content {
 	display: flex;
-	 justify-content: center
+	 justify-content: center;
+	 padding: 7rem 1.5rem;
 }
 
 .cov-options span {

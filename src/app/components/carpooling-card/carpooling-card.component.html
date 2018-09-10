@@ -4,14 +4,12 @@
 	<div *ngIf="flip == 'inactive'; then frontTemplate else backTemplate"></div>
 
 	<ng-template #frontTemplate>
-		<div class="tp-box_front">
-			<div class="tp-box_back" *ngIf="carpooling; then contentTemplate"></div>
-		</div>
+		<div  *ngIf="current; then contentTemplate"></div>
 	</ng-template>
 	
 	<ng-template #backTemplate>
 		<div class="tp-box_back">
-			<div class="tp-box_back" *ngIf="carpooling; then contentTemplate"></div>
+			<div class="tp-box_back" *ngIf="current; then contentTemplate"></div>
 		</div>
 	</ng-template>
         		
@@ -25,26 +23,26 @@
 			<!-- departure Hour -->
 			<mat-checkbox
 				class="col-3 text-left departure-hour"
-				[(ngModel)]="carpooling.checked"
-				[disabled]="disabled"
-				(change)="onNotifySelection($event)">
-					<b>{{carpooling.heureDepart}}</b>
+				[(ngModel)]="current.checked"
+				(change)="onNotifySelection($event)"
+				[disabled]="disabledAction()">
+					<b>{{current.heureDepart}}</b>
 			</mat-checkbox>
 			<!-- End departure Hour -->
 		
 			<!-- Route -->
 			<div class="col-7 route">
-				<span class="color-green">{{carpooling.trajet.villeDepart}}</span>
-				<span  *ngIf="carpooling.allerRetour; else allerSimple" class="fa fa-exchange fa-lg color-red" aria-hidden="true"></span>
-				<ng-template #allerSimple>
-					<span class="fa fa-long-arrow-right fa-lg color-green" aria-hidden="true"></span>
-				</ng-template>
-				<span  class="color-red">{{carpooling.trajet.villeArrivee}}</span>
+				<app-route-in-line 
+					[trajet]="current.trajet" 
+					[allerRetour]="carpooling.retour"
+					[isDetail]="false"
+				>
+				</app-route-in-line>
 			</div>
 			<!-- End Route -->
 		
 			<!-- Price -->
-			<div  class="col-2  price">{{carpooling.price}} &euro;</div>
+			<div  class="col-2  price">{{current.price}} &euro;</div>
 			<!-- End Price -->
 	
 		</div>
@@ -64,17 +62,21 @@
 			<div class="col-7 text-left route-infos-container">
 			
 				<div class="row route">
-					<route-detail [trajet]="carpooling.trajet" [restrictDesc]="true"></route-detail>
+					<route-detail [trajet]="current.trajet" [restrictDesc]="true"></route-detail>
 				</div>
       							
       			<mat-card-actions class="action">
-  					<button mat-button *ngIf="carpooling.allerRetour" (click)="toggleFlip()">
+  					<button mat-button *ngIf="carpooling.retour" (click)="toggleFlip()">
       					<i class="fa fa-undo" aria-hidden="true"></i>
-		        		<u>Retour mardi à 14h30</u>
+		        		Retour mardi à 14h30
       				</button>
 		      		<button mat-button (click)="onShowDetail()">
          				<i class="fa fa-plus" aria-hidden="true"></i>
-		        		<u>Detail</u>
+		        		Detail
+		      		</button>
+		      		<button mat-button (click)="onShowMap()" style="padding:0px">
+         				<mat-icon>account_circle</mat-icon>
+		        		Map
 		      		</button>
 				</mat-card-actions>
 				
@@ -83,7 +85,7 @@
         			
         	<!-- Places -->
         	<div class="col-2 no-space">
-        		<places-dispo [nbPlacesRestantes]="carpooling.nbPlacesRestantes"></places-dispo>
+        		<places-dispo [nbPlacesRestantes]="current.nbPlacesRestantes"></places-dispo>
         	</div>
 				
     	</div>
@@ -91,8 +93,8 @@
     <!-- End Cp Content -->
         		
 	<!-- Footer -->
-    <mat-card-footer *ngIf="carpooling.linkedEvent" class="footer small-font border border-secondary rounded">
-    	<cov-infos-barre [linkedEvent]="carpooling.linkedEvent"></cov-infos-barre>
+    <mat-card-footer *ngIf="current.linkedEvent" class="footer small-font border border-secondary rounded">
+    	<cov-infos-barre [linkedEvent]="current.linkedEvent"></cov-infos-barre>
     </mat-card-footer>
 	<!-- Footer -->
 </ng-template>

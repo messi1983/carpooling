@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ENTER, COMMA} from '@angular/cdk/keycodes';
 
-import { ICarpooling } from 'app/model/carpooling';
+import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
+
 import { CarpoolingService } from 'app/service/carpooling.service';
 
 @Component({
@@ -9,9 +10,8 @@ import { CarpoolingService } from 'app/service/carpooling.service';
   templateUrl: './carpooling-list-left-menu.component.html',
   styleUrls: ['./carpooling-list-left-menu.component.css']
 })
-export class CarpoolingListLeftMenuComponent implements OnInit {
-    
-    @Input() covoiturages: any;
+export class CarpoolingListLeftMenuComponent {
+    @Input() selections: CarpoolingViewModel[];
     
     visible: boolean = true;
     selectable: boolean = true;
@@ -28,11 +28,26 @@ export class CarpoolingListLeftMenuComponent implements OnInit {
     separatorKeysCodes = [ENTER, COMMA];
     
     constructor(private _carpoolingService: CarpoolingService) { }
-
-    ngOnInit() {
+    
+    removeChip(carpooling: CarpoolingViewModel, isAller: boolean): void {
+        carpooling.getSimpleCarpooling(isAller).checked = false;
+        this._carpoolingService.removeFromList(carpooling, this.selections, isAller);
+     }
+    
+    existAllers(): boolean {
+        return this._carpoolingService.existAllers(this.selections);
     }
     
-    removeChip(cov: any): void {
-        this._carpoolingService.removeFromList(cov, this.covoiturages[0].covs);
-     }
+    existReturns(): boolean {
+        return this._carpoolingService.existReturns(this.selections);
+    }
+    
+    getSelectionsAller(): CarpoolingViewModel[] {
+        return this._carpoolingService.filterSelectionsAller(this.selections);
+    }
+    
+    getSelectionsRetour(): CarpoolingViewModel[] {
+        return this._carpoolingService.filterSelectionsRetour(this.selections);
+    }
+    
 }

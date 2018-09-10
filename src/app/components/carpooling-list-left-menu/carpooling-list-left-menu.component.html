@@ -2,8 +2,15 @@
 	<div class="rounded-top" style="border: solid 1px green; margin-bottom: 10px; padding: 0px">
 		<label style="width:100%;background-color: yellow;text-align: center;font-weight: bold;color:green">Votre sélection</label>
 		<div  style="padding: 5px">
-	  		<div *ngFor="let cov of covoiturages">
-					<ng-container *ngTemplateOutlet="matChipListTemplate; context:cov"></ng-container>
+			<div *ngIf="existAllers()">
+				<ng-container 
+					*ngTemplateOutlet="matChipListTemplate; context:{title:'Vos covs Aller', selections:getSelectionsAller()}">
+				</ng-container>
+			</div>
+			<div *ngIf="existReturns()">
+				<ng-container
+					*ngTemplateOutlet="matChipListTemplate; context:{title:'Vos covs Retour', selections:getSelectionsRetour()}">
+				</ng-container>
 			</div>
 		</div>
 	</div>
@@ -80,16 +87,24 @@
 	</div>
 </div>
 
-<ng-template #matChipListTemplate let-covs="covs" let-title="title">
-	<fieldset *ngIf="covs.length > 0"class="scheduler-border">
+<ng-template #matChipListTemplate
+	let-title="title"
+	let-selections="selections")>
+	<fieldset *ngIf="selections.length > 0"class="scheduler-border">
 		<legend class="scheduler-border">{{title}}</legend>
 		<mat-chip-list #chipList>
- 				<mat-chip class="listing-chip" *ngFor="let cov of covs" [selectable]="selectable"
-          			[removable]="removable" (remove)="removeChip(cov)"  style="width: 200px; margin: 3px;font-size: 11px;">
+ 				<mat-chip class="listing-chip" *ngFor="let cp of selections" [selectable]="selectable"
+          			[removable]="removable" (remove)="removeChip(cp, title === 'Vos covs Aller')"
+          			style="width: 200px; margin: 3px;font-size: 11px;">
           			<div>
-   					<span>Auj {{cov.heure}} : {{cov.trajet.villeDepart}} ->{{cov.trajet.villeArrivee}},  {{cov.price}}</span>
-   					<span><mat-icon matChipRemove *ngIf="removable">cancel</mat-icon></span>
-   				</div>
+   						<span *ngIf="cp.aller && title === 'Vos covs Aller'">
+   							Auj {{cp.aller.heure}} : {{cp.aller.trajet.villeDepart}} -> {{cp.aller.trajet.villeArrivee}},  {{cp.aller.price}}
+   						</span>
+   						<span *ngIf="cp.retour && title === 'Vos covs Retour'">
+   							Auj {{cp.retour.heure}} : {{cp.retour.trajet.villeDepart}} -> {{cp.retour.trajet.villeArrivee}},  {{cp.retour.price}}
+   						</span>
+   						<span><mat-icon matChipRemove *ngIf="removable">cancel</mat-icon></span>
+   					</div>
  				</mat-chip>
 		</mat-chip-list>
 	</fieldset>

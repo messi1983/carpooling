@@ -1,12 +1,12 @@
-<div>
+<div class="route-detail">
 	<i class="fa fa-map-marker color-green" aria-hidden="true"></i>
 	<span class="small-font">{{trajet.pointDepart}},</span><span class="color-green"> {{trajet.villeDepart}}</span>
 	<br>
 	<i class="fa fa-map-marker color-red" aria-hidden="true"></i>
 	<span class="small-font">{{trajet.pointArrivee}},</span><span class="color-red"> {{trajet.villeArrivee}}</span>
 </div>
-<div *ngIf="!restrictDesc;" style="text-align: right; margin-top: 5px">
-	Durée approximative du trajet: <b>2h30</b><br>
+<div *ngIf="!restrictDesc;" class="duree">
+	<p>Durée approximative du trajet: <b>2h30</b><br>
 	Voir <a href="#">le détail</a>
 </div>
 	

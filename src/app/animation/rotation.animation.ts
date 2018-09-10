@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/core';
 
-export const animation = trigger('flipState', [
+export const rotation = trigger('flipState', [
       state('active', style({
         transform: 'rotateY(179.9deg)'
       })),

@@ -1,29 +1,11 @@
-export interface ICarpooling {
-    id : number;
-    checked : boolean;
-    driver : {
-            compteId : string;
-            lastname : string;
-            firstname : string;
-            sexe : string;
-            telephone : string;
-            age : number;
-            note : string;
-        },
-        price : string;
-        nbPlacesRestantes : number;
-        dateDepart : string;
-        heureDepart : string;
-        dateRetour : string,
-        heureRetour : string;
-        trajet : {
-            villeDepart : string;
-            villeArrivee : string;
-            pointDepart : string;
-            pointArrivee : string;
-        },
-        allerRetour : boolean;
-        reservations : number,
-        acceptationAuto : boolean,
-        linkedEvent: string
+import { Carpooler } from 'app/model/carpooler';
+import { SimpleCarpooling } from 'app/model/simple.carpooling';
+
+export class Carpooling {
+    constructor(
+        public id : number,
+        public driver : Carpooler,
+        public aller : SimpleCarpooling,
+        public retour : SimpleCarpooling
+    ) {}
 }

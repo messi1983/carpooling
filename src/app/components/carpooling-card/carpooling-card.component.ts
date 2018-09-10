@@ -1,65 +1,99 @@
-import { Component, Input, Output, EventEmitter, OnInit, trigger, state, style, transition, animate, ViewChild } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox'
-import { animation } from './carpooling-card.animation'
+import { rotation } from '../../animation/rotation.animation'
 import { MatDialog, MatCheckbox } from '@angular/material';
 import { AutoAcceptanceCpDialogComponent } from '../../dialogboxes/auto-acceptance-cp-dialog/auto-acceptance-cp-dialog.component';
+import { DetailDialogComponent } from '../../dialogboxes/detail-dialog/detail-dialog.component';
+import { MapDialogComponent } from '../../dialogboxes/map-dialog/map-dialog.component';
+
+import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
+import { SimpleCarpoolingViewModel } from 'app/modelview/simple.carpooling.view.model';
+
+import { CarpoolingEvent } from 'app/event/carpooling.event';
+
+import { CarpoolingService } from 'app/service/carpooling.service';
+
+import { AbstractRotateComponent } from 'app/common/abstract.rotate.component';
 
 
 @Component({
   selector: 'carpooling-card',
   templateUrl: './carpooling-card.component.html',
   styleUrls: ['./carpooling-card.component.css'],
-  animations: [ animation ]
+  animations: [ rotation ]
 })
-export class CarpoolingCardComponent implements OnInit {
-    @Input() carpooling : any;
-    @Input() disabled: boolean;
+export class CarpoolingCardComponent extends AbstractRotateComponent {
+    @Input() carpooling : CarpoolingViewModel;
+    @Input() selections: CarpoolingViewModel[];
     
-    @Output() showDetail = new EventEmitter<any>();
-    @Output() notifySelection = new EventEmitter<any>();
+    @Output() notifySelection = new EventEmitter<CarpoolingEvent>();
     
-    selected: boolean = false;
-    flip: string = 'inactive';
-    template1 : string = "#frontTemplate";
-    
-    constructor(public _dialog: MatDialog) { }
+    constructor(public _dialog: MatDialog, private _carpoolingService: CarpoolingService) {
+        super();
+    }
 
-    ngOnInit() {
-    }
-    
-    onShowDetail(): void {
-        this.showDetail.emit(this.carpooling);  
-    }
-    
     onNotifySelection(event:MatCheckboxChange): void {
+        this.current.checked = event.checked;
         if(event.checked) {
-            if(this.carpooling.acceptationAuto) {
-                this.openDialog();
+            if(this.current.acceptationAuto) {
+                this.openAutoAcceptationDialog();
             } else {
-                this.notifySelection.emit({check: true, carpooling:this.carpooling});
+                this.notifySelection.emit(new CarpoolingEvent(this.carpooling, this.isAller));
             }
         } else {
-            this.notifySelection.emit({check: false, carpooling:this.carpooling});
+            this.notifySelection.emit(new CarpoolingEvent(this.carpooling, this.isAller));
         }
     }
     
-    openDialog() {
-        const dialogRef = this._dialog.open(AutoAcceptanceCpDialogComponent, {
-            width: '500px',
-        });
-
-        dialogRef.afterClosed().subscribe(response => {
-            if(response) {
-                this.notifySelection.emit({check: true, carpooling:this.carpooling});
-            } else {
-                this.carpooling.checked = false;
-            }
-            console.log(`Dialog result: ${response}`);
+    onShowMap(): void {
+        this._dialog.open(MapDialogComponent, {
+           width: '500px',
+            data: { carpooling: this.carpooling },
         });
     }
     
-    toggleFlip() {
-        this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
+    openAutoAcceptationDialog() {
+        const dialogRef = this._dialog.open(AutoAcceptanceCpDialogComponent, {
+            width: '600px',
+        });
+        this.treatDialogReturn(dialogRef);
+    }
+    
+    onShowDetail(): void {
+        const dialogRef = this._dialog.open(DetailDialogComponent, {
+           width: '700px',
+            data: this.carpooling,
+        });
+        this.treatDialogReturn(dialogRef);
+    }
+    
+    disabledAction(): boolean {
+        return (this.countSelections() === 4 || this.existAcceptionAutoSurSelections())
+                    && !this.current.checked
+    }
+    
+    protected getCarpooling() : CarpoolingViewModel {
+        return this.carpooling;
+    }
+    
+    private treatDialogReturn(dialogRef: any) : void {
+        dialogRef.afterClosed().subscribe(response => {
+            console.log('curent=');
+            console.log(this.current);
+            this.current.checked = response;
+            this.notifySelection.emit(new CarpoolingEvent(this.carpooling, this.isAller));
+        });
+    }
+    
+    private countSelections(): number {
+        return this._carpoolingService.countSelections(this.selections, this.isAller);
+    }
+    
+     private existAcceptionAutoSurSelections(): boolean {
+         if(this.isAller) {
+            return this._carpoolingService.existAcceptionAutoSurSelectionsAller(this.selections);
+        } 
+        return this._carpoolingService.existAcceptionAutoSurSelectionsRetour(this.selections);
     }
     
 }
