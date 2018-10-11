@@ -5,7 +5,15 @@
 	  		
 		  <!-- SideBar -->
 		  <mat-drawer mode="side" opened="true" class="col-3 side-bar border-secondary rounded">
-				<carpooling-list-left-menu [selections]="selections"></carpooling-list-left-menu>
+		  		<div *ngIf="currentStep < 3">
+					<carpooling-list-left-menu
+						[selections]="selections"
+						[currentStep]="currentStep"
+						[carpoolingsAller]="carpoolingsAller"
+						[carpoolingsRetour]="carpoolingsRetour"
+					>
+					</carpooling-list-left-menu>
+				</div>
 		  </mat-drawer>
 		  <!-- End SideBar -->
 	  
@@ -14,16 +22,33 @@
 	  		<mat-horizontal-stepper  #stepper>
 	  			
 	  			<!-- ----------------------------------- -->
-				<!-- Step 1-2 : Sélection aller/retour  -->
+				<!-- Step 1 : Sélection allers  -->
 				<!-- ----------------------------------- -->
-				<mat-step *ngFor="let rs of resultsSearch">
-	  				<ng-template matStepLabel>{{rs.title}}</ng-template>
-	  				<result-search [resultSearch]="rs"></result-search>
+				<mat-step>
+	  				<ng-template matStepLabel>Vos covs Aller</ng-template>
+	  				<result-search [resultSearch]="resultsSearch[0]"></result-search>
 					<div class="buttons">
-				      	<button *ngIf="rs.title === 'Vos covs Retour'" mat-stroked-button matStepperPrevious>Back</button>
         				<button  mat-stroked-button matStepperNext 
-        					(click)="getRetours()"
-        					[disabled]="countSelections(rs.title === 'Vos covs Aller') === 0"
+        					(click)="goToStepRetours()"
+        					[disabled]="countSelections(true) === 0"
+        				>Next</button>
+				    </div>
+				</mat-step>
+				
+				<!-- ----------------------------------- -->
+				<!-- Step 2 : Sélection Retours  -->
+				<!-- ----------------------------------- -->
+				<mat-step>
+	  				<ng-template matStepLabel>Vos covs Retour</ng-template>
+	  				<result-search [resultSearch]="resultsSearch[1]"></result-search>
+					<div class="buttons">
+				      	<button mat-stroked-button matStepperPrevious
+				      		(click)="goToStepAllers()">
+				      		Back
+				      	</button>
+        				<button  mat-stroked-button matStepperNext 
+        					(click)="goToStepVisualisationSelections()"
+        					[disabled]="countSelections(galse) === 0"
         				>Next</button>
 				    </div>
 				</mat-step>
@@ -33,10 +58,18 @@
 				<!-- ------------------------------------------- -->
 				<mat-step>
 					<ng-template matStepLabel>Selection</ng-template>
-					<user-selection  [selections]="selections"></user-selection>
+					<user-selection 
+						[selections]="selections">
+					</user-selection>
 					<div class="buttons">
-						<button  mat-stroked-button matStepperPrevious>Back</button>
-        				<button  mat-stroked-button matStepperNext>Next</button>
+						<button  mat-stroked-button matStepperPrevious
+							(click)="goToStepRetours()">
+							Back
+						</button>
+        				<button  mat-stroked-button matStepperNext
+        					(click)="goToStepPaiement()">
+        					Next
+        				</button>
 		  			</div>
 				</mat-step>
 				
@@ -45,9 +78,14 @@
 				<!-- -------------------- -->
 				<mat-step>
 					<ng-template matStepLabel>Paiement</ng-template>
-					<app-paiement></app-paiement>
+					<app-paiement 
+						[selections]="selections">
+					</app-paiement>
 					<div class="buttons">
-						<button  mat-stroked-button matStepperPrevious>Back</button>
+						<button  mat-stroked-button matStepperPrevious
+							(click)="goToStepVisualisationSelection()">
+							Back
+						</button>
 		  			</div>
 				</mat-step>
 				

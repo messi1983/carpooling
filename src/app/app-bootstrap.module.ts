@@ -9,7 +9,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
         TabsModule.forRoot(),
         AlertModule.forRoot(),
         BsDatepickerModule.forRoot(),
-        PaginationModule.forRoot(),
+        PaginationModule.forRoot()
       ],
       exports: [
         TabsModule,

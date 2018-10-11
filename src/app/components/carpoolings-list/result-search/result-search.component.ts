@@ -7,7 +7,7 @@ import { ResultSearchViewModel } from 'app/modelview/result.search.view.model';
 
 import { CarpoolingEvent } from 'app/event/carpooling.event';
 
-import { CarpoolingService } from 'app/service/carpooling.service';
+import { CarpoolingUtils } from 'app/utils/carpooling.utils';
 
 @Component({
   selector: 'result-search',
@@ -33,18 +33,19 @@ export class ResultSearchComponent {
     totalItems : number = 5;
     itemsPerPage : number = 2;
     
-    constructor(private _carpoolingService: CarpoolingService) { }
+    constructor() { }
     
     select(event: CarpoolingEvent): void {
         let isAller = event.isAller;
         let selection = event.carpooling.getSimpleCarpooling(isAller);
         if(selection.checked) {
             if(selection.acceptationAuto) {
-                this._carpoolingService.cleanList(this.resultSearch.selections, isAller);
+                CarpoolingUtils.cleanList(this.resultSearch.selections, isAller);
+                selection.checked = true;
             }
-            this._carpoolingService.addToList(event.carpooling, this.resultSearch.selections);
+            CarpoolingUtils.addToList(event.carpooling, this.resultSearch.selections);
         } else {
-            this._carpoolingService.removeFromList(event.carpooling, this.resultSearch.selections, isAller);
+            CarpoolingUtils.removeFromList(event.carpooling, this.resultSearch.selections, isAller);
         }
     }
     

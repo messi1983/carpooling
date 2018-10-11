@@ -1,8 +1,10 @@
 .route-detail {
 	padding: 4px;
-	
-	.duree {
-		text-align: right;
-		margin-top: 5px;
-	}
+	text-align:left;
+}
+
+.route-detail .duree {
+	text-align: right;
+	margin-top: 5px;
+	font-style:italic
 }

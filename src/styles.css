@@ -50,3 +50,7 @@ legend.scheduler-border {
 	align-items:center;
 	justify-content: center
 }
+
+.small-font {
+	font-size: small;
+}

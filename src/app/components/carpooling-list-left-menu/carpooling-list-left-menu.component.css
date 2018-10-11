@@ -1,9 +1,0 @@
-.listing-chip {
-
-}
-
-.listing-chip > div {
-	width: 100%;
-	display: flex;
-	justify-content: space-between
-}

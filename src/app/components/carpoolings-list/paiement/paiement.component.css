@@ -1,0 +1,109 @@
+.paiement {
+	text-align:left;
+}
+.paiement .block {
+	border: solid 1px #e8e8e8;
+	border-radius: 3px;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.paiement .title {
+	border-bottom: solid 1px #e8e8e8;
+	font-weight:bold;
+	margin-bottom: 10px;
+}
+
+.paiement .resume-table {
+	padding: 0px 15px  0px 15px;
+}
+
+.paiement .date-heure-depart {
+	font-size: 10px;
+	width: 100%;
+	text-align: center;
+	color: blue;
+	font-style: italic
+}
+
+
+.paiement form label,
+.paiement form input {
+	font-size: 13px;
+}
+
+.paiement form label {
+	width: 100px;
+}
+
+.paiement .cryptographie label {
+	width: 92px;
+}
+
+.paiement .cryptographie input {
+	width: 50px;
+}
+
+.paiement .demandes-container {
+	display: flex;
+	font-size: small;
+	margin-top: 3px;
+}
+
+.paiement .demande {
+	width: 200px;
+	margin-left: 2px;
+	background-color: #fbcbd7
+}
+
+.paiement .demande-aller  {
+	background-color: #dfdbf9;
+}
+
+.paiement .demande .route {
+	text-align: center;
+	font-size: bold;
+}
+
+.paiement .demande .places {
+	text-align: center;
+	font-size:11px;
+}
+
+.paiement .demande .total-amount {
+	text-align: center;
+	margin-top: 5px;
+	border-top: solid 1px #e8e8e8;
+}
+
+.paiement form .date-expiration label {
+	width: 98px;
+}
+
+.paiement form .date-expiration select {
+	font-size: 12px;
+	height: 23px;
+}
+
+.paiement form .date-expiration .month {
+	margin-right: 3px;
+}
+
+.paiement form .date-expiration .year {
+	margin-left: 3px;
+}
+
+.paiement form .num-carte label {
+	width: 87px;
+}
+
+.paiement img {
+	height: 20px;
+	width: 90px;
+	margin-left: 40px;
+}
+
+.paiement .card-infos {
+	display: flex;
+	justify-content: space-between;
+}

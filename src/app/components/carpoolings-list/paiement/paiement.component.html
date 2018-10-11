@@ -1,0 +1,102 @@
+<div class="paiement">
+
+	<div class="block">
+		<div class="title">Récapitulatif des demandes</div>
+		
+		<div class="resume-table">
+			<div class="color-green">
+				<span class="fa fa-hand-o-right color-green" aria-hidden="true"></span>
+				<b> 4</b> choix pour l'aller :
+			</div>
+			<ng-container 
+				*ngTemplateOutlet="demandeTemplate; context : {selections:getSelectionsAller(), isAller : true}">
+			</ng-container>
+		</div>
+		
+		<br />
+		
+		<div class="resume-table">
+			<div class="color-red">
+				<span class="fa fa-hand-o-right color-red" aria-hidden="true"></span>
+				<b> 4</b> choix pour le retour :
+			</div>
+			<ng-container 
+				*ngTemplateOutlet="demandeTemplate; context : {selections : getSelectionsRetour(), isAller : false}">
+			</ng-container>
+		</div>
+		
+	</div>
+		
+	<div class="block">
+		<div class="title">
+			<span>Paiement</span>
+			<img src="assets/cards.png" alt="cards">
+		</div>
+		<br />
+		<form class="resume-table">
+			<div class="authorized-cards">
+				<div></div>
+			</div>
+			
+			<div class="card-infos">
+			
+					<div class="num-carte">
+						<label><b>Numéro carte</b></label>
+						<input  type="number" class="border rounded">
+					</div>
+					
+					<div class="date-expiration">
+						<label><b>Date expiration</b></label>
+						<select class="border rounded month">
+						   <option [value]="month" *ngFor="let month of months">
+						   		{{month}}
+						   </option>
+						 </select>
+						 <span>/</span>
+						<select class="border rounded year">
+						   <option [value]="year" *ngFor="let year of years">
+						   		{{year}}
+						   </option>
+						 </select>
+					</div>
+				
+					<div class="cryptographie">
+						<label><b>Cryptographie</b></label>
+						<input  type="number" class="border rounded">
+					</div>
+					
+			</div>
+			
+			<div style="display: flex; justify-content: center">
+				<button type="button" class="btn btn-primary" style="margin-top: 5px">Payer</button>
+			</div>
+		</form>
+	</div>
+	
+</div>
+
+<ng-template #demandeTemplate
+	let-isAller="isAller"
+	let-selections="selections">
+		
+	<div class="demandes-container">
+		<div *ngFor="let cp of selections" [ngClass]="{'demande border rounded' : true, 'demande-aller' : isAller}">
+			<div class="route">
+				{{ cp.getSimpleCarpooling(isAller).trajet.villeDepart}}
+				<span class="fa fa-long-arrow-right fa-lg" aria-hidden="true"></span>
+				{{ cp.getSimpleCarpooling(isAller).trajet.villeArrivee}}
+			</div>
+			<div class="date-heure-depart">14 juin à {{ cp.getSimpleCarpooling(isAller).heureDepart}}</div>
+			
+			<div class="places">
+				<b>{{cp.getSimpleCarpooling(isAller).nbPlacesRestantes}} place(s) x {{cp.getSimpleCarpooling(isAller).price}} &euro;</b>
+			</div>
+			
+			<div class="color-red total-amount">
+				<b>{{cp.getSimpleCarpooling(isAller).price}} &euro;</b>
+			</div>
+		</div>
+	</div>
+	
+</ng-template>
+

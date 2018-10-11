@@ -5,6 +5,9 @@ import { SimpleCarpooling } from 'app/model/simple.carpooling';
 import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
 
 import { CarpoolingService } from 'app/service/carpooling.service';
+import { CarpoolingUtils } from 'app/utils/carpooling.utils';
+
+import { AbstractSelectionComponent } from 'app/common/abstract.selection.component';
 
 @Component({
   selector: 'user-selection',
@@ -12,17 +15,16 @@ import { CarpoolingService } from 'app/service/carpooling.service';
   styleUrls: ['./user-selection.component.css'],
   providers: [CarpoolingService]
 })
-export class UserSelectionComponent {
-    panelOpenState: boolean = false;
-    @Input() selections: CarpoolingViewModel[];
-    
+export class UserSelectionComponent extends AbstractSelectionComponent {
     heureDepartCroissant: boolean = false;
     heureDepartDecroissant: boolean = false;
     
     prixPlaceCroissant: boolean = false;
     prixPlaceDecroissant: boolean = false;
     
-    constructor( private _carpoolingService: CarpoolingService) { }
+    constructor() {
+        super();
+    }
     
     expandPanel(matExpansionPanel: any, event: Event): void {
         event.stopPropagation(); 
@@ -32,14 +34,6 @@ export class UserSelectionComponent {
         }
     }
     
-    getSelectionsAller(): CarpoolingViewModel[] {
-        return this._carpoolingService.filterSelectionsAller(this.selections);
-    }
-    
-    getSelectionsRetour(): CarpoolingViewModel[] {
-        return this._carpoolingService.filterSelectionsRetour(this.selections);
-    }
-  
     private _isExpansionIndicator(target: EventTarget): boolean {
 //        const expansionIndicatorClass = 'mat-expansion-indicator';
 //        return (target.classList && target.classList.contains(expansionIndicatorClass) );

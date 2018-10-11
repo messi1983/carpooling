@@ -3,22 +3,10 @@ import { CarpoolerViewModel } from 'app/modelview/carpooler.view.model';
 import { SimpleCarpoolingViewModel } from 'app/modelview/simple.carpooling.view.model';
 
 export class CarpoolingViewModel {
+    carpooling: Carpooling;
     driver : CarpoolerViewModel;
     aller: SimpleCarpoolingViewModel;
     retour: SimpleCarpoolingViewModel;
-    
-    constructor(public carpooling: Carpooling, isAller: boolean) {
-        this.driver = new CarpoolerViewModel(this.carpooling.driver);
-        
-        if(isAller) {
-            this.aller = new SimpleCarpoolingViewModel(this.carpooling.aller);
-            if (this.carpooling.retour) {
-                this.retour = new SimpleCarpoolingViewModel(this.carpooling.retour);
-            }
-        } else {
-             this.retour = new SimpleCarpoolingViewModel(this.carpooling.aller);
-        }
-    }
     
     getSimpleCarpooling(isAller: boolean): SimpleCarpoolingViewModel {
         return isAller ? this.aller : this.retour;

@@ -1,11 +1,11 @@
 <div>
 	<div>
-		<span class="color-green">{{trajet.villeDepart}}</span>
+		<span class="color-green">{{trajet.villeDepart}}&nbsp;</span>
 		<span  *ngIf="allerRetour; else allerSimple" class="fa fa-exchange fa-lg color-red" aria-hidden="true"></span>
 		<ng-template #allerSimple>
 			<span class="fa fa-long-arrow-right fa-lg color-green" aria-hidden="true"></span>
 		</ng-template>
-		<span  class="color-red">{{trajet.villeArrivee}}</span>
+		<span  class="color-red">&nbsp;{{trajet.villeArrivee}}</span>
 	</div>
 	<div *ngIf="isDetail" class="complete-route">
 		{{trajet.villeDepart}}

@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox'
-import { rotation } from '../../animation/rotation.animation'
-import { MatDialog, MatCheckbox } from '@angular/material';
-import { AutoAcceptanceCpDialogComponent } from '../../dialogboxes/auto-acceptance-cp-dialog/auto-acceptance-cp-dialog.component';
-import { DetailDialogComponent } from '../../dialogboxes/detail-dialog/detail-dialog.component';
-import { MapDialogComponent } from '../../dialogboxes/map-dialog/map-dialog.component';
+import { rotation } from '../../../animation/rotation.animation'
+import { MatDialog } from '@angular/material';
+import { AutoAcceptanceCpDialogComponent } from '../../../dialogboxes/auto-acceptance-cp-dialog/auto-acceptance-cp-dialog.component';
+import { DetailDialogComponent } from '../../../dialogboxes/detail-dialog/detail-dialog.component';
+import { MapDialogComponent } from '../../../dialogboxes/map-dialog/map-dialog.component';
 
 import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
 import { SimpleCarpoolingViewModel } from 'app/modelview/simple.carpooling.view.model';
@@ -12,6 +12,7 @@ import { SimpleCarpoolingViewModel } from 'app/modelview/simple.carpooling.view.
 import { CarpoolingEvent } from 'app/event/carpooling.event';
 
 import { CarpoolingService } from 'app/service/carpooling.service';
+import { CarpoolingUtils } from 'app/utils/carpooling.utils';
 
 import { AbstractRotateComponent } from 'app/common/abstract.rotate.component';
 
@@ -78,22 +79,20 @@ export class CarpoolingCardComponent extends AbstractRotateComponent {
     
     private treatDialogReturn(dialogRef: any) : void {
         dialogRef.afterClosed().subscribe(response => {
-            console.log('curent=');
-            console.log(this.current);
             this.current.checked = response;
             this.notifySelection.emit(new CarpoolingEvent(this.carpooling, this.isAller));
         });
     }
     
     private countSelections(): number {
-        return this._carpoolingService.countSelections(this.selections, this.isAller);
+        return CarpoolingUtils.countSelections(this.selections, this.isAller);
     }
     
      private existAcceptionAutoSurSelections(): boolean {
          if(this.isAller) {
-            return this._carpoolingService.existAcceptionAutoSurSelectionsAller(this.selections);
+            return CarpoolingUtils.existAcceptionAutoSurSelectionsAller(this.selections);
         } 
-        return this._carpoolingService.existAcceptionAutoSurSelectionsRetour(this.selections);
+        return CarpoolingUtils.existAcceptionAutoSurSelectionsRetour(this.selections);
     }
     
 }

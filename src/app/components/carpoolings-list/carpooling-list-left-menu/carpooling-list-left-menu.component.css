@@ -1,0 +1,54 @@
+.listing-chip {
+	width: 200px;
+	margin: 3px;
+	font-size: 11px;
+}
+
+.listing-chip > div {
+	width: 100%;
+	display: flex;
+	justify-content: space-between
+}
+
+.left-menu .block {
+	padding-left: 5px;
+}
+
+.left-menu .section {
+	border: solid 1px green;
+	margin-bottom: 10px;
+	padding: 0px;
+}
+
+.left-menu .section-title {
+	width: 100%;
+	background-color: yellow;
+	text-align: center;
+	font-weight: bold;
+	color:green;
+}
+
+.left-menu .sorts-title {
+	border-bottom: solid 1px;
+	width: 98%;
+	color:gray;
+}
+                    
+.range-slider-container {
+	margin-left: 10px;
+}
+
+.ar {
+	display:flex;
+	justify-content: space-between
+}
+
+.ar .label {
+	position:relative;
+	top: -2px;
+}
+                    
+
+
+                    
+
