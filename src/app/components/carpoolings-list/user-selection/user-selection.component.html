@@ -15,7 +15,7 @@
 	let-isAller="isAller"
 	let-selections="selections"
 	let-title="title">
-	<h3 style="color:orange;">{{ title }}</h3>
+	<h4>{{ title }}</h4>
 	<mat-accordion class="header-content">
 		<mat-expansion-panel *ngFor="let cp of selections" #matExpansionPanel>
 			<mat-expansion-panel-header (click)="expandPanel(matExpansionPanel, $event)">

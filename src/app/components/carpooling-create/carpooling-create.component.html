@@ -1,0 +1,63 @@
+<div class="create">
+
+	<!-- Main panel -->
+    <mat-drawer-container class="row">
+    
+    	<!-- SideBar -->
+		<mat-drawer mode="side" opened="true" class="col-3 border rounded">
+			<p>Side bar maintenant il faut bien faire</p>
+		</mat-drawer>
+		<!-- End SideBar -->
+			
+		<!-- Content -->
+	  	<mat-drawer-content class="col-9">
+			
+			<mat-horizontal-stepper  #stepper class="border rounded">
+				<!-- ----------------------------------- -->
+				<!-- Step 1 : Route defining  -->
+				<!-- ----------------------------------- -->
+				<mat-step>
+					<ng-template matStepLabel>Trajet</ng-template>
+					<div class="title">
+						<b class="color-green">Etape 1 : Définition du trajet </b>
+					</div>
+					<div class="form-content">
+						<carpooling-form [editMode]="true"></carpooling-form>
+					</div>
+				</mat-step>
+			
+				<!-- ----------------------------------- -->
+				<!-- Step 2 : Route   -->
+				<!-- ----------------------------------- -->
+				<mat-step>
+					<ng-template matStepLabel>présélection</ng-template>
+					<div class="title">
+						<b class="color-green">Etape 2 : Présélectionner les covoitureurs </b>
+					</div>
+					<div class="form-content">
+						Yes
+					</div>
+				</mat-step>
+			</mat-horizontal-stepper>
+			
+			<form  class="navigation">
+	  			<button *ngIf="currentStep > 1"
+	  				mat-stroked-button
+		      		(click)="goBack(stepper)">
+		      		Back
+		      	</button>
+		      	&nbsp;
+				<button  *ngIf="currentStep < 4"
+					mat-stroked-button  
+					(click)="goForward(stepper)"
+					[disabled]="disabledButtonNext()">
+					Next
+				</button>
+			</form>
+		
+		</mat-drawer-content>
+	  <!-- End Content -->
+	  	
+	</mat-drawer-container>
+	<!-- End Main panel -->
+</div>

@@ -1,0 +1,88 @@
+.approvisionnement {
+	padding: 0px;
+	margin: 0px;
+}
+
+.approvisionnement .title {
+	text-align: center;
+	border-bottom: solid 1px #ccc; padding: 0px 0px 4px 0px
+}
+
+.approvisionnement .card-infos {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.approvisionnement img {
+	height: 20px;
+	width: 90px;
+	margin-left: 40px;
+}
+
+.approvisionnement form .date-expiration select {
+	font-size: 12px;
+	height: 23px;
+}
+
+.approvisionnement form .date-expiration .month {
+	margin-right: 3px;
+}
+
+.approvisionnement form .date-expiration .year {
+	margin-left: 3px;
+}
+
+.approvisionnement form label,
+.approvisionnement form input {
+	font-size: 13px;
+	width: 130px;
+}
+
+.approvisionnement .montant,
+.approvisionnement .cryptographie {
+	margin-left: 35px;
+}
+
+.approvisionnement .montant label {
+	margin-right: 5px;
+}
+
+.approvisionnement .cryptographie input {
+	width: 50px;
+}
+
+.approvisionnement .cryptographie label {
+	width: 100px;
+}
+
+.approvisionnement .bouton {
+	display: flex;
+	justify-content: center;
+	margin-top: 5px
+}
+
+.approvisionnement form {
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.approvisionnement .paiement .title {
+	border-bottom: solid 1px #ccc;
+	font-size: 18px;
+	text-align: left;
+}
+
+.approvisionnement .solde {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 45px;
+	font-style:italic;
+	text-alin: center;
+}
+
+.approvisionnement .solde span {
+	text-decoration: underline;
+	font-weight: bold;
+	padding: 5px;
+}

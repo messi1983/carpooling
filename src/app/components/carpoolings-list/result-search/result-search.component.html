@@ -1,12 +1,10 @@
 <div class="starter-template listing">
-
-	<h3>110 résultats</h3>
 	
-	<tabset [justified]="false">
+	<tabset [justified]="false" class="no-margin no-padding">
    		<tab *ngFor="let tabDay of resultSearch.tabsDays" heading="{{tabDay}}" class="tab-day">
  			<mat-tab-group>
  				<mat-tab *ngFor="let tabCarpooling of resultSearch.tabsCarpoolings" label="{{tabCarpooling}}">
-	 		 		<div class="tab-container">
+	 		 		<div class="tab-container no-margin no-padding">
 	 		 				
 			  			<!-- result list -->
 			  			<div *ngFor="let carpooling of resultSearch.carpoolings" class="cp">
@@ -22,7 +20,6 @@
 	 					<br>
 	 					
 				    	<pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)"></pagination>
-		  					
 					</div>
 				</mat-tab>
 			</mat-tab-group>

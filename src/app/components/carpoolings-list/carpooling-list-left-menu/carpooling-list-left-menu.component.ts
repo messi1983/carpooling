@@ -2,12 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio'
 import { ENTER, COMMA} from '@angular/cdk/keycodes';
 
-import { CarpoolingViewModel } from '../../../modelview/carpooling.view.model';
-import { CarpoolingService } from '../../../service/carpooling.service';
-import { CarpoolingUtils } from '../../../utils/carpooling.utils';
-import { SortEnum } from '../../../enums/sort.enum';
+import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
+import { CarpoolingService } from 'app/service/carpooling.service';
+import { CarpoolingUtils } from 'app/utils/carpooling.utils';
+import { SortEnum } from 'app/enums/sort.enum';
 
-import { AbstractSelectionComponent } from '../../../common/abstract.selection.component';
+import { AbstractSelectionComponent } from 'app/components-shared/abstract.selection.component';
 
 @Component({
   selector: 'carpooling-list-left-menu',

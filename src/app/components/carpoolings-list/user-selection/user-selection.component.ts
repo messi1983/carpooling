@@ -7,7 +7,7 @@ import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
 import { CarpoolingService } from 'app/service/carpooling.service';
 import { CarpoolingUtils } from 'app/utils/carpooling.utils';
 
-import { AbstractSelectionComponent } from 'app/common/abstract.selection.component';
+import { AbstractSelectionComponent } from 'app/components-shared/abstract.selection.component';
 
 @Component({
   selector: 'user-selection',

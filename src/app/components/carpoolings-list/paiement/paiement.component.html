@@ -1,4 +1,4 @@
-<div class="paiement">
+<div class="starter-template paiement">
 
 	<div class="block">
 		<div class="title">Récapitulatif des demandes</div>
@@ -24,52 +24,29 @@
 				*ngTemplateOutlet="demandeTemplate; context : {selections : getSelectionsRetour(), isAller : false}">
 			</ng-container>
 		</div>
-		
 	</div>
 		
 	<div class="block">
-		<div class="title">
-			<span>Paiement</span>
-			<img src="assets/cards.png" alt="cards">
+		<div *ngIf="insufficientAccount" class="insufficient-account">
+			<p class="color-red" >
+				Vous devez disposer d'au moins <span style="text-decoration: underline">24,00 &euro;</span>
+				d'avoirs pour couvrir ces nouvelles demnades
+			</p>
+
+			<button
+				mat-flat-button
+				color="warn"
+				(click)="openApprovisionnementDialog()">
+				Approvisionner votre compte
+			</button>
 		</div>
-		<br />
-		<form class="resume-table">
-			<div class="authorized-cards">
-				<div></div>
+		
+		<form  class="cgu">
+			<div>
+				<input type="checkbox" id="cgu" name="feature" value="ok" />
+				<label>Je reconnais avoir pris connissance des <a href="#">conditions générérales d'utilisations</a></label>
 			</div>
-			
-			<div class="card-infos">
-			
-					<div class="num-carte">
-						<label><b>Numéro carte</b></label>
-						<input  type="number" class="border rounded">
-					</div>
-					
-					<div class="date-expiration">
-						<label><b>Date expiration</b></label>
-						<select class="border rounded month">
-						   <option [value]="month" *ngFor="let month of months">
-						   		{{month}}
-						   </option>
-						 </select>
-						 <span>/</span>
-						<select class="border rounded year">
-						   <option [value]="year" *ngFor="let year of years">
-						   		{{year}}
-						   </option>
-						 </select>
-					</div>
-				
-					<div class="cryptographie">
-						<label><b>Cryptographie</b></label>
-						<input  type="number" class="border rounded">
-					</div>
-					
-			</div>
-			
-			<div style="display: flex; justify-content: center">
-				<button type="button" class="btn btn-primary" style="margin-top: 5px">Payer</button>
-			</div>
+			<button type="button" class="btn btn-primary">Envoyer les demandes</button>
 		</form>
 	</div>
 	

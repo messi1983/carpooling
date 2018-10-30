@@ -25,7 +25,9 @@ import { RouteInLineComponent } from './components/route-in-line/route-in-line.c
 import { AppPassengerItemComponent } from './components/passenger-item/app-passenger-item.component';
 import { MapDialogComponent } from './dialogboxes/map-dialog/map-dialog.component';
 import { PaiementComponent } from './components/carpoolings-list/paiement/paiement.component';
-import { ApprovDialogComponent } from './approv-dialog/approv-dialog.component';
+import { ApprovDialogComponent } from './dialogboxes/approv-dialog/approv-dialog.component';
+import { CarpoolingFormComponent } from './components-shared/carpooling-form/carpooling-form.component';
+import { CarpoolingCreateComponent } from './components/carpooling-create/carpooling-create.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { ApprovDialogComponent } from './approv-dialog/approv-dialog.component';
     MapDialogComponent,
     PaiementComponent,
     ApprovDialogComponent,
+    CarpoolingFormComponent,
+    CarpoolingCreateComponent,
   ],
   imports: [
     HttpModule,
@@ -62,7 +66,8 @@ import { ApprovDialogComponent } from './approv-dialog/approv-dialog.component';
   entryComponents: [
     AutoAcceptanceCpDialogComponent,
     DetailDialogComponent,
-    MapDialogComponent
+    MapDialogComponent,
+    ApprovDialogComponent,
   ]
 })
 export class AppModule { }

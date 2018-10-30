@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material';
+import { MatChipInputEvent, MatStepper } from '@angular/material';
 
 import { Trajet } from 'app/model/trajet';
 
@@ -60,20 +60,21 @@ export class CarpoolingsListComponent implements OnInit {
         });
     }
     
-    goToStepAllers(): void {
-        this.currentStep = 1;
+    goBack(stepper: MatStepper) {
+        this.currentStep = this.currentStep -1;
+        stepper.previous();
     }
     
-     goToStepVisualisationSelections(): void {
-        this.currentStep = 3;
+    goForward(stepper: MatStepper): void {
+        this.currentStep = this.currentStep +1;
+        stepper.next();
+        
+        if(this.currentStep === 2) {
+            this.goToStepRetours();
+        }
     }
     
-    goToStepPaiement(): void {
-        this.currentStep = 4;
-    }
-    
-   goToStepRetours() {
-       this.currentStep = 2;
+   goToStepRetours(): void {
        if(this.carpoolingsRetour.length === 0) {
             this._carpoolingService.getCarpoolingsList(
                 this.trajetRetour,
@@ -86,7 +87,14 @@ export class CarpoolingsListComponent implements OnInit {
         }
     }
     
-    countSelections(isAller: boolean): number {
+    disabledButtonNext(): boolean {
+        if(this.currentStep < 3) {
+            return this.countSelections(this.currentStep === 1) === 0;
+        }
+        return false;
+    }
+    
+     countSelections(isAller: boolean): number {
         return CarpoolingUtils.countSelections(this.selections, isAller);
     }
  

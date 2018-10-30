@@ -26,8 +26,12 @@ body {
 	width: 100%;
 }
 
-.no-space {
+.no-padding {
 	padding: 0px;
+}
+
+.no-margin {
+	margin: 0px;
 }
 
 fieldset.scheduler-border  {

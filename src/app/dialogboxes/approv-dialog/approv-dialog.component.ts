@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./approv-dialog.component.css']
 })
 export class ApprovDialogComponent implements OnInit {
+    years = ['', '1999', '2000', '2001'];
+    months = ['', '01', '02', '03'];
+    
+    constructor() { }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

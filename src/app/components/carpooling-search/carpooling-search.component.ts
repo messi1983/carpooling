@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { CarpoolingFormComponent } from '../../components-shared/carpooling-form/carpooling-form.component'
 
 @Component({
   selector: 'carpooling-search',
@@ -6,35 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./carpooling-search.component.css']
 })
 export class CarpoolingSearchComponent implements OnInit {
-    
-    villeDepart = 'Oyem';
-    villeDestination = 'Libreville';
-    
-    listCovsOptions = [
-        {"name": "Aller simple", "checked": false, value: "1"},
-        {"name": "Aller retour", "checked": false, value: "2"}
-    ]
-    
-    selectedOption: string = "1";
-    
-    trajets = [{trajet: 'Aller'}];
-    
-    minDate: Date;
-    maxDate: Date;
-    
-    radioChange(event: any) {
-        if(event.value === "2") {
-           this. trajets = [{trajet: 'Aller'}, {trajet: 'Retour'}];
-        } else {
-             this. trajets = [{trajet: 'Aller'}];
-        }
-    }
 
+    @ViewChild(CarpoolingFormComponent) 
+    private form : CarpoolingFormComponent;
+    
     ngOnInit() {
-        this.minDate = new Date();
-        this.maxDate = new Date();
-        this.minDate.setDate(this.minDate.getDate() - 1);
-        this.maxDate.setDate(this.maxDate.getDate() + 7);
     }
 
 }

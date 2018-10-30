@@ -1,20 +1,20 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox'
-import { rotation } from '../../../animation/rotation.animation'
 import { MatDialog } from '@angular/material';
-import { AutoAcceptanceCpDialogComponent } from '../../../dialogboxes/auto-acceptance-cp-dialog/auto-acceptance-cp-dialog.component';
-import { DetailDialogComponent } from '../../../dialogboxes/detail-dialog/detail-dialog.component';
-import { MapDialogComponent } from '../../../dialogboxes/map-dialog/map-dialog.component';
+
+import { rotation } from 'app/animation/rotation.animation'
+import { AutoAcceptanceCpDialogComponent } from 'app/dialogboxes/auto-acceptance-cp-dialog/auto-acceptance-cp-dialog.component';
+import { DetailDialogComponent } from 'app/dialogboxes/detail-dialog/detail-dialog.component';
+import { MapDialogComponent } from 'app/dialogboxes/map-dialog/map-dialog.component';
 
 import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
 import { SimpleCarpoolingViewModel } from 'app/modelview/simple.carpooling.view.model';
-
 import { CarpoolingEvent } from 'app/event/carpooling.event';
 
 import { CarpoolingService } from 'app/service/carpooling.service';
 import { CarpoolingUtils } from 'app/utils/carpooling.utils';
 
-import { AbstractRotateComponent } from 'app/common/abstract.rotate.component';
+import { AbstractRotateComponent } from 'app/components-shared/abstract.rotate.component';
 
 
 @Component({
@@ -53,7 +53,7 @@ export class CarpoolingCardComponent extends AbstractRotateComponent {
         });
     }
     
-    openAutoAcceptationDialog() {
+    openAutoAcceptationDialog(): void {
         const dialogRef = this._dialog.open(AutoAcceptanceCpDialogComponent, {
             width: '600px',
         });

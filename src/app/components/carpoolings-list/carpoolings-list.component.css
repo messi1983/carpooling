@@ -1,6 +1,38 @@
 .listing .side-bar {
-	padding: 5px;
-	margin-right: 2px;
+	padding: 0px;
 	text-align: left;
-	border: solid 1px #ccc
+}
+
+.listing mat-step .header .title {
+	wdith: 100%;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.listing .bouton-container {
+	display:flex;
+}
+
+.listing .bouton-container button{
+	margin-left: auto;
+}
+
+.listing .navigation {
+	float:right;
+	position: relative;
+	top: 67px;
+	right:23px;
+}
+
+.listing mat-horizontal-stepper {
+	clear: float;
+}
+
+.float {
+  position: fixed;
+  left: 110px;
+  top: 50%;
+  width: 275px;
+  margin-top: -15.5em;
+  z-index: 100;
 }

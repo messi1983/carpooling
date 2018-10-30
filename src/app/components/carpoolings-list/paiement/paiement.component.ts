@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
-import { CarpoolingViewModel } from '../../../modelview/carpooling.view.model';
+import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
+import { AbstractSelectionComponent } from 'app/components-shared/abstract.selection.component';
 
-import { AbstractSelectionComponent } from '../../../common/abstract.selection.component';
+import { ApprovDialogComponent } from 'app/dialogboxes/approv-dialog/approv-dialog.component';
+
 
 @Component({
   selector: 'app-paiement',
@@ -11,11 +14,17 @@ import { AbstractSelectionComponent } from '../../../common/abstract.selection.c
 })
 export class PaiementComponent extends AbstractSelectionComponent {
 
-    years = ['', '1999', '2000', '2001'];
-    months = ['', '01', '02', '03'];
+    conditionsChecked: boolean = false;
+    insufficientAccount: boolean = false;
     
-    constructor() {
+    constructor(public _dialog: MatDialog) {
         super();
+    }
+    
+    openApprovisionnementDialog(): void {
+        this._dialog.open(ApprovDialogComponent, {
+            width: '850px',
+        });
     }
 
 }

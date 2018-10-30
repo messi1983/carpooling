@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { rotation } from '../../animation/rotation.animation';
 import { MatCheckboxChange } from '@angular/material/checkbox'
 
-import { AbstractRotateComponent } from 'app/common/abstract.rotate.component';
+import { AbstractRotateComponent } from 'app/components-shared/abstract.rotate.component';
 
 import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
 

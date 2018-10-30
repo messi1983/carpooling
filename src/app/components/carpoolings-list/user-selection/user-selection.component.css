@@ -59,3 +59,8 @@
 	margin-top: 5px;
 	padding-left: 5px;
 }
+
+.selection h4 {
+	color:orange;
+	text-align: left;
+}

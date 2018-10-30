@@ -1,9 +1,14 @@
-.search-form-content {
-	display: flex;
-	 justify-content: center;
-	 padding: 7rem 1.5rem;
+.search {
+	margin: 7rem 1.5rem;
 }
 
-.cov-options span {
-	margin-right: 20px
+.search form {
+	display: flex;
+	justify-content: center;
+}
+
+.search .form-content {
+	border: solid 1px #ccc;
+  	border-radius: 3px;
+  	padding: 15px;
 }
