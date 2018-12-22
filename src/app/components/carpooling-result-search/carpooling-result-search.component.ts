@@ -11,10 +11,10 @@ import { CarpoolingUtils } from 'app/utils/carpooling.utils';
 
 @Component({
   selector: 'result-search',
-  templateUrl: './result-search.component.html',
-  styleUrls: ['./result-search.component.css']
+  templateUrl: './carpooling-result-search.component.html',
+  styleUrls: ['./carpooling-result-search.component.css']
 })
-export class ResultSearchComponent {
+export class CarpoolingResultSearchComponent {
     @Input() resultSearch: ResultSearchViewModel;
     
     visible: boolean = true;

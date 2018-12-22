@@ -1,0 +1,93 @@
+<div class="carpooler-user-selection" style="padding: 0px; width: 100%">
+  <mat-horizontal-stepper #stepper>
+    <!-- ----------------------------------- -->
+    <!-- Step 1 : carpoolers selection -->
+    <!-- ----------------------------------- -->
+    <mat-step>
+      <ng-template matStepLabel style="height: 5px"
+        >Sélection covoitureurs</ng-template
+      >
+      <h5 style="text-align: center; text-decoration: underline">
+        Sélection des covoitureurs souhaités
+      </h5>
+
+      <div class="row">
+        <div class="col-3 left-menu" style="padding: 0px; width: 100%">
+          <u style="list-style: none;">
+            <h6>Sélection groupe :</h6>
+            <li><mat-checkbox> Salsa </mat-checkbox></li>
+            <li><mat-checkbox>Kizomba</mat-checkbox></li>
+            <li><mat-checkbox>Bachata</mat-checkbox></li>
+            <li><mat-checkbox>Sans</mat-checkbox></li>
+          </u>
+
+          <hr />
+
+          <u style="list-style: none;">
+            <h6>Filtre groupe :</h6>
+            <li><mat-checkbox> Salsa </mat-checkbox></li>
+            <li><mat-checkbox>Kizomba</mat-checkbox></li>
+            <li><mat-checkbox>Bachata</mat-checkbox></li>
+            <li><mat-checkbox>Sans</mat-checkbox></li>
+          </u>
+        </div>
+
+        <div
+          class="col-9 border rounded main-content"
+          style="padding-top: 10px; width: 100%"
+        >
+          <carpooler-card
+            *ngFor="let carpooler of carpoolers"
+            [carpooler]="carpooler"
+          >
+          </carpooler-card>
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- ----------------------------------- -->
+    <!-- Step 2 : previsualisation -->
+    <!-- ----------------------------------- -->
+    <mat-step>
+      <ng-template matStepLabel>Prévisualisaton</ng-template>
+      <h5 style="text-align: center; text-decoration: underline">
+        Votre sélection
+      </h5>
+
+      <div>
+        <carpooler-card
+          *ngFor="let carpooler of carpoolers"
+          [carpooler]="carpooler"
+        >
+        </carpooler-card>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+  <form class="navigation">
+    <button
+      *ngIf="currentStep > 1"
+      mat-stroked-button
+      (click)="goBack(stepper)"
+    >
+      Back
+    </button>
+    &nbsp;
+    <button
+      *ngIf="currentStep === 1"
+      mat-stroked-button
+      (click)="goForward(stepper)"
+      [disabled]="disabledButtonNext()"
+    >
+      Next
+    </button>
+    &nbsp;
+    <button
+      *ngIf="currentStep === 2"
+      mat-stroked-button
+      [mat-dialog-close]="true"
+    >
+      Valider
+    </button>
+  </form>
+</div>

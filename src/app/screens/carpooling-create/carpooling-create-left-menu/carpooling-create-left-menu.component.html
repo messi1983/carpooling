@@ -1,0 +1,38 @@
+<div class="create-left-menu">
+  <div *ngIf="currentStep === 2" class="resume">
+    <label class="title">Itinéraire:</label>
+
+    <div class="trajet">
+      <div class="aller">
+        <span class="fa fa-map-marker fa-lg color-green" aria-hidden="true"
+          >&nbsp;</span
+        >
+        <span class="color-green">Bordeaux&nbsp;</span>(Place de la gare)
+      </div>
+
+      <div class="retour">
+        <span class="fa fa-map-marker fa-lg color-red" aria-hidden="true"
+          >&nbsp;</span
+        >
+        <span class="color-red">Toulouse&nbsp;</span>(Gare Matabiau)
+      </div>
+    </div>
+
+    <div class="plus border rounded">
+      <div>Nb places disponibles : <span>3</span></div>
+      <div>Prix place : <span>12 &euro;</span></div>
+      <div>Acc. auto Aller : <span>Oui</span></div>
+      <div>Acc. auto Retour : <span>Oui</span></div>
+      <div>Evénement lié : <span>My Kiz</span></div>
+    </div>
+  </div>
+
+  <div *ngIf="chart" class="rounded" style="width: 100%;margin-top: 20px">
+    <label class="title">Infos trafique:</label>
+    <canvas
+      id="canvas"
+      style="width: 100%;border:solid 1px red;margin-top: 5px"
+      >{{ chart }}</canvas
+    >
+  </div>
+</div>

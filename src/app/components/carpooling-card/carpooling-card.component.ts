@@ -2,19 +2,18 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox'
 import { MatDialog } from '@angular/material';
 
-import { rotation } from 'app/animation/rotation.animation'
-import { AutoAcceptanceCpDialogComponent } from 'app/dialogboxes/auto-acceptance-cp-dialog/auto-acceptance-cp-dialog.component';
-import { DetailDialogComponent } from 'app/dialogboxes/detail-dialog/detail-dialog.component';
-import { MapDialogComponent } from 'app/dialogboxes/map-dialog/map-dialog.component';
+import { rotation } from '../../animation/rotation.animation'
+import { CarpoolingAutoAcceptanceComponent } from '../carpooling-auto-acceptance/carpooling-auto-acceptance.component';
+import { CarpoolingDetailComponent } from '../carpooling-detail/carpooling-detail.component';
+import { RouteMapComponent } from '../route-map/route-map.component';
 
-import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
-import { SimpleCarpoolingViewModel } from 'app/modelview/simple.carpooling.view.model';
-import { CarpoolingEvent } from 'app/event/carpooling.event';
+import { CarpoolingViewModel } from '../../modelview/carpooling.view.model';
+import { CarpoolingEvent } from '../../event/carpooling.event';
 
-import { CarpoolingService } from 'app/service/carpooling.service';
-import { CarpoolingUtils } from 'app/utils/carpooling.utils';
+import { CarpoolingService } from '../../service/carpooling.service';
+import { CarpoolingUtils } from '../../utils/carpooling.utils';
 
-import { AbstractRotateComponent } from 'app/components-shared/abstract.rotate.component';
+import { AbstractRotateComponent } from '../abstract.rotate.component';
 
 
 @Component({
@@ -47,21 +46,21 @@ export class CarpoolingCardComponent extends AbstractRotateComponent {
     }
     
     onShowMap(): void {
-        this._dialog.open(MapDialogComponent, {
+        this._dialog.open(RouteMapComponent, {
            width: '500px',
             data: { carpooling: this.carpooling },
         });
     }
     
     openAutoAcceptationDialog(): void {
-        const dialogRef = this._dialog.open(AutoAcceptanceCpDialogComponent, {
+        const dialogRef = this._dialog.open(CarpoolingAutoAcceptanceComponent, {
             width: '600px',
         });
         this.treatDialogReturn(dialogRef);
     }
     
     onShowDetail(): void {
-        const dialogRef = this._dialog.open(DetailDialogComponent, {
+        const dialogRef = this._dialog.open(CarpoolingDetailComponent, {
            width: '700px',
             data: this.carpooling,
         });

@@ -1,0 +1,9 @@
+.carpooler-user-selection form {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-horizontal-stepper-header {
+  height: 25px;
+  border: solid 1px red;
+}

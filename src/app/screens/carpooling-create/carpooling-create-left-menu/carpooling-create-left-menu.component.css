@@ -1,0 +1,26 @@
+.create-left-menu .title {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.create-left-menu .resume .trajet > div {
+  margin-bottom: 5px;
+}
+
+.create-left-menu .resume .trajet > div {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.create-left-menu .resume .plus > div {
+  margin-left: 5px;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: 3px;
+  color: gray;
+}
+
+.create-left-menu .resume .plus span {
+  font-weight: bold;
+  color: black;
+}

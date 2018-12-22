@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { rotation } from '../../animation/rotation.animation';
 import { MatCheckboxChange } from '@angular/material/checkbox'
 
-import { AbstractRotateComponent } from 'app/components-shared/abstract.rotate.component';
+import { AbstractRotateComponent } from 'app/components/abstract.rotate.component';
 
 import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
 
@@ -14,11 +14,11 @@ export interface Section {
 
 @Component({
   selector: 'app-detail-dialog',
-  templateUrl: './detail-dialog.component.html',
-  styleUrls: ['./detail-dialog.component.css'],
+  templateUrl: './carpooling-detail.component.html',
+  styleUrls: ['./carpooling-detail.component.css'],
   animations: [ rotation ]
 })
-export class DetailDialogComponent  extends AbstractRotateComponent {
+export class CarpoolingDetailComponent  extends AbstractRotateComponent {
     flip: string = 'inactive';
     folders: Section[] = [
     {

@@ -2,17 +2,17 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
 import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
-import { AbstractSelectionComponent } from 'app/components-shared/abstract.selection.component';
+import { AbstractSelectionComponent } from 'app/components/abstract.selection.component';
 
-import { ApprovDialogComponent } from 'app/dialogboxes/approv-dialog/approv-dialog.component';
+import { AlimentationCompteComponent } from 'app/components/alimentation-compte/alimentation-compte.component';
 
 
 @Component({
   selector: 'app-paiement',
-  templateUrl: './paiement.component.html',
-  styleUrls: ['./paiement.component.css']
+  templateUrl: './sending-demands.component.html',
+  styleUrls: ['./sending-demands.component.css']
 })
-export class PaiementComponent extends AbstractSelectionComponent {
+export class SendingDemandsComponent extends AbstractSelectionComponent {
 
     conditionsChecked: boolean = false;
     insufficientAccount: boolean = false;
@@ -22,7 +22,7 @@ export class PaiementComponent extends AbstractSelectionComponent {
     }
     
     openApprovisionnementDialog(): void {
-        this._dialog.open(ApprovDialogComponent, {
+        this._dialog.open(AlimentationCompteComponent, {
             width: '850px',
         });
     }

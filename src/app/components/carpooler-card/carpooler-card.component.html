@@ -1,0 +1,20 @@
+<div class="cp-info-container" (click)="notifySelection()">
+  <div
+    [ngClass]="{
+      rounded: true,
+      'select-border': selected,
+      'default-border': !selected
+    }"
+  >
+    <div class="infos">
+      <img src="assets/canard.jpg" alt="canard" class="border rounded" />
+
+      <div class="identity-note small-font">
+        {{ carpooler.firstname }} <br />
+        {{ carpooler.age }} ans <br />
+        Avis: {{ carpooler.note }}/5<br />
+      </div>
+    </div>
+    <div class="group"><span>Groupe:</span>&nbsp;<b>Salsa</b></div>
+  </div>
+</div>

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-auto-acceptance-cp-dialog',
-  templateUrl: './auto-acceptance-cp-dialog.component.html',
-  styleUrls: ['./auto-acceptance-cp-dialog.component.css']
+  templateUrl: './carpooling-auto-acceptance.component.html',
+  styleUrls: ['./carpooling-auto-acceptance.component.css']
 })
-export class AutoAcceptanceCpDialogComponent implements OnInit {
+export class CarpoolingAutoAcceptanceComponent implements OnInit {
 
     constructor() { }
 

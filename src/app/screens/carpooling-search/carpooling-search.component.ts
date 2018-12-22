@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CarpoolingFormComponent } from '../../components-shared/carpooling-form/carpooling-form.component'
+import { CarpoolingFormComponent } from '../../components/carpooling-form/carpooling-form.component'
 
 @Component({
   selector: 'carpooling-search',

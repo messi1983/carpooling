@@ -7,14 +7,14 @@ import { CarpoolingService } from 'app/service/carpooling.service';
 import { CarpoolingUtils } from 'app/utils/carpooling.utils';
 import { SortEnum } from 'app/enums/sort.enum';
 
-import { AbstractSelectionComponent } from 'app/components-shared/abstract.selection.component';
+import { AbstractSelectionComponent } from 'app/components/abstract.selection.component';
 
 @Component({
   selector: 'carpooling-list-left-menu',
-  templateUrl: './carpooling-list-left-menu.component.html',
-  styleUrls: ['./carpooling-list-left-menu.component.css']
+  templateUrl: './carpoolings-list-left-menu.component.html',
+  styleUrls: ['./carpoolings-list-left-menu.component.css']
 })
-export class CarpoolingListLeftMenuComponent extends AbstractSelectionComponent {
+export class CarpoolingsListLeftMenuComponent extends AbstractSelectionComponent {
     @Input() selections: CarpoolingViewModel[];
     @Input() carpoolingsAller: CarpoolingViewModel[] = [];
     @Input() carpoolingsRetour: CarpoolingViewModel[] = [];

@@ -1,0 +1,41 @@
+.cp-info-container {
+  display: inline-block;
+  width: 120px;
+}
+
+.cp-info-container img {
+  height: 50px;
+  width: 50px;
+}
+
+.cp-info-container > div {
+  margin-left: 1px;
+  text-align: left;
+}
+
+.cp-info-container .select-border {
+  border: solid 3px green;
+  background-color: aquamarine;
+  padding: 0px;
+}
+
+.cp-info-container .default-border {
+  border: solid 1px;
+  padding: 0px;
+}
+
+.cp-info-container .group {
+  font-size: 11px;
+  margin-left: 3px;
+  font-style: italic;
+}
+
+.cp-info-container .identity-note {
+  font-size: 11px;
+  margin-left: 3px;
+}
+
+.cp-info-container .infos {
+  display: flex;
+  padding: 2px;
+}

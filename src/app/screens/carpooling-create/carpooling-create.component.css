@@ -1,38 +1,48 @@
 .create {
-	padding: 0px;
-	margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .create mat-drawer-container {
-	padding: 0px
+  padding: 0px;
 }
 
 .create mat-drawer-content {
-	padding: 0px 0px 0px 5px;
-	background-color: white;
-}
-
-.create mat-horizontal-stepper {
-	
+  padding: 0px 0px 0px 5px;
+  background-color: white;
 }
 
 .create form {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.create .form-content {
-	border: solid 1px #ccc;
-  	border-radius: 3px;
-  	padding: 15px 15px 60px 15px;;
+.create .content {
+  border-radius: 3px;
+  padding: 15px 15px 60px 15px;
 }
 
 .create .navigation {
-	position: relative;
-	bottom: 72px;
+  position: relative;
+  bottom: 72px;
 }
 
 .create .title {
-	text-align:center;
-	margin-bottom: 8px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.create .alerts {
+  padding: 5px;
+  list-style: none;
+}
+
+.create .very-small-font {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.create .selection {
+  text-align: center;
+  padding: 15px 0px 15px 0px;
 }
