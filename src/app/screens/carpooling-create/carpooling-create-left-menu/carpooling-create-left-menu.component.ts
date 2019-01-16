@@ -10,12 +10,23 @@ import { Chart } from "chart.js";
 })
 export class CarpoolingCreateLeftMenuComponent implements OnInit {
   @Input() currentStep: number;
+  @Input() doNotUseTraffic: any;
 
   chart: any[] = [];
+  showGraffic: boolean = false;
 
   constructor(private _carpoolingChartService: CarpoolingChartService) {}
 
-  ngOnInit() {
+  loadTrafficGraph(): void {
+    this.showGraffic = !this.showGraffic;
+    if (this.showGraffic) {
+      this.loadGraph();
+    }
+  }
+
+  ngOnInit() {}
+
+  loadGraph() {
     this._carpoolingChartService.dailyForecast().subscribe(res => {
       let temp = res["list"].map(res => res.temp);
       let alldates = res["list"].map(res => res.dt);

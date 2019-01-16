@@ -1,13 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RangeSliderModule } from 'ngx-rangeslider-component';
+import { NgModule } from "@angular/core";
+import { RangeSliderModule } from "ngx-rangeslider-component";
+import { DlDateTimePickerDateModule } from "angular-bootstrap-datetimepicker";
 
 @NgModule({
-      imports: [
-        RangeSliderModule
-      ],
-      exports: [
-        RangeSliderModule
-      ],
-      declarations: []
+  imports: [RangeSliderModule, DlDateTimePickerDateModule],
+  exports: [RangeSliderModule, DlDateTimePickerDateModule],
+  declarations: []
 })
-export class AppExternalModule { }
+export class AppExternalModule {}

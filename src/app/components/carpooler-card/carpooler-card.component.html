@@ -2,8 +2,8 @@
   <div
     [ngClass]="{
       rounded: true,
-      'select-border': selected,
-      'default-border': !selected
+      'select-border': !disabledSelection && carpooler.selected,
+      'default-border': disabledSelection || !carpooler.selected
     }"
   >
     <div class="infos">

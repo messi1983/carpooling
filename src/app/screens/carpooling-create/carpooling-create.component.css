@@ -25,6 +25,8 @@
 .create .navigation {
   position: relative;
   bottom: 72px;
+  display: flex;
+  justify-content: center;
 }
 
 .create .title {
@@ -42,7 +44,52 @@
   font-style: italic;
 }
 
-.create .selection {
+.create .restriction {
   text-align: center;
-  padding: 15px 0px 15px 0px;
+  padding: 5px;
+  width: 100%;
+  border: solid 1px dodgerblue;
+}
+
+.create .date-time-zone {
+  margin-right: 5px;
+  width: 250px;
+}
+
+.create .carpoolers-list {
+  margin-top: 10px;
+  padding: 5px;
+  overflow-y: auto;
+  height: 152px;
+}
+
+.create h6 {
+  padding-top: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  height: 20px;
+  background-color: dodgerblue;
+}
+
+.create .info,
+.create .customization {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create .customization {
+  margin-top: 20px;
+}
+
+.create .notice {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.create button {
+  width: 210px;
+  padding: 0px;
+  color: rgb(133, 97, 167);
+  border: solid 1px blueviolet;
 }

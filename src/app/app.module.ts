@@ -19,7 +19,7 @@ import { CovInfosBarreComponent } from "./components/cov-infos-barre/cov-infos-b
 import { PageNotFoundComponent } from "./screens/page-not-found/page-not-found.component";
 import { CarpoolingResultSearchComponent } from "./components/carpooling-result-search/carpooling-result-search.component";
 import { CarpoolingsListLeftMenuComponent } from "./screens/carpoolings-list/carpoolings-list-left-menu/carpoolings-list-left-menu.component";
-import { CarpoolingAutoAcceptanceComponent } from "./components/carpooling-auto-acceptance/carpooling-auto-acceptance.component";
+import { CarpoolingWarningMessageComponent } from "./components/carpooling-warning-message/carpooling-warning-message.component";
 import { CarpoolingDetailComponent } from "./components/carpooling-detail/carpooling-detail.component";
 import { RouteInLineComponent } from "./components/route-in-line/route-in-line.component";
 import { AppPassengerItemComponent } from "./components/passenger-item/app-passenger-item.component";
@@ -28,13 +28,15 @@ import { SendingDemandsComponent } from "./components/sending-demands/sending-de
 import { AlimentationCompteComponent } from "./components/alimentation-compte/alimentation-compte.component";
 import { CarpoolingFormComponent } from "./components/carpooling-form/carpooling-form.component";
 import { CarpoolingCreateComponent } from "./screens/carpooling-create/carpooling-create.component";
-import { CarpoolerCardComponent } from './components/carpooler-card/carpooler-card.component';
+import { CarpoolerCardComponent } from "./components/carpooler-card/carpooler-card.component";
 
+import { CarpoolerService } from "./service/carpooler.service";
+import { CarpoolerViewModelService } from "./service/carpooler.view.model.service";
 import { CarpoolingChartService } from "./service/carpooling.chart.service";
 import { CarpoolingService } from "./service/carpooling.service";
-import { CarpoolingCreateLeftMenuComponent } from './screens/carpooling-create/carpooling-create-left-menu/carpooling-create-left-menu.component';
-import { CarpoolerUserSelectionComponent } from './components/carpooler-user-selection/carpooler-user-selection.component';
-
+import { CarpoolingCreateLeftMenuComponent } from "./screens/carpooling-create/carpooling-create-left-menu/carpooling-create-left-menu.component";
+import { CarpoolerUserSelectionComponent } from "./components/carpooler-user-selection/carpooler-user-selection.component";
+import { DashboardComponent } from "./screens/dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
@@ -51,7 +53,7 @@ import { CarpoolerUserSelectionComponent } from './components/carpooler-user-sel
     PageNotFoundComponent,
     CarpoolingResultSearchComponent,
     CarpoolingsListLeftMenuComponent,
-    CarpoolingAutoAcceptanceComponent,
+    CarpoolingWarningMessageComponent,
     CarpoolingDetailComponent,
     RouteInLineComponent,
     AppPassengerItemComponent,
@@ -62,7 +64,8 @@ import { CarpoolerUserSelectionComponent } from './components/carpooler-user-sel
     CarpoolingCreateComponent,
     CarpoolerCardComponent,
     CarpoolingCreateLeftMenuComponent,
-    CarpoolerUserSelectionComponent
+    CarpoolerUserSelectionComponent,
+    DashboardComponent
   ],
   imports: [
     HttpModule,
@@ -71,10 +74,15 @@ import { CarpoolerUserSelectionComponent } from './components/carpooler-user-sel
     AppMaterialModule,
     AppRoutingModule
   ],
-  providers: [CarpoolingChartService, CarpoolingService],
+  providers: [
+    CarpoolingChartService,
+    CarpoolingService,
+    CarpoolerService,
+    CarpoolerViewModelService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
-    CarpoolingAutoAcceptanceComponent,
+    CarpoolingWarningMessageComponent,
     CarpoolingDetailComponent,
     RouteMapComponent,
     AlimentationCompteComponent,
