@@ -20,6 +20,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatListModule } from "@angular/material/list";
 import { MatBadgeModule } from "@angular/material/badge";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { MatBadgeModule } from "@angular/material/badge";
     MatDialogModule,
     MatStepperModule,
     MatListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSlideToggleModule
   ],
   exports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { MatBadgeModule } from "@angular/material/badge";
     MatDialogModule,
     MatStepperModule,
     MatListModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatSlideToggleModule
   ],
   declarations: []
 })
