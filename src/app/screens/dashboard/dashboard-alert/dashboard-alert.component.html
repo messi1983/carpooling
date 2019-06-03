@@ -1,0 +1,63 @@
+<div class="dashboard-alert">
+  <h3 style="text-align: center; border: solid 1px gray; color: blueviolet;">
+    Vos aLerts
+  </h3>
+
+  <section class="liste-alertes" style="">
+    <div>
+      <h5 style="text-decoration: underline1">Liste des alertes</h5>
+      <mat-divider style="color: blue"></mat-divider>
+
+      <div style="margin-top: 4px; padding: 10px 15px ">
+        <mat-chip-list class="mat-chip-list-stacked">
+          <mat-chip
+            *ngFor="let chip of availableColors"
+            style="border: solid 1px blue; width: 100%"
+          >
+            <div class="row">
+              <img
+                class="col-2"
+                src="assets/canard.jpg"
+                alt="canard"
+                class="rounded-circle"
+              />
+              <div class="col-6">{{ chip.name }} --> Paris</div>
+              <div class="col-4">Date départ:</div>
+            </div>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h5>Ajout d'une nouvelle alerte</h5>
+    <form action="/action_page.php">
+      <div class="form-group">
+        <label for="name">Nom:</label>
+        <input type="text" class="form-control" id="name" />
+      </div>
+
+      <div class="form-group">
+        <label for="fisrtname">Prénom:</label>
+        <input type="text" class="form-control" id="fisrtname" disabled />
+      </div>
+
+      <div class="form-group form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" />
+          Masculin </label
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" /> Feminin
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </section>
+</div>

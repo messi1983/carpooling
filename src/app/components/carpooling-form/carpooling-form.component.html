@@ -1,126 +1,169 @@
 <div class="cp-create-container">
-	
-	<!-- ----------------------------- -->
-	<!-- Row 1 : selection AS or AR -->
-	<!-- ----------------------------- -->
-	<div class="row">
-      <mat-radio-group class="col-12" [(ngModel)]="selectedCovType" name="covType">
-        <mat-radio-button value="as"><b>Aller simple</b></mat-radio-button>
-        <mat-radio-button value="ar"><b>Aller retour</b></mat-radio-button>
-      </mat-radio-group>
+  <!-- ----------------------------- -->
+  <!-- Row 1 : selection AS or AR -->
+  <!-- ----------------------------- -->
+  <div class="row">
+    <mat-radio-group
+      class="col-12"
+      [(ngModel)]="selectedCovType"
+      name="covType"
+    >
+      <mat-radio-button value="as">
+        <strong>Aller simple</strong>
+      </mat-radio-button>
+      <mat-radio-button value="ar">
+        <strong>Aller retour</strong>
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <!-- ----------------------------- -->
+  <!-- Row 2 : route definition     -->
+  <!-- ----------------------------- -->
+  <div class="row">
+    <div class="col-8 col-right-separator">
+      <mat-form-field class="full-width" appearance="fill">
+        <span
+          matPrefix
+          class="fa fa-map-marker fa-lg color-green"
+          aria-hidden="true"
+          >&nbsp;</span
+        >
+        <input
+          matInput
+          placeholder="Départ: gare, adresse, lieu..."
+          [(ngModel)]="villeDepart"
+          required="required"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <span
+          matPrefix
+          class="fa fa-map-marker fa-lg color-red"
+          aria-hidden="true"
+          >&nbsp;</span
+        >
+        <input
+          matInput
+          placeholder="Arrivée: gare, adresse, lieu..."
+          [(ngModel)]="villeDestination"
+          required="required"
+        />
+      </mat-form-field>
     </div>
-	
-	<!-- ----------------------------- -->
-	<!-- Row 2 : route definition     -->
-	<!-- ----------------------------- -->
-	<div class="row">
-		<div class="col-8 col-right-separator">
-			<mat-form-field class="full-width" appearance="fill">
-				<span matPrefix class="fa fa-map-marker fa-lg color-green" aria-hidden="true">&nbsp;</span>
-				<input matInput 
-					placeholder="Départ: gare, adresse, lieu..."
-					[(ngModel)]="villeDepart" required="required"
-				>
-			</mat-form-field>
-			  
-			<mat-form-field class="full-width" appearance="fill">
-				<span matPrefix class="fa fa-map-marker fa-lg color-red" aria-hidden="true">&nbsp;</span>
-				<input matInput
-					placeholder="Arrivée: gare, adresse, lieu..."
-					[(ngModel)]="villeDestination" required="required"
-				>
-			</mat-form-field>
-		</div>
-		
-		<div class="col-2 col-right-separator">
-			<mat-form-field class="full-width" appearance="fill">
-				<input matInput placeholder="Date Aller." [matDatepicker]="picker">
-				<mat-datepicker-toggle matSuffix [for]="picker">
-				   <mat-icon svgIcon="thumbs-up"></mat-icon>
-				 </mat-datepicker-toggle>
-				 <mat-datepicker #picker></mat-datepicker>
-			</mat-form-field>
-			  
-			<mat-form-field class="full-width" appearance="fill">
-				<input matInput placeholder="Date Retour">
-			</mat-form-field>
-		</div>
-		
-		<div class="col-2">
-			<mat-form-field class="full-width" appearance="fill">
-				<input matInput placeholder="A partir de" [matDatepicker]="picker2">
-				<mat-datepicker-toggle matSuffix [for]="picker2">
-				   <mat-icon svgIcon="thumbs-up"></mat-icon>
-				 </mat-datepicker-toggle>
-				<mat-datepicker #picker2></mat-datepicker>
-			</mat-form-field>
-			  
-			<mat-form-field class="full-width" appearance="fill">
-				<input matInput placeholder="A partir de">
-			</mat-form-field>
-		</div>
-		
-	</div>
-	
-	<!-- ----------------------------- -->
-	<!-- Row 3 : options                   -->
-	<!-- ----------------------------- -->
-	<div class="row">
-		
-		<div [ngClass]="{'col-2' : !editMode, 'col-3': editMode}">
-			<label>
-				<b *ngIf="!editMode">&nbsp;Nb places min : &nbsp;</b>
-				<b *ngIf="editMode">&nbsp;Nb places : &nbsp;</b>
-			</label>
-			<mat-form-field class="place-field">
-			  	<mat-select>
-			    	<mat-option>none</mat-option>
-			    	<mat-option value="option1">1</mat-option>
-			    	<mat-option value="option2">2</mat-option>
-			    	<mat-option value="option3">plus</mat-option>
-			  	</mat-select>
-			</mat-form-field>
-		</div>
-		
-		<div [ngClass]="{'col-2' : !editMode, 'col-3': editMode}">
-			<label *ngIf="!editMode"><b>&nbsp;Prix place max: &nbsp;</b></label>
-			<label *ngIf="editMode"><b>&nbsp;Prix place : &nbsp;</b></label>
-			<mat-form-field class="price-field">
-			  	<input type="number" matInput value="">
-			</mat-form-field>
-			<label><b>&euro;</b></label>
-		</div>
-		
-		<section *ngIf="editMode" class="col-4 accetation-automatique">
-			<mat-checkbox labelPosition="before" class="check-option" [(ngModel)]="accAutoAller"><b>Acc. auto Aller : </b></mat-checkbox>
-	      	<mat-checkbox labelPosition="before" class="check-option" [(ngModel)]="accAutoRetour"><b>Acc. auto Retour : </b></mat-checkbox>
-	    </section>
-	    
-	    <section *ngIf="!editMode" class="col-4 accetation-automatique">
-	    	<label><b>Acc. auto uniquement : </b></label>
-			<mat-checkbox  labelPosition="before" class="check-option" [(ngModel)]="accAutoAller">Aller</mat-checkbox>
-	      	<mat-checkbox  labelPosition="before" class="check-option" [(ngModel)]="accAutoRetour">Retour</mat-checkbox>
-	    </section>
-		
-		<div *ngIf="!editMode">
-			<label><b>&nbsp;Evènement lié : </b></label>
-			<mat-form-field>
-			  	<input  matInput value="">
-			</mat-form-field>
-		</div>
-			
-	</div>
-	
-	<!-- ----------------------------- -->
-	<!-- Row 4 : options  (suite)       -->
-	<!-- ----------------------------- -->
-	<div class="row" *ngIf="editMode">
-		<div class="col-12">
-			<label><b>&nbsp;Evènement lié : </b></label>
-			<mat-form-field>
-			  	<input  matInput value="">
-			</mat-form-field>
-		</div>
-	</div>
-	
+
+    <div class="col-2 col-right-separator">
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput placeholder="Date Aller." [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon svgIcon="thumbs-up"></mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput placeholder="Date Retour" />
+      </mat-form-field>
+    </div>
+
+    <div class="col-2">
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput placeholder="A partir de" [matDatepicker]="picker2" />
+        <mat-datepicker-toggle matSuffix [for]="picker2">
+          <mat-icon svgIcon="thumbs-up"></mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput placeholder="A partir de" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- ----------------------------- -->
+  <!-- Row 3 : options                   -->
+  <!-- ----------------------------- -->
+  <div class="row">
+    <div [ngClass]="{ 'col-2': !editMode, 'col-3': editMode }">
+      <label>
+        <strong *ngIf="!editMode">&nbsp;Nb places min : &nbsp;</strong>
+        <strong *ngIf="editMode">&nbsp;Nb places : &nbsp;</strong>
+      </label>
+      <mat-form-field class="place-field">
+        <mat-select>
+          <mat-option>none</mat-option>
+          <mat-option value="option1">1</mat-option>
+          <mat-option value="option2">2</mat-option>
+          <mat-option value="option3">plus</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div [ngClass]="{ 'col-2': !editMode, 'col-3': editMode }">
+      <label *ngIf="!editMode">
+        <strong>&nbsp;Prix place max: &nbsp;</strong>
+      </label>
+      <label *ngIf="editMode">
+        <strong>&nbsp;Prix place : &nbsp;</strong>
+      </label>
+      <mat-form-field class="price-field">
+        <input type="number" matInput value="" />
+      </mat-form-field>
+      <label><strong>&euro;</strong></label>
+    </div>
+
+    <section *ngIf="editMode" class="col-4 accetation-automatique">
+      <mat-checkbox
+        labelPosition="before"
+        class="check-option"
+        [(ngModel)]="accAutoAller"
+      >
+        <strong>Acc. auto Aller : </strong>
+      </mat-checkbox>
+      <mat-checkbox
+        labelPosition="before"
+        class="check-option"
+        [(ngModel)]="accAutoRetour"
+      >
+        <strong>Acc. auto Retour : </strong></mat-checkbox
+      >
+    </section>
+
+    <section *ngIf="!editMode" class="col-4 accetation-automatique">
+      <label><strong>Acc. auto uniquement : </strong></label>
+      <mat-checkbox
+        labelPosition="before"
+        class="check-option"
+        [(ngModel)]="accAutoAller"
+        >Aller</mat-checkbox
+      >
+      <mat-checkbox
+        labelPosition="before"
+        class="check-option"
+        [(ngModel)]="accAutoRetour"
+        >Retour</mat-checkbox
+      >
+    </section>
+
+    <div *ngIf="!editMode">
+      <label><strong>&nbsp;Evènement lié : </strong></label>
+      <mat-form-field>
+        <input matInput value="" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- ----------------------------- -->
+  <!-- Row 4 : options  (suite)       -->
+  <!-- ----------------------------- -->
+  <div class="row" *ngIf="editMode">
+    <div class="col-12">
+      <label><strong>&nbsp;Evènement lié : </strong></label>
+      <mat-form-field>
+        <input matInput value="" />
+      </mat-form-field>
+    </div>
+  </div>
 </div>

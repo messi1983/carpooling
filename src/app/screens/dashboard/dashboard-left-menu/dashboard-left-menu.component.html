@@ -1,0 +1,53 @@
+<div class="dashboard-left-menu">
+  <div class="short-profil mat-elevation-z4" style="margin-bottom: 15px">
+    <div style="padding-top: 15px">
+      <img src="assets/canard.jpg" alt="canard" class="border rounded" />
+    </div>
+    <div style="color: peru; font-weight: bold">Louis Messi</div>
+    <div style="color: peru; font-weight: bold">35 ans</div>
+    <div style="color: peru; font-weight: bold">
+      Ingénieur Informaticien
+    </div>
+    <div>
+      <span style="font-size: 25px; font-weight: bold; color:seagreen"
+        >146,00&euro;</span
+      >
+    </div>
+  </div>
+
+  <mat-button-toggle-group
+    name="fontStyle"
+    aria-label="Font Style"
+    style="width: 100%"
+    vertical
+  >
+    <mat-button-toggle (click)="onPageChange(1)">Profil</mat-button-toggle>
+    <mat-divider></mat-divider>
+
+    <mat-button-toggle (click)="onPageChange(2)">Mon compte</mat-button-toggle>
+    <mat-divider></mat-divider>
+
+    <mat-button-toggle (click)="onPageChange(3)" style="padding-top: 4px"
+      ><span matBadge="8" matBadgeOverlap="false">Amis</span></mat-button-toggle
+    >
+    <mat-divider></mat-divider>
+
+    <mat-button-toggle (click)="onPageChange(4)">Avis</mat-button-toggle>
+    <mat-divider></mat-divider>
+
+    <mat-button-toggle (click)="onPageChange(5)">Messages</mat-button-toggle>
+    <mat-divider></mat-divider>
+
+    <mat-button-toggle (click)="onPageChange(6)">Véhicules</mat-button-toggle>
+    <mat-divider></mat-divider>
+
+    <mat-button-toggle (click)="onPageChange(7)">Alertes</mat-button-toggle>
+    <mat-divider></mat-divider>
+
+    <mat-button-toggle (click)="onPageChange(8)" style="padding-top: 4px"
+      ><span matBadge="8" matBadgeOverlap="false"
+        >Trajets</span
+      ></mat-button-toggle
+    >
+  </mat-button-toggle-group>
+</div>

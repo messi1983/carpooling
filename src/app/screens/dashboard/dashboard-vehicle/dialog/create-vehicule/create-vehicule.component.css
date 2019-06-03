@@ -1,0 +1,13 @@
+.new-vehicle {
+  background-color: rgb(255, 224, 236);
+}
+
+.new-vehicle .title {
+  text-align: center;
+  color: blue;
+  text-decoration: underline;
+}
+
+.new-vehicle form {
+  padding: 15px;
+}

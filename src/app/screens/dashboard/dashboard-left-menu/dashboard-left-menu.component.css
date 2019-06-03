@@ -1,0 +1,16 @@
+.dashboard-left-menu .short-profil {
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+  /* line-height: 200px; */
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}

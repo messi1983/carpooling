@@ -1,89 +1,98 @@
 <div class="starter-template listing">
- 
-    <!-- Main panel -->
-    <mat-drawer-container class="row">
-	  		
-		  <!-- SideBar -->
-		  <mat-drawer mode="side" opened="true" class="col-3 side-bar border-secondary rounded">
-		  		<div *ngIf="currentStep < 3" class="float">
-					<carpooling-list-left-menu
-						[selections]="selections"
-						[currentStep]="currentStep"
-						[carpoolingsAller]="carpoolingsAller"
-						[carpoolingsRetour]="carpoolingsRetour"
-					>
-					</carpooling-list-left-menu>
-				</div>
-		  </mat-drawer>
-		  <!-- End SideBar -->
-	  
-	  	<!-- Content -->
-	  	<mat-drawer-content class="col-9 no-padding no-margin">
-	  	
-	  		<div  class="navigation">
-	  			<button *ngIf="currentStep > 1"
-	  				mat-stroked-button
-		      		(click)="goBack(stepper)">
-		      		Back
-		      	</button>
-		      	&nbsp;
-				<button  *ngIf="currentStep < 4"
-					mat-stroked-button  
-					(click)="goForward(stepper)"
-					[disabled]="disabledButtonNext()">
-					Next
-				</button>
-			</div>
-		    
-	  		<mat-horizontal-stepper  #stepper class="border rounded">
-	  			<!-- ----------------------------------- -->
-				<!-- Step 1 : Sélection allers  -->
-				<!-- ----------------------------------- -->
-				<mat-step>
-	  				<ng-template matStepLabel>Covs Aller</ng-template>
-					<div class="title">
-						<b class="color-green">Etape 1 : Selection covoiturage(s) *Aller*</b>
-					</div>
-					<result-search [resultSearch]="resultsSearch[0]"></result-search>
-				</mat-step>
-				
-				<!-- ----------------------------------- -->
-				<!-- Step 2 : Sélection Retours  -->
-				<!-- ----------------------------------- -->
-				<mat-step>
-	  				<ng-template matStepLabel>Covs Retour</ng-template>
-	  				<div class="title">
-						<b class="color-green">Etape 2 : Selection covoiturage(s) *Retour*</b>
-					</div>
-	  				<result-search [resultSearch]="resultsSearch[1]"></result-search>
-				</mat-step>
-				
-				<!-- ------------------------------------------- -->
-				<!-- Step 3 : Visualisation de la sélection et  -->
-				<!-- ------------------------------------------- -->
-				<mat-step>
-					<ng-template matStepLabel>Selection</ng-template>
-					<div class="title">
-						<b class="color-green">Etape 3 : Vos selections</b>
-					</div>
-					<user-selection [selections]="selections"></user-selection>
-				</mat-step>
-				
-				<!-- -------------------- -->
-				<!-- Step 4 : Paiement  -->
-				<!-- -------------------- -->
-				<mat-step>
-					<ng-template matStepLabel>Envoi</ng-template>
-					<div class="title">
-						<b class="color-green">Etape 4 : Finalisation demande(s)</b>
-					</div>
-					<app-paiement [selections]="selections"></app-paiement>
-				</mat-step>
-			</mat-horizontal-stepper>
-	  </mat-drawer-content>
-	  <!-- End Content -->
-	  
-	</mat-drawer-container>
-	<!-- End Main panel -->
-	
+  <!-- Main panel -->
+  <mat-drawer-container class="row">
+    <!-- SideBar -->
+    <mat-drawer
+      mode="side"
+      opened="true"
+      class="col-3 side-bar border-secondary rounded"
+    >
+      <div *ngIf="currentStep < 3" class="float">
+        <carpooling-list-left-menu
+          [selections]="selections"
+          [currentStep]="currentStep"
+          [carpoolingsAller]="carpoolingsAller"
+          [carpoolingsRetour]="carpoolingsRetour"
+        >
+        </carpooling-list-left-menu>
+      </div>
+    </mat-drawer>
+    <!-- End SideBar -->
+
+    <!-- Content -->
+    <mat-drawer-content class="col-9 no-padding no-margin">
+      <div class="navigation">
+        <button
+          *ngIf="currentStep > 1"
+          mat-stroked-button
+          (click)="goBack(stepper)"
+        >
+          Back
+        </button>
+        &nbsp;
+        <button
+          *ngIf="currentStep < 4"
+          mat-stroked-button
+          (click)="goForward(stepper)"
+          [disabled]="disabledButtonNext()"
+        >
+          Next
+        </button>
+      </div>
+
+      <mat-horizontal-stepper #stepper class="border rounded">
+        <!-- ----------------------------------- -->
+        <!-- Step 1 : Sélection allers  -->
+        <!-- ----------------------------------- -->
+        <mat-step>
+          <ng-template matStepLabel>Covs Aller</ng-template>
+          <div class="title">
+            <strong class="color-green"
+              >Etape 1 : Selection covoiturage(s) *Aller*</strong
+            >
+          </div>
+          <result-search [resultSearch]="resultsSearch[0]"></result-search>
+        </mat-step>
+
+        <!-- ----------------------------------- -->
+        <!-- Step 2 : Sélection Retours  -->
+        <!-- ----------------------------------- -->
+        <mat-step>
+          <ng-template matStepLabel>Covs Retour</ng-template>
+          <div class="title">
+            <strong class="color-green"
+              >Etape 2 : Selection covoiturage(s) *Retour*</strong
+            >
+          </div>
+          <result-search [resultSearch]="resultsSearch[1]"></result-search>
+        </mat-step>
+
+        <!-- ------------------------------------------- -->
+        <!-- Step 3 : Visualisation de la sélection et  -->
+        <!-- ------------------------------------------- -->
+        <mat-step>
+          <ng-template matStepLabel>Selection</ng-template>
+          <div class="title">
+            <strong class="color-green">Etape 3 : Vos selections</strong>
+          </div>
+          <user-selection [selections]="selections"></user-selection>
+        </mat-step>
+
+        <!-- -------------------- -->
+        <!-- Step 4 : Paiement  -->
+        <!-- -------------------- -->
+        <mat-step>
+          <ng-template matStepLabel>Envoi</ng-template>
+          <div class="title">
+            <strong class="color-green"
+              >Etape 4 : Finalisation demande(s)</strong
+            >
+          </div>
+          <app-paiement [selections]="selections"></app-paiement>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </mat-drawer-content>
+    <!-- End Content -->
+  </mat-drawer-container>
+  <!-- End Main panel -->
 </div>

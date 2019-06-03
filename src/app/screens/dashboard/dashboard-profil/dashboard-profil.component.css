@@ -1,0 +1,16 @@
+.dashboard-profil .radio-button {
+  margin-left: 10px;
+}
+
+.dashboard-profil form {
+  padding: 15px;
+}
+
+.dashboard-profil .photo {
+  padding-top: 15px;
+}
+
+.dashboard-profil .photo img {
+  width: 134px;
+  height: 134px;
+}

@@ -2,17 +2,17 @@ import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { MatCheckboxChange } from "@angular/material/checkbox";
 import { MatDialog } from "@angular/material";
 
-import { rotation } from "../../animation/rotation.animation";
-import { CarpoolingWarningMessageComponent } from "../carpooling-warning-message/carpooling-warning-message.component";
-import { CarpoolingDetailComponent } from "../carpooling-detail/carpooling-detail.component";
-import { RouteMapComponent } from "../route-map/route-map.component";
+import { rotation } from "app/animation/rotation.animation";
+import { CarpoolingWarningMessageComponent } from "app/screens/carpoolings-list/carpooling-result-search/carpooling-card/dialog/carpooling-warning-message/carpooling-warning-message.component";
+import { CarpoolingDetailComponent } from "app/components/dialog/carpooling-detail/carpooling-detail.component";
+import { RouteMapComponent } from "app/components/dialog/route-map/route-map.component";
 
-import { CarpoolingViewModel } from "../../modelview/carpooling.view.model";
-import { CarpoolingEvent } from "../../event/carpooling.event";
+import { CarpoolingViewModel } from "app/modelview/carpooling.view.model";
+import { CarpoolingEvent } from "app/event/carpooling.event";
 
-import { CarpoolingUtils } from "../../utils/carpooling.utils";
+import { CarpoolingUtils } from "app/utils/carpooling.utils";
 
-import { AbstractRotateComponent } from "../abstract.rotate.component";
+import { AbstractRotateComponent } from "app/components/abstract.rotate.component";
 
 @Component({
   selector: "carpooling-card",
@@ -26,9 +26,7 @@ export class CarpoolingCardComponent extends AbstractRotateComponent {
 
   @Output() notifySelection = new EventEmitter<CarpoolingEvent>();
 
-  constructor(
-    public _dialog: MatDialog
-  ) {
+  constructor(public _dialog: MatDialog) {
     super();
   }
 
@@ -59,7 +57,7 @@ export class CarpoolingCardComponent extends AbstractRotateComponent {
   openAutoAcceptationDialog(): void {
     const dialogRef = this._dialog.open(CarpoolingWarningMessageComponent, {
       width: "600px",
-      data: { "typeWarning": "ACC_AUTO" }
+      data: { typeWarning: "ACC_AUTO" }
     });
     this.treatDialogReturn(dialogRef);
   }

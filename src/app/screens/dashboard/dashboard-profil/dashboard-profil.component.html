@@ -1,0 +1,96 @@
+<div class="dashboard dashboard-profil">
+  <h3 class="title">Profil</h3>
+
+  <mat-slide-toggle [checked]="editForm">
+    Edition
+  </mat-slide-toggle>
+
+  <form action="/action_page.php">
+    <div class="form-group photo">
+      <label for="name">Photo:</label>
+      <div>
+        <div>
+          <img id="blah" [src]="url" alt="canard" class="border rounded" />
+        </div>
+        <div>
+          <input type="file" (change)="readURL($event)" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Nom:</label>
+      <input type="text" class="form-control" id="name" />
+    </div>
+
+    <div class="form-group">
+      <label for="fisrtname">Prénom:</label>
+      <input type="text" class="form-control" id="fisrtname" disabled />
+    </div>
+
+    <div class="form-group">
+      <label for="sexe">Sexe:</label>
+      <div>
+        <mat-radio-group [(ngModel)]="selectedSexe" name="sexe">
+          <mat-radio-button class="radio-button" value="M" disabled="!editForm"
+            >Masculin</mat-radio-button
+          >
+          <mat-radio-button class="radio-button" value="F" disabled="!editForm"
+            >Feminin</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-mail:</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        disabled="!editForm"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fisrtname">Téléphone:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="fisrtname"
+        disabled="!editForm"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fisrtname">Date de naissance:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="fisrtname"
+        disabled="!editForm"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="profession">Profession:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="profession"
+        disabled="!editForm"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fisrtname">Mini bio (100 carachtères maximum):</label>
+      <textarea class="form-control" disabled="!editForm"></textarea>
+    </div>
+
+    <div class="bloc-buttons-right">
+      <button type="submit" class="btn btn-primary" disabled="!editForm">
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

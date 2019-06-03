@@ -1,0 +1,145 @@
+<mat-card [@flipState]="flip" class="cp-detail-dialog">
+  <div *ngIf="flip == 'inactive'; then frontTemplate; else backTemplate"></div>
+
+  <ng-template #frontTemplate>
+    <ng-container *ngTemplateOutlet="contentTemplate; context: { data: data }">
+    </ng-container>
+  </ng-template>
+
+  <ng-template #backTemplate>
+    <div class="tp-box_back">
+      <ng-container
+        *ngTemplateOutlet="contentTemplate; context: { data: data }"
+      >
+      </ng-container>
+    </div>
+  </ng-template>
+</mat-card>
+
+<ng-template #contentTemplate let-data="data">
+  <div class="cov-detail">
+    <h4 class="title">
+      <app-route-in-line
+        [trajet]="current.trajet"
+        [allerRetour]="data.retour"
+        [isDetail]="true"
+      >
+      </app-route-in-line>
+    </h4>
+
+    <div class="cp-route-detail">
+      <table>
+        <tbody>
+          <tr>
+            <td>Point de départ</td>
+            <td>
+              {{ current.trajet.villeDepart }}, {{ current.trajet.pointDepart }}
+            </td>
+          </tr>
+          <tr>
+            <td>Point d'arrivée</td>
+            <td>
+              {{ current.trajet.villeArrivee }},
+              {{ current.trajet.pointArrivee }}
+            </td>
+          </tr>
+          <tr>
+            <td>Heure de départ</td>
+            <td>{{ current.heureDepart }}</td>
+          </tr>
+          <tr>
+            <td>Heure d'arrivée approximatif</td>
+            <td>14h30</td>
+          </tr>
+          <tr>
+            <td>durée du trajet approximatif</td>
+            <td>02h30</td>
+          </tr>
+          <tr>
+            <td>Prix du trajet</td>
+            <td>{{ current.price }} &euro;</td>
+          </tr>
+          <tr>
+            <td>Nombre de place disponibles</td>
+            <td>{{ current.nbPlacesRestantes }}/4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <ng-container
+        *ngTemplateOutlet="
+          carpoolerListTemplate;
+          context: {
+            title: 'Covoiturage restreint à',
+            carpoolerList: folders,
+            expireDate: '13/07/2018'
+          }
+        "
+      >
+      </ng-container>
+      <ng-container
+        *ngTemplateOutlet="
+          carpoolerListTemplate;
+          context: {
+            title: 'Reservations actuelles',
+            carpoolerList: folders,
+            expireDate: null
+          }
+        "
+      >
+      </ng-container>
+    </div>
+
+    <br />
+
+    <div class="choice">
+      <mat-checkbox
+        class="color-green"
+        [(ngModel)]="current.checked"
+        (change)="onNotifySelection($event)"
+      >
+        Opter pour ce coviturage
+      </mat-checkbox>
+    </div>
+
+    <mat-dialog-actions>
+      <div class="ctrl-boutons">
+        <button mat-button [mat-dialog-close]="current.checked">
+          <strong>Valider</strong>
+        </button>
+        <button mat-button mat-dialog-close>
+          Fermer
+        </button>
+        <button mat-button *ngIf="data.retour" (click)="toggleFlip()">
+          <i class="fa fa-undo" aria-hidden="true"></i>
+          Retour mardi à 14h30
+        </button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</ng-template>
+
+<ng-template
+  #carpoolerListTemplate
+  let-title="title"
+  let-carpoolerList="carpoolerList"
+  let-expireDate="expireDate"
+>
+  <div class="col-6 carpooler-list-container">
+    <strong>{{ title }}</strong> :<br />
+
+    <mat-list class="carpooler-list border">
+      <passenger-item
+        *ngFor="let carpooler of carpoolerList"
+        [carpooler]="carpooler"
+      ></passenger-item>
+    </mat-list>
+
+    <strong *ngIf="expireDate != null"
+      >Jusqu'au <span class="color-red">{{ expireDate }}</span> à
+      <span class="color-red">12h30</span></strong
+    >
+  </div>
+</ng-template>

@@ -85,3 +85,8 @@ legend.scheduler-border {
 ::-webkit-scrollbar-thumb:hover {
   background: #b30000;
 }
+
+.bloc-buttons-right {
+  display: flex;
+  justify-content: flex-end;
+}

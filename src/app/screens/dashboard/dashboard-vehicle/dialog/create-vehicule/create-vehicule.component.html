@@ -1,0 +1,70 @@
+<div class="new-vehicle">
+  <h3 class="title">
+    Enregistrer un nouveau véhicule
+  </h3>
+
+  <form action="/action_page.php">
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Marque"
+        name="marque"
+        [(ngModel)]="newCar.marque"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Modèle"
+        name="modele"
+        [(ngModel)]="newCar.modele"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Immatricule"
+        name="immatricule"
+        [(ngModel)]="newCar.matricule"
+      />
+    </mat-form-field>
+
+    <div class="full-width row">
+      <mat-form-field class="col-6">
+        <input
+          matInput
+          placeholder="Couleur"
+          name="couleur"
+          [(ngModel)]="newCar.couleur"
+        />
+      </mat-form-field>
+      <mat-form-field class="col-6">
+        <input
+          matInput
+          placeholder="Nombre de places dispo"
+          name="nbPlacesDispo"
+          [(ngModel)]="newCar.nbPlacesDispo"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Nom/Prenom mentionné sur la carte grise"
+        name="nomPrenom"
+      />
+    </mat-form-field>
+
+    <div class="bloc-buttons-right">
+        <button class="btn btn-primary" mat-button mat-dialog-close>
+          Annuler
+        </button>
+      <button class="btn btn-primary" mat-button [mat-dialog-close]="newCar">
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

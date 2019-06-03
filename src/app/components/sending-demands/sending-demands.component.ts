@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 
-import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
 import { AbstractSelectionComponent } from 'app/components/abstract.selection.component';
 
-import { AlimentationCompteComponent } from 'app/components/alimentation-compte/alimentation-compte.component';
+import { AlimentationCompteComponent } from 'app/components/dialog/alimentation-compte/alimentation-compte.component';
 
 
 @Component({

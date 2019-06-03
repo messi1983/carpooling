@@ -1,0 +1,8 @@
+.dashboard-alert mat-chip {
+  max-width: 100%;
+}
+
+.dashboard-alert img {
+  height: 50px;
+  width: 50px;
+}
