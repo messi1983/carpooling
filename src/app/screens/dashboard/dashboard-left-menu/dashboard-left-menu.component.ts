@@ -1,20 +1,12 @@
-import { Component, OnInit, Input } from "@angular/core";
-
-import { DashboardModel } from "../model/dashboard.model";
+import { Component } from "@angular/core";
 
 @Component({
   selector: "dashboard-left-menu",
   templateUrl: "./dashboard-left-menu.component.html",
   styleUrls: ["./dashboard-left-menu.component.css"]
 })
-export class DashboardLeftMenuComponent implements OnInit {
-  @Input() context: DashboardModel;
+export class DashboardLeftMenuComponent {
 
   constructor() {}
 
-  ngOnInit() {}
-
-  onPageChange(pageId: number): void {
-    this.context.currentPage = pageId;
-  }
 }

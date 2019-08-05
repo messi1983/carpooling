@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { MatStepper, MatDialog, MatDialogRef } from "@angular/material";
 
-import { CarpoolerUserSelectionComponent } from "../../components/carpooler-user-selection/carpooler-user-selection.component";
-import { CarpoolingWarningMessageComponent } from "../carpoolings-list/carpooling-result-search/carpooling-card/dialog/carpooling-warning-message/carpooling-warning-message.component";
+import { CarpoolerUserSelectionComponent } from "app/components/carpooler-user-selection/carpooler-user-selection.component";
+import { CarpoolingWarningMessageComponent } from "../carpoolings-list/carpooling-card/dialog/carpooling-warning-message/carpooling-warning-message.component";
 
 import { AbstractStepperComponent } from "app/components/abstract.stepper.component";
 

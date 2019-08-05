@@ -1,0 +1,112 @@
+<!-- result list -->
+<mat-card
+  [ngClass]="{ carpooling: true, 'carpooling-retour': flip == 'active' }"
+  [@flipState]="flip"
+>
+  <ng-container *ngTemplateOutlet="flipTemplate"> </ng-container>
+</mat-card>
+
+<ng-template #flipTemplate>
+  <div [ngClass]="{ 'tp-box_back': flip == 'active' }">
+    <div
+      [ngClass]="{ 'tp-box_back': flip == 'active' }"
+      *ngIf="aller || retour; then contentTemplate"
+    ></div>
+  </div>
+</ng-template>
+
+<ng-template #contentTemplate>
+  <!-- Cp Header Infos  -->
+  <mat-card-header class="full-width header">
+    <div class="row full-width">
+      <!-- departure Hour -->
+      <mat-checkbox
+        class="col-3 text-left departure-hour"
+        [(ngModel)]="current.checked"
+        (change)="onSelect($event)"
+        [disabled]="quotaReached && !current.checked"
+      >
+        <strong>{{ current.heureDepart }}</strong>
+      </mat-checkbox>
+      <!-- End departure Hour -->
+
+      <!-- Route -->
+      <div class="col-7 route">
+        <route [trajet]="current.trajet" [allerRetour]="current.dateTimeRetour">
+        </route>
+      </div>
+      <!-- End Route -->
+
+      <!-- Price -->
+      <div class="col-2  price">{{ current.price }} &euro;</div>
+      <!-- End Price -->
+    </div>
+  </mat-card-header>
+  <!-- End Cp Header Infos -->
+
+  <!-- Cp Content -->
+  <mat-card-content class="content container">
+    <div class="row detail">
+      <!-- Driver Infos -->
+      <div class="col-3 driver">
+        <driver-info [driver]="current.driver"></driver-info>
+      </div>
+
+      <!-- Route infos -->
+      <div class="col-7 text-left route-infos-container">
+        <div class="row route">
+          <route
+            [trajet]="current.trajet"
+            [restrictDesc]="true"
+            [detail]="true"
+          ></route>
+        </div>
+
+        <mat-card-actions class="action">
+          <button
+            mat-button
+            *ngIf="current.dateTimeAller"
+            (click)="toggleFlip()"
+          >
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            Aller mardi à 14h30
+          </button>
+          <button
+            mat-button
+            *ngIf="current.dateTimeRetour"
+            (click)="toggleFlip()"
+          >
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            Retour mardi à 14h30
+          </button>
+          <button mat-button (click)="onDetail()">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Detail
+          </button>
+          <button mat-button (click)="onMapRoute()" class="no-padding">
+            <mat-icon>account_circle</mat-icon>
+            Map
+          </button>
+        </mat-card-actions>
+      </div>
+      <!-- End route infos -->
+
+      <!-- Places -->
+      <div class="col-2 no-padding">
+        <places-dispo
+          [nbPlacesRestantes]="current.nbPlacesRestantes"
+        ></places-dispo>
+      </div>
+    </div>
+  </mat-card-content>
+  <!-- End Cp Content -->
+
+  <!-- Footer -->
+  <mat-card-footer
+    *ngIf="current.linkedEvent"
+    class="footer small-font border rounded"
+  >
+    <cov-infos-barre [linkedEvent]="current.linkedEvent"></cov-infos-barre>
+  </mat-card-footer>
+  <!-- Footer -->
+</ng-template>

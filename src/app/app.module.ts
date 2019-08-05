@@ -9,17 +9,17 @@ import { AppComponent } from "./app.component";
 import { AppNavbarComponent } from "./components/app-navbar/app-navbar.component";
 import { CarpoolingsListComponent } from "./screens/carpoolings-list/carpoolings-list.component";
 import { CarpoolingSearchComponent } from "./screens/carpooling-search/carpooling-search.component";
-import { CarpoolingUserSelectionComponent } from "./components/carpooling-user-selection/carpooling-user-selection.component";
+import { CarpoolingUserSelectionComponent } from "./screens/carpoolings-list/carpooling-user-selection/carpooling-user-selection.component";
 import { DriverInfoComponent } from "./components/driver-info/driver-info.component";
-import { RouteDetailComponent } from "./components/route-detail/route-detail.component";
+import { RouteComponent } from "./components/route/route.component";
 import { PlacesDispoComponent } from "./components/places-dispo/places-dispo.component";
 import { CovInfosBarreComponent } from "./components/cov-infos-barre/cov-infos-barre.component";
-import { CarpoolingWarningMessageComponent } from "./screens/carpoolings-list/carpooling-result-search/carpooling-card/dialog/carpooling-warning-message/carpooling-warning-message.component";
+import { CarpoolingWarningMessageComponent } from "./screens/carpoolings-list/carpooling-card/dialog/carpooling-warning-message/carpooling-warning-message.component";
 import { CarpoolingDetailComponent } from "./components/dialog/carpooling-detail/carpooling-detail.component";
-import { RouteInLineComponent } from "./components/route-in-line/route-in-line.component";
+import { ConfirmationComponent } from "./components/dialog/confirmation/confirmation.component";
 import { AppPassengerItemComponent } from "./components/passenger-item/app-passenger-item.component";
 import { RouteMapComponent } from "./components/dialog/route-map/route-map.component";
-import { SendingDemandsComponent } from "./components/sending-demands/sending-demands.component";
+import { SendingDemandsComponent } from "./screens/carpoolings-list/sending-demands/sending-demands.component";
 import { AlimentationCompteComponent } from "./components/dialog/alimentation-compte/alimentation-compte.component";
 import { CarpoolingFormComponent } from "./components/carpooling-form/carpooling-form.component";
 import { CarpoolingCreateComponent } from "./screens/carpooling-create/carpooling-create.component";
@@ -28,8 +28,7 @@ import { CarpoolerCardComponent } from "./components/carpooler-card/carpooler-ca
 import { CarpoolerUserSelectionComponent } from "./components/carpooler-user-selection/carpooler-user-selection.component";
 import { PageNotFoundComponent } from "./screens/page-not-found/page-not-found.component";
 import { CarpoolingsListLeftMenuComponent } from "./screens/carpoolings-list/carpoolings-list-left-menu/carpoolings-list-left-menu.component";
-import { CarpoolingResultSearchComponent } from "./screens/carpoolings-list/carpooling-result-search/carpooling-result-search.component";
-import { CarpoolingCardComponent } from "./screens/carpoolings-list/carpooling-result-search/carpooling-card/carpooling-card.component";
+import { CarpoolingCardComponent } from "./screens/carpoolings-list/carpooling-card/carpooling-card.component";
 import { DashboardLeftMenuComponent } from "./screens/dashboard/dashboard-left-menu/dashboard-left-menu.component";
 import { DashboardProfilComponent } from "./screens/dashboard/dashboard-profil/dashboard-profil.component";
 import { DashboardTrajetComponent } from "./screens/dashboard/dashboard-trajet/dashboard-trajet.component";
@@ -41,11 +40,16 @@ import { DashboardFriendComponent } from "./screens/dashboard/dashboard-friend/d
 import { DashboardAccountComponent } from "./screens/dashboard/dashboard-account/dashboard-account.component";
 import { DashboardComponent } from "./screens/dashboard/dashboard.component";
 
+import { CreateVehiculeComponent } from "./screens/dashboard/dashboard-vehicle/dialog/create-vehicule/create-vehicule.component";
+import { ReservationsPanelComponent } from "./screens/dashboard/dashboard-trajet/reservations-panel/reservations-panel.component";
+import { PropositionsPanelComponent } from "./screens/dashboard/dashboard-trajet/propositions-panel/propositions-panel.component";
+import { CarpoolingItemComponent } from "./components/carpooling-item/carpooling-item.component";
+
 import { CarpoolerService } from "./service/carpooler.service";
 import { CarpoolerViewModelService } from "./service/carpooler.view.model.service";
 import { CarpoolingChartService } from "./service/carpooling.chart.service";
 import { CarpoolingService } from "./service/carpooling.service";
-import { CreateVehiculeComponent } from "./screens/dashboard/dashboard-vehicle/dialog/create-vehicule/create-vehicule.component";
+import { ReservationService } from "./service/reservation.service";
 
 @NgModule({
   declarations: [
@@ -56,15 +60,13 @@ import { CreateVehiculeComponent } from "./screens/dashboard/dashboard-vehicle/d
     CarpoolingSearchComponent,
     CarpoolingUserSelectionComponent,
     DriverInfoComponent,
-    RouteDetailComponent,
+    RouteComponent,
     PlacesDispoComponent,
     CovInfosBarreComponent,
     PageNotFoundComponent,
-    CarpoolingResultSearchComponent,
     CarpoolingsListLeftMenuComponent,
     CarpoolingWarningMessageComponent,
     CarpoolingDetailComponent,
-    RouteInLineComponent,
     AppPassengerItemComponent,
     RouteMapComponent,
     SendingDemandsComponent,
@@ -84,7 +86,11 @@ import { CreateVehiculeComponent } from "./screens/dashboard/dashboard-vehicle/d
     DashboardMessageComponent,
     DashboardFriendComponent,
     DashboardAccountComponent,
-    CreateVehiculeComponent
+    CreateVehiculeComponent,
+    ConfirmationComponent,
+    ReservationsPanelComponent,
+    PropositionsPanelComponent,
+    CarpoolingItemComponent
   ],
   imports: [
     HttpModule,
@@ -97,6 +103,7 @@ import { CreateVehiculeComponent } from "./screens/dashboard/dashboard-vehicle/d
     CarpoolingChartService,
     CarpoolingService,
     CarpoolerService,
+    ReservationService,
     CarpoolerViewModelService
   ],
   bootstrap: [AppComponent],
@@ -106,7 +113,8 @@ import { CreateVehiculeComponent } from "./screens/dashboard/dashboard-vehicle/d
     RouteMapComponent,
     AlimentationCompteComponent,
     CarpoolerUserSelectionComponent,
-    CreateVehiculeComponent
+    CreateVehiculeComponent,
+    ConfirmationComponent
   ]
 })
 export class AppModule {}

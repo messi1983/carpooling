@@ -1,13 +1,18 @@
 .driver-info-container {
-	display: flex;
+  display: flex;
 }
 
-.driver-info-container img {
-	height: 70px; 
-	width: 70px;
+.driver-info-container .normal-img {
+  height: 70px;
+  width: 70px;
+}
+
+.driver-info-container .mini-img {
+  height: 35px;
+  width: 35px;
 }
 
 .driver-info-container > div {
-	margin-left: 4px;
-	text-align:left;
+  margin-left: 4px;
+  text-align: left;
 }

@@ -1,59 +1,61 @@
 <div class="approvisionnement">
-	<h4 class="title color-red">
-		Approvisionnement compte
-	</h4>
-	
-	<p class="solde border rounded">
-		Vous disposez aujourd'hui de <span>24,00 &euro;</span> sur votre compte.
-	</p>
-	
-	<div class="montant">
-		<label>Saisissez le montant de recharche :</label>
-		<input  type="number" class="border rounded"> &euro;
-	</div>
-	
-	<form class="border rounded paiement">
-		<div class="title">
-			<b>Paiement</b>
-			<img src="assets/cards.png" alt="cards">
-		</div>
-		
-		<br />
-		
-		<div class="titulaire">
-			<label><b>Titulaire de la carte</b></label>
-			<input  type="text" class="border rounded">
-		</div>
-		
-		<div class="num-carte">
-			<label><b>Numéro carte</b></label>
-			<input  type="number" class="border rounded">
-		</div>
-			
-		<div class="card-infos">
-			<div class="date-expiration">
-				<label><b>Date expiration</b></label>
-				<select class="border rounded month">
-					<option [value]="month" *ngFor="let month of months">
-						{{month}}
-					</option>
-				</select>
-				<span>/</span>
-				<select class="border rounded year">
-					<option [value]="year" *ngFor="let year of years">
-						{{year}}
-				   </option>
-				 </select>
-			</div>
-				
-			<div class="cryptographie">
-				<label><strong>Cryptographie</strong></label>
-				<input  type="number" class="border rounded">
-			</div>
-		</div>
-			
-		<div class="bouton">
-			<button type="button" class="btn btn-primary" mat-dialog-close>Valider le rechargement</button>
-		</div>
-	</form>
+  <h4 class="title color-red">
+    Approvisionnement compte
+  </h4>
+
+  <p class="center-block solde border rounded">
+    Vous disposez aujourd'hui de <span>24,00 &euro;</span> sur votre compte.
+  </p>
+
+  <div class="montant">
+    <label>Saisissez le montant de recharche :</label>
+    <input type="number" class="border rounded" /> &euro;
+  </div>
+
+  <form class="border rounded paiement">
+    <div class="title">
+      <b>Paiement</b>
+      <img src="assets/cards.png" alt="cards" />
+    </div>
+
+    <br />
+
+    <div class="titulaire">
+      <label><b>Titulaire de la carte</b></label>
+      <input type="text" class="border rounded" />
+    </div>
+
+    <div class="num-carte">
+      <label><b>Numéro carte</b></label>
+      <input type="number" class="border rounded" />
+    </div>
+
+    <div class="card-infos">
+      <div class="date-expiration">
+        <label><b>Date expiration</b></label>
+        <select class="border rounded month">
+          <option [value]="month" *ngFor="let month of months">
+            {{ month }}
+          </option>
+        </select>
+        <span>/</span>
+        <select class="border rounded year">
+          <option [value]="year" *ngFor="let year of years">
+            {{ year }}
+          </option>
+        </select>
+      </div>
+
+      <div class="cryptographie">
+        <label><strong>Cryptographie</strong></label>
+        <input type="number" class="border rounded" />
+      </div>
+    </div>
+
+    <div class="bouton">
+      <button type="button" class="btn btn-primary" mat-dialog-close>
+        Valider le rechargement
+      </button>
+    </div>
+  </form>
 </div>

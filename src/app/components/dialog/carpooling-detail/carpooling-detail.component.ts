@@ -5,7 +5,9 @@ import { MatCheckboxChange } from "@angular/material/checkbox";
 
 import { AbstractRotateComponent } from "app/components/abstract.rotate.component";
 
-import { CarpoolingViewModel } from "app/modelview/carpooling.view.model";
+import { Carpooling } from "app/model/carpooling";
+
+import { CarpoolingService } from "app/service/carpooling.service";
 
 export interface Section {
   name: string;
@@ -43,15 +45,18 @@ export class CarpoolingDetailComponent extends AbstractRotateComponent {
     }
   ];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: CarpoolingViewModel) {
-    super();
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: Carpooling,
+    carpoolingService: CarpoolingService
+  ) {
+    super(carpoolingService);
   }
 
   onNotifySelection(event: MatCheckboxChange): void {
-    this.current.checked = event.checked;
+    // this.current.checked = event.checked;
   }
 
-  protected getCarpooling(): CarpoolingViewModel {
+  protected getCarpooling(): Carpooling {
     return this.data;
   }
 }

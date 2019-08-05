@@ -19,12 +19,12 @@
 <ng-template #contentTemplate let-data="data">
   <div class="cov-detail">
     <h4 class="title">
-      <app-route-in-line
+      <route
         [trajet]="current.trajet"
         [allerRetour]="data.retour"
         [isDetail]="true"
       >
-      </app-route-in-line>
+      </route>
     </h4>
 
     <div class="cp-route-detail">

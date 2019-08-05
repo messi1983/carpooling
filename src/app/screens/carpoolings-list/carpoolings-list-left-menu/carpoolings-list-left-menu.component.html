@@ -1,136 +1,192 @@
 <div class="left-menu">
-	
-	<!-- ------------- -->
-	<!--  Filtres et tris-->
-	<!-- ------------- -->
-	<div class="section rounded-top">
-		<label class="section-title">Tris et filtres</label>
-		<mat-accordion>
-			<mat-expansion-panel>
-				<mat-expansion-panel-header>
-			     	<p class="sorts-title">Tris</p>
-			    </mat-expansion-panel-header>
-				<div class="block">
-					<mat-radio-group [(ngModel)]="selectedOption[currentStep - 1]" name="triOptionAller">
-				    	<mat-radio-button *ngFor="let op of listeTriSurHeureDepartOptions" [value]="op.value" (change)="radioChange($event)" name="triOption">
-							<span>{{ op.name}}</span>
-						</mat-radio-button>
-						<hr />
-						<mat-radio-button *ngFor="let op of listeTriSurPrixOptions" [value]="op.value" (change)="radioChange($event)" name="triOption">
-							<span>{{ op.name}}</span>
-						</mat-radio-button>
-						<hr />
-						<mat-radio-button *ngFor="let op of listeTriSurNbPlacesOptions" [value]="op.value" (change)="radioChange($event)" name="triOption">
-							<span>{{ op.name}}</span>
-						</mat-radio-button>
-				    </mat-radio-group>
-			    </div>
-			</mat-expansion-panel>
-			
-			<mat-expansion-panel>
-				<mat-expansion-panel-header>
-			     	<p class="sorts-title">Filtres</p>
-			    </mat-expansion-panel-header>
-			    
-				<div class="block">
-					<div class="ar">
-						<div class="label">Aller/Retour</div>
-						<mat-checkbox
-							[(ngModel)]="allerRetour"
-							(change)="onNotifySelection($event)">
-						</mat-checkbox>
-					</div>
-					
-					<hr />
-					
-					<div class="hour">
-						<div>Horaire :</div><br>
-						<div class="range-slider-container">
-         					<range-slider
-         						[min]="minHour[currentStep - 1]"
-         						[max]="maxHour[currentStep - 1]"
-         						[step]="stepHour[currentStep - 1]"
-         						(onRangeChange)="rangeChange($event)"
-         						[(ngModel)]="stepRangeHour[currentStep - 1]">
-         					</range-slider>
-						</div>
-					</div>
-					
-					<hr />
-					
-					<div class="price">
-						<div>Prix :</div><br>
-						<div class="range-slider-container">
-							<range-slider
-         						[min]="minPrice[currentStep - 1]"
-         						[max]="maxPrice[currentStep - 1]"
-         						[step]="stepPrice[currentStep - 1]"
-         						(onRangeChange)="rangeChange($event)"
-         						[(ngModel)]="stepRangePrice[currentStep - 1]">
-         					</range-slider>
-						</div>
-					</div>
-					
-					<hr />
-					
-					<div class="place">
-						<div>Nb Places :</div><br>
-						<div class="range-slider-container">
-							<range-slider
-         						[min]="minNbPlace[currentStep - 1]"
-         						[max]="maxNbPlace[currentStep - 1]"
-         						[step]="stepNbPlace[currentStep - 1]"
-         						(onRangeChange)="rangeChange($event)"
-         						[(ngModel)]="stepRangeNbPlace[currentStep - 1]">
-         					</range-slider>
-						</div>
-					</div>
-			    </div>
-			</mat-expansion-panel>
-			
-		</mat-accordion>
-	</div>
-	
-	<div class="section rounded-top">
-		<label class="section-title">Votre sélection</label>
-		<div  class="block">
-			<div *ngIf="existSelectionsAller()">
-				<ng-container 
-					*ngTemplateOutlet="matChipListTemplate; 
-						context:{title : 'Vos covs Aller', selections : selectionsAller, isAller : true, removable: currentStep == 1}">
-				</ng-container>
-			</div>
-			<div *ngIf="existSelectionsRetour()">
-				<ng-container
-					*ngTemplateOutlet="matChipListTemplate;
-						context:{title : 'Vos covs Retour', selections : selectionsRetour, isAller : false, removable: currentStep <= 2}">
-				</ng-container>
-			</div>
-		</div>
-	</div>
-	
+  <!-- ------------- -->
+  <!--  Filtres et tris-->
+  <!-- ------------- -->
+  <div class="section rounded-top">
+    <label class="section-title">Tris et filtres</label>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <p class="sorts-title">Tris</p>
+        </mat-expansion-panel-header>
+        <div class="block">
+          <mat-radio-group
+            [(ngModel)]="selectedOption[currentStep - 1]"
+            name="triOptionAller"
+          >
+            <mat-radio-button
+              *ngFor="let op of listeTriSurHeureDepartOptions"
+              [value]="op.value"
+              (change)="radioChange($event)"
+              name="triOption"
+            >
+              <span>{{ op.name }}</span>
+            </mat-radio-button>
+            <hr />
+            <mat-radio-button
+              *ngFor="let op of listeTriSurPrixOptions"
+              [value]="op.value"
+              (change)="radioChange($event)"
+              name="triOption"
+            >
+              <span>{{ op.name }}</span>
+            </mat-radio-button>
+            <hr />
+            <mat-radio-button
+              *ngFor="let op of listeTriSurNbPlacesOptions"
+              [value]="op.value"
+              (change)="radioChange($event)"
+              name="triOption"
+            >
+              <span>{{ op.name }}</span>
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <p class="sorts-title">Filtres</p>
+        </mat-expansion-panel-header>
+
+        <div class="block">
+          <div class="ar">
+            <div class="label">Aller/Retour</div>
+            <mat-checkbox
+              [(ngModel)]="allerRetour"
+              (change)="onNotifySelection($event)"
+            >
+            </mat-checkbox>
+          </div>
+
+          <hr />
+
+          <div class="hour">
+            <div>Horaire :</div>
+            <br />
+            <div class="range-slider-container">
+              <range-slider
+                [min]="minHour[currentStep - 1]"
+                [max]="maxHour[currentStep - 1]"
+                [step]="stepHour[currentStep - 1]"
+                (onRangeChange)="rangeChange($event)"
+                [(ngModel)]="stepRangeHour[currentStep - 1]"
+              >
+              </range-slider>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="price">
+            <div>Prix :</div>
+            <br />
+            <div class="range-slider-container">
+              <range-slider
+                [min]="minPrice[currentStep - 1]"
+                [max]="maxPrice[currentStep - 1]"
+                [step]="stepPrice[currentStep - 1]"
+                (onRangeChange)="rangeChange($event)"
+                [(ngModel)]="stepRangePrice[currentStep - 1]"
+              >
+              </range-slider>
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="place">
+            <div>Nb Places :</div>
+            <br />
+            <div class="range-slider-container">
+              <range-slider
+                [min]="minNbPlace[currentStep - 1]"
+                [max]="maxNbPlace[currentStep - 1]"
+                [step]="stepNbPlace[currentStep - 1]"
+                (onRangeChange)="rangeChange($event)"
+                [(ngModel)]="stepRangeNbPlace[currentStep - 1]"
+              >
+              </range-slider>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+  <div class="section rounded-top">
+    <label class="section-title">Votre sélection</label>
+    <div class="block">
+      <div *ngIf="existSelectionsAller()">
+        <ng-container
+          *ngTemplateOutlet="
+            matChipListTemplate;
+            context: {
+              title: 'Vos covs Aller',
+              selections: getSelectionsAller(),
+              isAller: true,
+              removable: currentStep == 1
+            }
+          "
+        >
+        </ng-container>
+      </div>
+      <div *ngIf="existSelectionsRetour()">
+        <ng-container
+          *ngTemplateOutlet="
+            matChipListTemplate;
+            context: {
+              title: 'Vos covs Retour',
+              selections: getSelectionsRetour(),
+              isAller: false,
+              removable: currentStep <= 2
+            }
+          "
+        >
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
 
-<ng-template #matChipListTemplate
-	let-isAller="isAller"
-	let-title="title"
-	let-selections="selections"
-	let-removable="removable">
-	<fieldset *ngIf="selections.length > 0"class="scheduler-border">
-		<legend class="scheduler-border">{{title}}</legend>
-		<mat-chip-list #chipList>
- 				<mat-chip class="listing-chip" *ngFor="let cp of selections" [selectable]="selectable"
-          			[removable]="removable" (remove)="removeChip(cp, title === 'Vos covs Aller')">
-          			<div>
-          				<span>
-	          				Auj {{ cp.getSimpleCarpooling(isAller).heureDepart}} : 
-	          				{{cp.getSimpleCarpooling(isAller).trajet.villeDepart}} -> 
-	          				{{cp.getSimpleCarpooling(isAller).trajet.villeArrivee}}, 
-	          				{{cp.getSimpleCarpooling(isAller).price}}
-          				</span>
-   						<span><mat-icon matChipRemove *ngIf="removable">cancel</mat-icon></span>
-   					</div>
- 				</mat-chip>
-		</mat-chip-list>
-	</fieldset>
+<ng-template
+  #matChipListTemplate
+  let-isAller="isAller"
+  let-title="title"
+  let-selections="selections"
+  let-removable="removable"
+>
+  <fieldset *ngIf="selections.length > 0" class="scheduler-border">
+    <legend class="scheduler-border">{{ title }}</legend>
+    <div
+      *ngFor="let cp of selections"
+      class="corbeille-item row border rounded"
+    >
+      <div class="col-2 center-block" style="border-right: solid 1px#e8e8e8;">
+        <img
+          src="assets/canard.jpg"
+          alt="canard"
+          class="border rounded-circle"
+        />
+      </div>
+      <div class="col-8 content">
+        <div>
+          <route [trajet]="cp.trajet"></route>
+        </div>
+        <div>
+          <strong>Auj,</strong> {{ cp.heureDepart }} -
+          <span class="color-blue">
+            <strong>{{ cp.price }} &euro;</strong></span
+          >
+        </div>
+      </div>
+      <div class="col-2 center-block">
+        <mat-icon
+          class="delete-icone border rounded-circle"
+          (click)="removeChip(cp, isAller)"
+          >clear</mat-icon
+        >
+      </div>
+    </div>
+  </fieldset>
 </ng-template>

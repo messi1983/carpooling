@@ -1,0 +1,38 @@
+.reservation .cp {
+  padding: 5px;
+}
+
+.reservation .driver {
+  border-right: solid 1px;
+  padding: 5px;
+}
+
+.reservation .cp-Aller {
+  margin-bottom: 5px;
+  border-left: solid 1px green;
+}
+
+.reservation .cp-Retour {
+  border-left: solid 1px red;
+}
+
+.reservation .reservartion-card {
+  display: flex;
+}
+
+.reservation .reservartion-card .header-panel {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-right: 5px;
+  padding-bottom: 7px;
+  border-bottom: solid 1px;
+}
+
+.reservation .header-panel .statut {
+  background-color: yellow;
+}
+
+.reservation .buttons {
+  background-color: lemonchiffon;
+}

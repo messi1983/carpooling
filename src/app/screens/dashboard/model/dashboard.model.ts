@@ -2,16 +2,6 @@ export interface DashboardModel {
   currentPage: number;
 }
 
-export interface Car {
-  marque: string;
-  modele: string;
-  annee: Date;
-  matricule: string;
-  nbPlacesDispo: number;
-  isVehPrincipal: boolean;
-  color: string;
-}
-
 export interface Trajet {
   villeDepart: string;
   villeArrivee: string;

@@ -1,0 +1,13 @@
+<div class="confirmation-dialog">
+  <h2 mat-dialog-title class="title color-blue">
+    <em class="fa fa-asterisk"></em> Confirmation
+  </h2>
+  <mat-dialog-content>
+    <p class="content">{{ data.message }}</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="ctrl-boutons">
+    <button mat-button color="primary" [mat-dialog-close]="true">Oui</button>
+    <button mat-button [mat-dialog-close]="false">Non</button>
+  </mat-dialog-actions>
+</div>

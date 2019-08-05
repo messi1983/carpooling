@@ -9,10 +9,12 @@
     >
       <div *ngIf="currentStep < 3" class="float">
         <carpooling-list-left-menu
-          [selections]="selections"
+          [selectionsAller]="selectionsAller"
+          [selectionsRetour]="selectionsRetour"
           [currentStep]="currentStep"
           [carpoolingsAller]="carpoolingsAller"
           [carpoolingsRetour]="carpoolingsRetour"
+          (click)="onClick($event)"
         >
         </carpooling-list-left-menu>
       </div>
@@ -46,12 +48,13 @@
         <!-- ----------------------------------- -->
         <mat-step>
           <ng-template matStepLabel>Covs Aller</ng-template>
-          <div class="title">
-            <strong class="color-green"
-              >Etape 1 : Selection covoiturage(s) *Aller*</strong
-            >
-          </div>
-          <result-search [resultSearch]="resultsSearch[0]"></result-search>
+          <ng-container
+            *ngTemplateOutlet="
+              selectionTemplate;
+              context: { data: resultsSearch[0] }
+            "
+          >
+          </ng-container>
         </mat-step>
 
         <!-- ----------------------------------- -->
@@ -59,12 +62,13 @@
         <!-- ----------------------------------- -->
         <mat-step>
           <ng-template matStepLabel>Covs Retour</ng-template>
-          <div class="title">
-            <strong class="color-green"
-              >Etape 2 : Selection covoiturage(s) *Retour*</strong
-            >
-          </div>
-          <result-search [resultSearch]="resultsSearch[1]"></result-search>
+          <ng-container
+            *ngTemplateOutlet="
+              selectionTemplate;
+              context: { data: resultsSearch[1] }
+            "
+          >
+          </ng-container>
         </mat-step>
 
         <!-- ------------------------------------------- -->
@@ -75,7 +79,10 @@
           <div class="title">
             <strong class="color-green">Etape 3 : Vos selections</strong>
           </div>
-          <user-selection [selections]="selections"></user-selection>
+          <user-selection
+            [selectionsAller]="selectionsAller"
+            [selectionsRetour]="selectionsRetour"
+          ></user-selection>
         </mat-step>
 
         <!-- -------------------- -->
@@ -88,7 +95,11 @@
               >Etape 4 : Finalisation demande(s)</strong
             >
           </div>
-          <app-paiement [selections]="selections"></app-paiement>
+          <app-paiement
+            [selectionsAller]="selectionsAller"
+            [selectionsRetour]="selectionsRetour"
+          >
+          </app-paiement>
         </mat-step>
       </mat-horizontal-stepper>
     </mat-drawer-content>
@@ -96,3 +107,49 @@
   </mat-drawer-container>
   <!-- End Main panel -->
 </div>
+
+<ng-template #selectionTemplate let-data="data">
+  <div class="title">
+    <strong class="color-green">{{ data.title }}</strong>
+  </div>
+  <div class="listing">
+    <tabset [justified]="false" class="no-margin no-padding">
+      <tab
+        *ngFor="let tabDay of data.tabDays"
+        heading="{{ tabDay }}"
+        class="tab-day"
+      >
+        <mat-tab-group>
+          <mat-tab *ngFor="let tabType of data.tabTypes" label="{{ tabType }}">
+            <div class="tab-container no-margin no-padding">
+              <!-- result list -->
+              <div *ngFor="let carpooling of data.carpoolings" class="cp">
+                <carpooling-card
+                  (click)="onClick($event)"
+                  [isAller]="data.isAller"
+                  [aller]="
+                    data.isAller ? newCarpoolingViewModel(carpooling) : null
+                  "
+                  [retour]="
+                    data.isAller ? null : newCarpoolingViewModel(carpooling)
+                  "
+                  [quotaReached]="quotaReached"
+                >
+                </carpooling-card>
+              </div>
+              <!-- End result list -->
+
+              <br />
+
+              <pagination
+                [totalItems]="totalItems"
+                [itemsPerPage]="itemsPerPage"
+                (pageChanged)="pageChanged($event)"
+              ></pagination>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </tab>
+    </tabset>
+  </div>
+</ng-template>

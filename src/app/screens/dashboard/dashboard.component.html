@@ -3,39 +3,39 @@
   <div class="row">
     <!-- SideBar -->
     <div class="col-3 border">
-      <dashboard-left-menu [context]="context"></dashboard-left-menu>
+      <dashboard-left-menu></dashboard-left-menu>
     </div>
 
     <div class="col-9 border">
-      <div *ngIf="context.currentPage == 1">
+      <div *ngIf="pageId == 'profil'">
         <dashboard-profil></dashboard-profil>
       </div>
 
-      <div *ngIf="context.currentPage == 2">
+      <div *ngIf="pageId == 'account'">
         <dashboard-account></dashboard-account>
       </div>
 
-      <div *ngIf="context.currentPage == 3">
+      <div *ngIf="pageId == 'friends'">
         <dashboard-friend></dashboard-friend>
       </div>
 
-      <div *ngIf="context.currentPage == 4">
+      <div *ngIf="pageId == 'avis'">
         <dashboard-avis></dashboard-avis>
       </div>
 
-      <div *ngIf="context.currentPage == 5">
+      <div *ngIf="pageId == 'messages'">
         <dashboard-message></dashboard-message>
       </div>
 
-      <div *ngIf="context.currentPage == 6">
+      <div *ngIf="pageId == 'vehicules'">
         <dashboard-vehicle></dashboard-vehicle>
       </div>
 
-      <div *ngIf="context.currentPage == 7">
+      <div *ngIf="pageId == 'alertes'">
         <dashboard-alert></dashboard-alert>
       </div>
 
-      <div *ngIf="context.currentPage == 8">
+      <div *ngIf="pageId == 'trajets'">
         <dashboard-trajet></dashboard-trajet>
       </div>
     </div>

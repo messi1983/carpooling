@@ -3,13 +3,16 @@
     Enregistrer un nouveau véhicule
   </h3>
 
-  <form action="/action_page.php">
+  <form action="/action_page.php" class="form-group">
     <mat-form-field class="full-width">
       <input
         matInput
+        required
+        class="form-control"
         placeholder="Marque"
         name="marque"
         [(ngModel)]="newCar.marque"
+        #marque="ngModel"
       />
     </mat-form-field>
 
@@ -25,9 +28,12 @@
     <mat-form-field class="full-width">
       <input
         matInput
+        required
+        class="form-control"
         placeholder="Immatricule"
         name="immatricule"
         [(ngModel)]="newCar.matricule"
+        #immatricule="ngModel"
       />
     </mat-form-field>
 
@@ -58,11 +64,20 @@
       />
     </mat-form-field>
 
+    <div
+      *ngIf="marque.invalid && (marque.dirty || marque.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="marque.errors.required">
+        Marque is required.
+      </div>
+    </div>
+
     <div class="bloc-buttons-right">
-        <button class="btn btn-primary" mat-button mat-dialog-close>
-          Annuler
-        </button>
-      <button class="btn btn-primary" mat-button [mat-dialog-close]="newCar">
+      <button  mat-button mat-dialog-close>
+        Annuler
+      </button>
+      <button  color="primary" mat-button (click)="onSubmit()">
         Enregistrer
       </button>
     </div>

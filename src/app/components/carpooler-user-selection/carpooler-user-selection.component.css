@@ -50,9 +50,6 @@
 }
 
 .carpooler-user-selection .section .title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 25px;
   background-color: rgb(95, 160, 100);
 }

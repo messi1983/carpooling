@@ -1,19 +1,16 @@
-import { Input } from '@angular/core';
+import { Input } from "@angular/core";
 
-import { SimpleCarpoolingViewModel } from 'app/modelview/simple.carpooling.view.model';
-import { CarpoolingViewModel } from 'app/modelview/carpooling.view.model';
-
-import { CarpoolingUtils } from 'app/utils/carpooling.utils';
+import { CarpoolingViewModel } from "app/modelview/carpooling.view.model";
 
 export abstract class AbstractSelectionComponent {
-    @Input() selections: CarpoolingViewModel[];
-    
-     getSelectionsAller(): CarpoolingViewModel[] {
-        return CarpoolingUtils.filterSelectionsAller(this.selections);
-    }
-    
-    getSelectionsRetour(): CarpoolingViewModel[] {
-        return CarpoolingUtils.filterSelectionsRetour(this.selections);
-    }
+  @Input() selectionsAller: Map<number, CarpoolingViewModel>;
+  @Input() selectionsRetour: Map<number, CarpoolingViewModel>;
 
+  getSelectionsAller(): CarpoolingViewModel[] {
+    return Array.from(this.selectionsAller.values());
+  }
+
+  getSelectionsRetour(): CarpoolingViewModel[] {
+    return Array.from(this.selectionsRetour.values());
+  }
 }

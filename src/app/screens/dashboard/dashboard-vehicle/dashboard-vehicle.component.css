@@ -8,11 +8,7 @@
 }
 
 .dashboard-vehicule .no-car {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 10px;
-  color: blueviolet;
 }
 
 .dashboard-vehicule .buttons {

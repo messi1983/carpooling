@@ -1,8 +1,8 @@
 .dashboard-left-menu .short-profil {
   cursor: pointer;
   text-align: center;
-  margin-bottom: 10px;
   margin-top: 10px;
+  margin-bottom: 15px;
 
   /* line-height: 200px; */
 
@@ -13,4 +13,23 @@
 
   -webkit-user-drag: none;
   -webkit-tap-highlight-color: transparent;
+}
+
+.dashboard-left-menu .img-container {
+  padding-top: 15px;
+}
+
+.dashboard-left-menu .text {
+  color: peru;
+  font-weight: bold;
+}
+
+.dashboard-left-menu .with-badge {
+  padding-top: 4px;
+}
+
+.dashboard-left-menu .cash {
+  font-size: 25px;
+  font-weight: bold;
+  color: seagreen;
 }

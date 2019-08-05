@@ -1,8 +1,5 @@
 .cp-create-container {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   font-size: 12px;
 }
 
@@ -15,21 +12,15 @@
 }
 
 .cp-create-container .col-right-separator {
-	border-right: solid 1px #ccc;
+  border-right: solid 1px #ccc;
 }
 
 .cp-create-container .place-field {
-	width: 40px;
+  width: 40px;
 }
 
 .cp-create-container .price-field {
-	width: 30px;
-}
-
-.accetation-automatique {
-  display: flex;
-  align-content: center;
-  align-items: center;
+  width: 30px;
 }
 
 .check-option {

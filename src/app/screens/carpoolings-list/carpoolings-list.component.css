@@ -1,31 +1,31 @@
 .listing .side-bar {
-	padding: 0px;
-	text-align: left;
+  padding: 0px;
+  text-align: left;
 }
 
 .listing mat-step .header .title {
-	wdith: 100%;
-	text-align: center;
-	text-decoration: underline;
+  width: 100%;
+  text-align: center;
+  text-decoration: underline;
 }
 
 .listing .bouton-container {
-	display:flex;
+  display: flex;
 }
 
-.listing .bouton-container button{
-	margin-left: auto;
+.listing .bouton-container button {
+  margin-left: auto;
 }
 
 .listing .navigation {
-	float:right;
-	position: relative;
-	top: 67px;
-	right:23px;
+  float: right;
+  position: relative;
+  top: 67px;
+  right: 23px;
 }
 
 .listing mat-horizontal-stepper {
-	clear: float;
+  clear: float;
 }
 
 .float {
@@ -35,4 +35,16 @@
   width: 275px;
   margin-top: -15.5em;
   z-index: 100;
+}
+
+.listing .tab-container {
+  padding: 10px;
+}
+
+.listing .cp {
+  padding: 0px 0px 5px 0px;
+}
+
+.listing .global-panel {
+  background-color: white;
 }

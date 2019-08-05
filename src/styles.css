@@ -52,16 +52,24 @@ legend.scheduler-border {
   font-size: 12px !important;
 }
 
-.ctrl-boutons {
-  width: 100%;
+.ctrl-boutons,
+.center-block {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
 
+.ctrl-boutons {
+  width: 100%;
+  flex-direction: row;
+}
+
 .small-font {
   font-size: small;
+}
+
+.smaller-font {
+  font-size: smaller;
 }
 
 /* width */
@@ -89,4 +97,15 @@ legend.scheduler-border {
 .bloc-buttons-right {
   display: flex;
   justify-content: flex-end;
+}
+
+.bloc-buttons-right button {
+  margin-right: 8px;
+}
+
+.tab-day {
+  padding: 5px;
+  border-left: 1px solid #e8e8e8;
+  border-right: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }

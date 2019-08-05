@@ -1,0 +1,147 @@
+<div class="dashboard reservation">
+  <mat-tab-group>
+    <mat-tab *ngFor="let s of subTabSet; let idx = index" label="{{ s }}">
+      <div *ngFor="let res of lists[idx]" class="cp">
+        <ng-container
+          *ngTemplateOutlet="
+            reservationTemplate;
+            context: {
+              res: res
+            }
+          "
+        >
+        </ng-container>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<ng-template #reservationTemplate let-res="res">
+  <mat-card class="couple rounded reservartion-card">
+    <div
+      [ngClass]="{
+        'center-block': true,
+        'col-3': true,
+        driver: !isAllerRetour(res)
+      }"
+    >
+      <driver-info [driver]="res.demandes[0].carpooling.driver"></driver-info>
+    </div>
+
+    <div class="no-padding col-9 full-width">
+      <!-- Begin Aller/Retour-->
+      <mat-accordion>
+        <div [ngClass]="{ 'no-padding': true, 'cp-Aller': isAllerRetour(res) }">
+          <ng-container
+            *ngTemplateOutlet="
+              expansionCpPanelTemplate;
+              context: {
+                reservation: res.demandes[0]
+              }
+            "
+          >
+          </ng-container>
+        </div>
+        <div *ngIf="isAllerRetour(res)" class="cp-Retour">
+          <ng-container
+            *ngTemplateOutlet="
+              expansionCpPanelTemplate;
+              context: {
+                reservation: res.demandes[1]
+              }
+            "
+          >
+          </ng-container>
+        </div>
+      </mat-accordion>
+      <!-- End Aller/Retour-->
+    </div>
+  </mat-card>
+</ng-template>
+
+<ng-template #expansionCpPanelTemplate let-reservation="reservation">
+  <mat-expansion-panel #matExpansionPanel>
+    <!-- begin header -->
+    <mat-expansion-panel-header>
+      <ng-container
+        *ngTemplateOutlet="
+          headerTemplate;
+          context: {
+            reservation: reservation
+          }
+        "
+      >
+      </ng-container>
+    </mat-expansion-panel-header>
+    <!-- end header -->
+
+    <!-- begin content -->
+    <ng-container
+      *ngTemplateOutlet="
+        contentTemplate;
+        context: {
+          reservation: reservation
+        }
+      "
+    >
+    </ng-container>
+    <!-- End content -->
+  </mat-expansion-panel>
+</ng-template>
+
+<ng-template #headerTemplate let-reservation="reservation">
+  <div class="header-panel small-font">
+    <div class="datetime">
+      Ven. 12 Juin, à <span class="color-red">14h30</span>
+    </div>
+    <div>
+      <route [trajet]="reservation.carpooling.trajet"></route>
+    </div>
+    <div>
+      <strong class="statut color-red">{{ reservation.statut }}</strong>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contentTemplate let-reservation="reservation">
+  <div class="content small-font">
+    <table>
+      <tr>
+        <td>Nb places réservées</td>
+        <td>
+          : <strong>{{ reservation.nbPlaces }}</strong>
+        </td>
+      </tr>
+      <tr>
+        <td>Prix unitaire place</td>
+        <td>
+          : <strong>{{ reservation.carpooling.price }} &euro;</strong>
+        </td>
+      </tr>
+      <tr *ngIf="reservation.carpooling.linkedEvent">
+        <td>Evénement lié</td>
+        <td>
+          : <strong>{{ reservation.carpooling.linkedEvent }} &euro;</strong>
+        </td>
+      </tr>
+    </table>
+
+    <div class="buttons bloc-buttons-right">
+      <button color="primary" mat-button>
+        <u>Fusionner avec le retour</u>
+      </button>
+
+      <button color="primary" mat-button>
+        <u>Voir l'annonce</u>
+      </button>
+
+      <button color="primary" mat-button>
+        <u>Modifier</u>
+      </button>
+
+      <button color="primary" mat-button>
+        <u>Annuler</u>
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 import { DashboardModel } from "./model/dashboard.model";
 
@@ -8,9 +9,18 @@ import { DashboardModel } from "./model/dashboard.model";
   styleUrls: ["./dashboard.component.css"]
 })
 export class DashboardComponent implements OnInit {
-  context: DashboardModel = { currentPage: 1 };
+  private sub: any;
+  pageId: string;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.pageId = params["id"];
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
 }

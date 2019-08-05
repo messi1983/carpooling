@@ -1,45 +1,168 @@
-<div class="dashboard-trajet">
-  <section class="example-section">
-    <mat-slide-toggle
-      class="example-margin"
-      [color]="color"
-      [checked]="checked"
-      [disabled]="disabled"
-    >
-      Edition
-    </mat-slide-toggle>
-  </section>
-
-  <form action="/action_page.php">
-    <div class="form-group">
-      <label for="name">Nom:</label>
-      <input type="text" class="form-control" id="name" />
-    </div>
-
-    <div class="form-group">
-      <label for="fisrtname">Prénom:</label>
-      <input type="text" class="form-control" id="fisrtname" disabled />
-    </div>
-
-    <div class="form-group form-check">
-      <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" />
-        Masculin </label
-      >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" /> Feminin
-      </label>
-    </div>
-
-    <div class="form-group">
-      <label for="email">E-mail:</label>
-      <input type="email" class="form-control" id="email" />
-    </div>
-
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" />
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<div class="dashboard dashboard-trajet">
+  <tabset [justified]="true" class="cp-container">
+    <tab *ngFor="let t of tabSet" heading="{{ t.name }}" class="tab-day">
+      <div *ngIf="t.index === 1">
+        <reservations-panel
+          [name]="'Propositions reçues'"
+          [subTabSet]="['Complets', 'Avec Places disponibles']"
+          [reservations]="reservations"
+        ></reservations-panel>
+      </div>
+      <div *ngIf="t.index === 2">
+        <propositions-panel
+          [name]="'Propositions reçues'"
+          [subTabSet]="['Complets', 'Avec Places disponibles']"
+          [reservations]="reservations"
+        ></propositions-panel>
+      </div>
+    </tab>
+  </tabset>
 </div>
+
+<ng-template #receivedCpTemplate let-propositions="propositions">
+  <div class="cp-container">
+    <mat-card
+      *ngFor="let p of propositions"
+      class="couple  rounded row"
+      style="border: solid 1px #e8e8e8; display: flex;"
+    >
+      <div
+        class="center-block col-3"
+        style="border-right: solid 1px; padding:5px"
+      >
+        <driver-info [driver]="p.driver"></driver-info>
+      </div>
+      <div class="no-padding col-9" style="width: 100%">
+        <!-- Begin Aller/Retour-->
+        <mat-accordion *ngIf="p.retour">
+          <div class="no-padding" style="margin-bottom: 5px">
+            <ng-container
+              *ngTemplateOutlet="
+                expCarpoolingTemplate;
+                context: {
+                  carpooling: p.aller
+                }
+              "
+            >
+            </ng-container>
+          </div>
+          <div>
+            <ng-container
+              *ngTemplateOutlet="
+                expCarpoolingTemplate;
+                context: {
+                  carpooling: p.retour
+                }
+              "
+            >
+            </ng-container>
+          </div>
+        </mat-accordion>
+        <!-- End Aller/Retour-->
+
+        <div *ngIf="!p.retour">
+          <ng-container
+            *ngTemplateOutlet="
+              expCarpoolingTemplate;
+              context: {
+                carpooling: p.aller
+              }
+            "
+          >
+          </ng-container>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</ng-template>
+
+<ng-template #expCarpoolingTemplate let-carpooling="carpooling">
+  <mat-expansion-panel #matExpansionPanel>
+    <!-- begin header -->
+    <mat-expansion-panel-header>
+      <ng-container
+        *ngTemplateOutlet="
+          headerTemplate;
+          context: {
+            carpooling: carpooling
+          }
+        "
+      >
+      </ng-container>
+    </mat-expansion-panel-header>
+    <!-- end header -->
+
+    <!-- begin content -->
+    <ng-container
+      *ngTemplateOutlet="
+        contentTemplate;
+        context: {
+          carpooling: carpooling
+        }
+      "
+    >
+    </ng-container>
+    <!-- End content -->
+  </mat-expansion-panel>
+</ng-template>
+
+<ng-template #headerTemplate let-carpooling="carpooling">
+  <div
+    class="small-font"
+    style="display: flex; width: 100%; justify-content: space-between; padding-right: 5px"
+  >
+    <div class="">Ven. 12 Juin, à <span class="color-red">14h30</span></div>
+    <div>
+      <route [trajet]="carpooling.trajet"></route>
+    </div>
+    <div>
+      <strong class="color-red" style="background-color: yellow"
+        >En cours</strong
+      >
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #contentTemplate let-carpooling="carpooling">
+  <div class="content">
+    <div style="border-top: solid 1px">
+      <div style="display: flex; padding: 5px; font-size: small">
+        <table style="flex: auto">
+          <tr>
+            <td>Nb places réservées</td>
+            <td>: <strong>2</strong></td>
+          </tr>
+          <tr>
+            <td>Prix unitaire place</td>
+            <td>: <strong>12,00 &euro;</strong></td>
+          </tr>
+        </table>
+      </div>
+
+      <div
+        *ngIf="carpooling.linkedEvent"
+        class="row small-font full-width selection linked-event-zone"
+      >
+        <cov-infos-barre [linkedEvent]="carpooling.linkedEvent">
+        </cov-infos-barre>
+      </div>
+    </div>
+
+    <div
+      class="bloc-buttons-right"
+      style="display: flex; justify-content: flex-end; padding: 5px"
+    >
+      <button color="primary" mat-button>
+        Voir l'annonce
+      </button>
+
+      <button color="primary" mat-button>
+        Modifier
+      </button>
+
+      <button color="primary" mat-button>
+        Annuler
+      </button>
+    </div>
+  </div>
+</ng-template>
