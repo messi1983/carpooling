@@ -1,20 +1,25 @@
 <div class="dashboard dashboard-trajet">
   <tabset [justified]="true" class="cp-container">
-    <tab *ngFor="let t of tabSet" heading="{{ t.name }}" class="tab-day">
-      <div *ngIf="t.index === 1">
-        <reservations-panel
-          [name]="'Propositions reçues'"
-          [subTabSet]="['Complets', 'Avec Places disponibles']"
-          [reservations]="reservations"
-        ></reservations-panel>
-      </div>
-      <div *ngIf="t.index === 2">
-        <propositions-panel
-          [name]="'Propositions reçues'"
-          [subTabSet]="['Complets', 'Avec Places disponibles']"
-          [reservations]="reservations"
-        ></propositions-panel>
-      </div>
+    <tab
+      *ngIf="reservations && reservations.length !== 0"
+      heading="Mes reservations"
+      class="tab-day"
+    >
+      <reservations-panel
+        [subTabSet]="['Complets', 'Avec Places disponibles']"
+        [reservations]="reservations"
+      ></reservations-panel>
+    </tab>
+
+    <tab
+      *ngIf="reservations && reservations.length !== 0"
+      heading="Propositions reçues"
+      class="tab-day"
+    >
+      <propositions-panel
+        [subTabSet]="['Complets', 'Avec Places disponibles']"
+        [propositions]="propositions"
+      ></propositions-panel>
     </tab>
   </tabset>
 </div>

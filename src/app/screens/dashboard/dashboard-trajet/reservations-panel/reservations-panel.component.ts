@@ -9,7 +9,6 @@ import { Carpooling } from "app/model/carpooling";
   styleUrls: ["./reservations-panel.component.css"]
 })
 export class ReservationsPanelComponent implements OnInit {
-  @Input() name: string;
   @Input() subTabSet: string[];
   @Input() reservations: Reservation[];
 

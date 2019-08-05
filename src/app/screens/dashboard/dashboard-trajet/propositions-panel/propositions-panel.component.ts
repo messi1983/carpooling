@@ -9,7 +9,6 @@ import { Carpooling } from "app/model/carpooling";
   styleUrls: ["./propositions-panel.component.css"]
 })
 export class PropositionsPanelComponent implements OnInit {
-  @Input() name: string;
   @Input() subTabSet: string[];
   @Input() propositions: Proposition[];
 
