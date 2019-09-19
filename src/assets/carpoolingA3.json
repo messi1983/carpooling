@@ -1,0 +1,27 @@
+
+{
+  "id": 3,
+  "driver": {
+    "compteId": "12379856622",
+    "lastname": "Messi",
+    "firstname": "Louis",
+    "sexe": "M",
+    "telephone": "0695376892",
+    "age": 25,
+    "note": "2,5"
+  },
+  "price": "12,00",
+  "nbPlacesRestantes": 2,
+  "dateDepart": "18/12/2017",
+  "heureDepart": "12h30",
+  "trajet": {
+    "villeDepart": "Bordeaux",
+    "villeArrivee": "Toulouse",
+    "pointDepart": "Place des Quinconces",
+    "pointArrivee": "Gare Matabiau"
+  },
+  "reservations": 2,
+  "acceptationAuto": 1,
+  "linkedEvent": "My Kiz",
+  "dateTimeRetour": "20/12/2017-12h30"
+}

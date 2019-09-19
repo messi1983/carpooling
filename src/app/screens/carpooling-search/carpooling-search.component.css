@@ -1,0 +1,14 @@
+.search {
+	margin: 7rem 1.5rem;
+}
+
+.search form {
+	display: flex;
+	justify-content: center;
+}
+
+.search .form-content {
+	border: solid 1px #ccc;
+  	border-radius: 3px;
+  	padding: 15px;
+}

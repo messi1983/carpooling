@@ -1,0 +1,45 @@
+<div class="dashboard">
+  <!-- Main panel -->
+  <div class="row">
+    <!-- SideBar -->
+    <div class="col-3 border">
+      <dashboard-left-menu></dashboard-left-menu>
+    </div>
+
+    <div class="col-9 border">
+      <div *ngIf="pageId == 'profil'">
+        <dashboard-profil></dashboard-profil>
+      </div>
+
+      <div *ngIf="pageId == 'account'">
+        <dashboard-account></dashboard-account>
+      </div>
+
+      <div *ngIf="pageId == 'friends'">
+        <dashboard-friend></dashboard-friend>
+      </div>
+
+      <div *ngIf="pageId == 'avis'">
+        <dashboard-avis></dashboard-avis>
+      </div>
+
+      <div *ngIf="pageId == 'messages'">
+        <dashboard-message></dashboard-message>
+      </div>
+
+      <div *ngIf="pageId == 'vehicules'">
+        <dashboard-vehicle></dashboard-vehicle>
+      </div>
+
+      <div *ngIf="pageId == 'alertes'">
+        <dashboard-alert></dashboard-alert>
+      </div>
+
+      <div *ngIf="pageId == 'trajets'">
+        <dashboard-trajet></dashboard-trajet>
+      </div>
+    </div>
+    <!-- End Content -->
+  </div>
+  <!-- End Main panel -->
+</div>

@@ -1,0 +1,54 @@
+<div class="dashboard dashboard-vehicule">
+  <h3 class="title">Vos véhicules</h3>
+
+  <div style="margin-bottom: 5px">
+    <button mat-stroked-button (click)="add()" class="bt-add border rounded">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <p
+    *ngIf="!userCars || userCars.length === 0"
+    class="no-car center-block color-red border border-secondary rounded"
+  >
+    Aucun véhicule n'est enrigistré à votre nom jusqu'au jour d'aujourd'hui
+  </p>
+
+  <mat-card
+    *ngFor="let car of userCars; let idx = index"
+    class="vehicules border border-secondary rounded"
+  >
+    <div class="row">
+      <div class="col-6">
+        <h3>{{ car.marque }} {{ car.modele }}</h3>
+        <div>
+          <div>
+            Couleur : <span>{{ car.color }}</span>
+          </div>
+          <div>
+            Immatricule : <span>{{ car.matricule }}</span>
+          </div>
+          <div>
+            Places disponibles :
+            <span>{{ car.nbPlacesDispo }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="buttons bloc-buttons-right">
+          <button mat-button (click)="delete(idx)" class="bt-delete">
+            <mat-icon>clear</mat-icon>
+          </button>
+          <button mat-button (click)="update(idx)">
+            <mat-icon>create</mat-icon>
+          </button>
+        </div>
+
+        <div *ngIf="car.isVehPrincipal" class="veh-principal">
+          <mat-icon>directions_car</mat-icon>
+          <strong>Véhicule principal</strong>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>

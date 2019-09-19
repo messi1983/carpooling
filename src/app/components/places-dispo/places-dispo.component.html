@@ -1,0 +1,7 @@
+<div  class="place">
+	<span class="multiple"><b>{{nbPlacesRestantes}}</b></span> / 4<br />
+	<span *ngIf="nbPlacesRestantes > 1; else unePlaceRestante" class="small-font">pl. restantes</span>
+	<ng-template #unePlaceRestante>
+		<span class="small-font">pl. restante</span>
+	</ng-template>
+</div>

@@ -1,0 +1,98 @@
+<!-- result list -->
+<mat-card
+  [ngClass]="{ carpooling: true, 'carpooling-retour': false }"
+>
+  <ng-container *ngTemplateOutlet="contentTemplate"> </ng-container>
+</mat-card>
+
+<ng-template #contentTemplate>
+  <!-- Cp Header Infos  -->
+  <mat-card-header class="full-width header">
+    <div class="row full-width">
+      <!-- departure dateTime -->
+      <div class="col-3 text-left departure-hour">
+        <span style="font-size: small">Vendredi 12 juin,</span>
+        <strong style="font-size: small">{{ carpooling.heureDepart }}</strong>
+      </div>
+      <!-- End departure Hour -->
+
+      <!-- Route -->
+      <div class="col-7 route">
+        <route [trajet]="carpooling.trajet" [allerRetour]="carpooling.dateTimeRetour">
+        </route>
+      </div>
+      <!-- End Route -->
+
+      <!-- Price -->
+      <div class="col-2  price">{{ carpooling.price }} &euro;</div>
+      <!-- End Price -->
+    </div>
+  </mat-card-header>
+  <!-- End Cp Header Infos -->
+
+  <!-- Cp Content -->
+  <mat-card-content class="content container">
+    <div class="row detail">
+      <!-- Driver Infos -->
+      <div class="col-3 driver">
+        <driver-info [driver]="carpooling.driver"></driver-info>
+      </div>
+
+      <!-- Route infos -->
+      <div class="col-7 text-left route-infos-container">
+        <div class="row route">
+          <route
+            [trajet]="carpooling.trajet"
+            [restrictDesc]="true"
+            [detail]="true"
+          ></route>
+        </div>
+
+        <mat-card-actions class="action">
+          <button
+            mat-button
+            *ngIf="carpooling.dateTimeAller"
+            (click)="toggleFlip()"
+          >
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            Aller mardi à 14h30
+          </button>
+          <button
+            mat-button
+            *ngIf="carpooling.dateTimeRetour"
+            (click)="toggleFlip()"
+          >
+            <i class="fa fa-undo" aria-hidden="true"></i>
+            Retour mardi à 14h30
+          </button>
+          <button mat-button (click)="onDetail()">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Detail
+          </button>
+          <button mat-button (click)="onMapRoute()" class="no-padding">
+            <mat-icon>account_circle</mat-icon>
+            Map
+          </button>
+        </mat-card-actions>
+      </div>
+      <!-- End route infos -->
+
+      <!-- Places -->
+      <div class="col-2 no-padding">
+        <places-dispo
+          [nbPlacesRestantes]="carpooling.nbPlacesRestantes"
+        ></places-dispo>
+      </div>
+    </div>
+  </mat-card-content>
+  <!-- End Cp Content -->
+
+  <!-- Footer -->
+  <mat-card-footer
+    *ngIf="carpooling.linkedEvent"
+    class="footer small-font border rounded"
+  >
+    <cov-infos-barre [linkedEvent]="carpooling.linkedEvent"></cov-infos-barre>
+  </mat-card-footer>
+  <!-- Footer -->
+</ng-template>

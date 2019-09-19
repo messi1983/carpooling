@@ -1,0 +1,80 @@
+<div class="dashboard-left-menu">
+  <div class="short-profil">
+    <div class="img-container">
+      <img src="assets/canard.jpg" alt="canard" class="border rounded" />
+    </div>
+    <div class="text">Louis Messi</div>
+    <div class="text">35 ans</div>
+    <div class="text">Ingénieur Informaticien</div>
+    <div>
+      <span class="cash">146,00&euro;</span>
+    </div>
+  </div>
+
+  <ul>
+    <a
+      mat-raised-button
+      [routerLink]="['/dashboard', 'profil']"
+      class="full-width"
+      >Profil</a
+    >
+    <mat-divider></mat-divider>
+
+    <a
+      mat-raised-button
+      [routerLink]="['/dashboard', 'account']"
+      class="full-width"
+      >Mon compte</a
+    >
+    <mat-divider></mat-divider>
+
+    <a
+      mat-raised-button
+      [routerLink]="['/dashboard', 'friends']"
+      class="full-width with-badge"
+    >
+      <span matBadge="8" matBadgeOverlap="false">Amis</span>
+    </a>
+    <mat-divider></mat-divider>
+
+    <a
+      mat-raised-button
+      [routerLink]="['/dashboard', 'avis']"
+      class="full-width"
+      >Avis</a
+    >
+    <mat-divider></mat-divider>
+
+    <a
+      mat-raised-button
+      [routerLink]="['/dashboard', 'message']"
+      class="full-width"
+      >Messages</a
+    >
+    <mat-divider></mat-divider>
+
+    <a
+      mat-raised-button
+      [routerLink]="['/dashboard', 'vehicules']"
+      class="full-width"
+      >Véhicules</a
+    >
+    <mat-divider></mat-divider>
+
+    <a
+      mat-raised-button
+      [routerLink]="['/dashboard', 'alertes']"
+      class="full-width"
+      >Alertes</a
+    >
+    <mat-divider></mat-divider>
+
+    <a
+      mat-raised-button
+      [routerLink]="['/dashboard', 'trajets']"
+      class="full-width with-badge"
+    >
+      <span matBadge="8" matBadgeOverlap="false">Trajets</span>
+    </a>
+  </ul>
+</div>

@@ -1,0 +1,56 @@
+<div class="route-detail" *ngIf="detail">
+  <i
+    [ngClass]="{
+      'fa fa-map-marker': true,
+      'color-green': isAller,
+      'color-red': !isAller
+    }"
+    aria-hidden="true"
+  ></i>
+  <!-- <i class="fa fa-map-marker color-green" aria-hidden="true"></i> -->
+  <span class="small-font">&nbsp;&nbsp;{{ trajet.pointDepart }},</span
+  ><span [ngClass]="{ 'color-green': isAller, 'color-red': !isAller }">
+    {{ trajet.villeDepart }}</span
+  >
+  <br />
+  <i
+    [ngClass]="{
+      'fa fa-map-marker': true,
+      'color-green': !isAller,
+      'color-red': isAller
+    }"
+    aria-hidden="true"
+  ></i>
+  <span class="small-font">&nbsp;&nbsp;{{ trajet.pointArrivee }},</span
+  ><span [ngClass]="{ 'color-green': !isAller, 'color-red': isAller }">
+    {{ trajet.villeArrivee }}</span
+  >
+</div>
+
+<div *ngIf="default">
+  <span [ngClass]="{ 'color-green': isAller, 'color-red': !isAller }"
+    >{{ trajet.villeDepart }}&nbsp;</span
+  >
+  <span
+    *ngIf="allerRetour; else allerSimple"
+    [ngClass]="{
+      'fa fa-exchange fa-lg': true,
+      'color-green': isAller,
+      'color-red': !isAller
+    }"
+    aria-hidden="true"
+  ></span>
+  <ng-template #allerSimple>
+    <span
+      [ngClass]="{
+        'fa fa-long-arrow-right fa-lg': true,
+        'color-green': isAller,
+        'color-red': !isAller
+      }"
+      aria-hidden="true"
+    ></span>
+  </ng-template>
+  <span [ngClass]="{ 'color-green': !isAller, 'color-red': isAller }"
+    >&nbsp;{{ trajet.villeArrivee }}</span
+  >
+</div>

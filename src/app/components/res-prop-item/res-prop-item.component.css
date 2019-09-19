@@ -1,0 +1,37 @@
+.res-prop .cp {
+  padding: 5px;
+}
+
+.res-prop .driver {
+  border-right: solid 1px;
+  padding: 5px;
+}
+
+.res-prop .cp-Aller {
+  margin-bottom: 5px;
+  border-left: solid 1px green;
+}
+
+.res-prop .cp-Retour {
+  border-left: solid 1px red;
+}
+
+.reservartion-card {
+  display: flex;
+}
+
+.reservartion-card .header-panel {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-right: 5px;
+  font-weight: bold;
+}
+
+.res-prop .header-panel .statut {
+  background-color: yellow;
+}
+
+.res-prop .buttons {
+  background-color: lemonchiffon;
+}

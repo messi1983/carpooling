@@ -1,0 +1,208 @@
+<div class="create">
+  <!-- Main panel -->
+  <mat-drawer-container class="row">
+    <!-- SideBar -->
+    <mat-drawer mode="side" opened="true" class="col-3 border rounded">
+      <create-left-menu
+        [currentStep]="currentStep"
+        [doNotUseTraffic]="doNotUseTraffic"
+      ></create-left-menu>
+    </mat-drawer>
+    <!-- End SideBar -->
+
+    <!-- Content -->
+    <mat-drawer-content class="col-9">
+      <mat-horizontal-stepper #stepper class="border rounded">
+        <!-- ----------------------------------- -->
+        <!-- Step 1 : Route definition           -->
+        <!-- ----------------------------------- -->
+        <mat-step>
+          <ng-template matStepLabel>Trajet</ng-template>
+          <div class="title">
+            <strong class="color-green">Etape 1 : Définition du trajet </strong>
+          </div>
+
+          <div class="content">
+            <carpooling-form [editMode]="true"></carpooling-form>
+          </div>
+        </mat-step>
+
+        <!-- ------------------------------------ -->
+        <!-- Step 2 : pre selection of carpoolers -->
+        <!-- ------------------------------------ -->
+        <mat-step>
+          <ng-template matStepLabel>présélection</ng-template>
+          <div class="title">
+            <strong class="color-green"
+              >Etape 2 : Présélectionner les covoitureurs
+            </strong>
+          </div>
+
+          <div class="content">
+            <div class="border rounded alerts">
+              <div class="info color-blue very-small-font">
+                <div>
+                  <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                  <span
+                    >&nbsp;&nbsp;Plusieurs covoitureurs sont en recherche active
+                    pour ce trajet.</span
+                  >
+                </div>
+                <div>
+                  <button
+                    mat-stroked-button
+                    class="rounded very-small-font"
+                    (click)="openPreselectionDialog()"
+                  >
+                    Présélectionner les covoitureurs
+                  </button>
+                </div>
+              </div>
+              <div class="info color-green very-small-font">
+                <div>
+                  <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                  <span
+                    >&nbsp;&nbsp;Vous pouvez également restreindre l'annonces à
+                    vos amis.
+                  </span>
+                </div>
+                <div>
+                  <button mat-stroked-button class="rounded very-small-font">
+                    Restreindre l'annonce à vos amis
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="customization">
+              <div class="restriction date-time-zone">
+                <h6>Date/heure Fin restriction</h6>
+                <p class="very-small-font">
+                  La restriction, prendra fin le <strong>19/01/2019</strong> à
+                  <strong>14h30</strong>
+                </p>
+                <p class="very-small-font color-red">
+                  <span class="notice">NB</span> : Passer cette date, le
+                  covoiturage sera <u>rendu public</u> si jamais il restait des
+                  places disponibles.
+                </p>
+              </div>
+              <div class="restriction">
+                <h6>Liste des covoitureurs sélectionnés</h6>
+                <div class="carpoolers-list">
+                  <carpooler-card
+                    *ngFor="let carpooler of selection"
+                    [carpooler]="carpooler"
+                    [disabledSelection]="true"
+                  >
+                  </carpooler-card>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-step>
+
+        <!-- ----------------------------------- -->
+        <!-- Step 3 : Route -->
+        <!-- ----------------------------------- -->
+        <mat-step>
+          <ng-template matStepLabel>Confirmation</ng-template>
+          <div class="title">
+            <strong class="color-green"
+              >Etape 3 : Confirmation de votre covoiturage
+            </strong>
+          </div>
+
+          <div class="content">
+            <alert type="success" *ngIf="!isCovAllerRetour()">
+              Votre covoiturage a bien été enregistré et est désormais visible
+              pour la date du <strong>14/01/2019</strong> à
+              <strong>18h30</strong>
+            </alert>
+            <alert type="success" *ngIf="isCovAllerRetour()">
+              Vos covoiturages ont bien été enregistrés et sont désormais
+              visibles pour les dates :
+              <ul>
+                <li>
+                  Aller : <strong>14/01/2019</strong> à <strong>18h30</strong>
+                </li>
+                <li>
+                  Retour : <strong>20/01/2019</strong> à <strong>18h30</strong>
+                </li>
+              </ul>
+              <p *ngIf="!isCovAllerRetour()" style="text-align: center">
+                <strong
+                  >Merci d'avoir choisi carpooling pour partager votre
+                  trajet.</strong
+                >
+              </p>
+              <p *ngIf="isCovAllerRetour()" style="text-align: center">
+                <strong
+                  >Merci d'avoir choisi carpooling pour partager vos
+                  trajets.</strong
+                >
+              </p>
+            </alert>
+
+            <p>Grâce à ce trajet vous cumulez <strong>350 points.</strong></p>
+            <p>
+              Pour comprendre le système de points, rendez vous sous la rubrique
+              <a href="#">infos points</a>.
+            </p>
+            <table>
+              <tr>
+                <td>
+                  <button mat-stroked-button>
+                    <span matBadge="4" matBadgeOverlap="false"
+                      >Consulter vos message</span
+                    >
+                  </button>
+                </td>
+                <td>
+                  <button mat-stroked-button>
+                    <span matBadge="4" matBadgeOverlap="false"
+                      >Consulter vos message</span
+                    >
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+
+      <div class="navigation">
+        <button
+          *ngIf="currentStep === 2"
+          mat-stroked-button
+          class="rounded"
+          (click)="goBack(stepper)"
+        >
+          Revenir à l'étape précédente
+        </button>
+        &nbsp;
+        <button
+          *ngIf="currentStep === 2"
+          mat-stroked-button
+          class="rounded"
+          (click)="goForward(stepper)"
+        >
+          Valider
+        </button>
+        &nbsp;
+        <button
+          *ngIf="currentStep === 1"
+          mat-stroked-button
+          class="rounded"
+          (click)="goForward(stepper)"
+          [disabled]="disabledButtonNext()"
+        >
+          Aller à l'étape suivante
+        </button>
+        &nbsp;
+      </div>
+    </mat-drawer-content>
+    <!-- End Content -->
+  </mat-drawer-container>
+  <!-- End Main panel -->
+</div>

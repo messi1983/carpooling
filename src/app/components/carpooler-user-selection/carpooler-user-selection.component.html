@@ -1,0 +1,65 @@
+<div class="carpooler-user-selection">
+  <h5 class="center-block title">
+    Restriction du covoiturage à vos connaissances
+  </h5>
+
+  <!-- Carpoolers selection -->
+  <div class="section">
+    <h6 class="center-block title">Sélection covoitureurs souhaités</h6>
+    <div class="selection-content">
+      <div class="filters very-small-font">
+        <!-- Selection by groupe section -->
+        <ng-container
+          *ngTemplateOutlet="
+            groupeTemplate;
+            context: { title: 'Sélection groupe' }
+          "
+        >
+        </ng-container>
+
+        <!-- Filters section -->
+        <ng-container
+          *ngTemplateOutlet="
+            groupeTemplate;
+            context: { title: 'Filtre groupe' }
+          "
+        >
+        </ng-container>
+      </div>
+
+      <div class="carpoolers-list">
+        <carpooler-card
+          *ngFor="let carpooler of data.carpoolers"
+          [carpooler]="carpooler"
+        >
+        </carpooler-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h6 class="center-block title">Définition la période de restriction :</h6>
+  </div>
+
+  <div class="navigation">
+    <button mat-stroked-button [mat-dialog-close]="getSelection()">
+      Annuler</button
+    >&nbsp;&nbsp;
+    <button mat-stroked-button [mat-dialog-close]="getSelection()">
+      Valider
+    </button>
+  </div>
+</div>
+
+<ng-template #groupeTemplate let-title="title">
+  <div *ngIf="carpoolers.length > 8" class="border rounded menu-groupe">
+    <h6>{{ title }} :</h6>
+    <ul>
+      <li><mat-checkbox>Tous</mat-checkbox></li>
+      <li *ngFor="let groupe of driverCreatedGroupes">
+        <mat-checkbox> {{ groupe }} </mat-checkbox>
+      </li>
+      <li><mat-checkbox>Sans groupe</mat-checkbox></li>
+    </ul>
+  </div>
+</ng-template>

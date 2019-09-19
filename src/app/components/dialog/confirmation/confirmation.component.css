@@ -1,0 +1,13 @@
+.confirmation-dialog {
+  background-color: rgb(255, 224, 236);
+  padding: 15px;
+}
+
+.confirmation-dialog .title {
+  border-bottom: solid 1px;
+}
+
+.confirmation-dialog .content {
+  text-align: center;
+  color: orange;
+}

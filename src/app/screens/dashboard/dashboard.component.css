@@ -1,0 +1,8 @@
+.dashboard {
+  min-height: 1200px;
+}
+
+.dashboard .title {
+  border-bottom: solid 1px gray;
+  margin-bottom: 20px;
+}

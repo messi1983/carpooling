@@ -1,0 +1,109 @@
+<div class="selection">
+  <ng-container
+    *ngTemplateOutlet="
+      selectedCarpoolingTemplate;
+      context: {
+        title: 'Vos covs Aller',
+        selections: getSelectionsAller(),
+        isAller: true
+      }
+    "
+  >
+  </ng-container>
+  <br />
+  <ng-container
+    *ngTemplateOutlet="
+      selectedCarpoolingTemplate;
+      context: {
+        title: 'Vos covs Retour',
+        selections: getSelectionsRetour(),
+        isAller: false
+      }
+    "
+  >
+  </ng-container>
+  <br />
+</div>
+
+<ng-template
+  #selectedCarpoolingTemplate
+  let-isAller="isAller"
+  let-selections="selections"
+  let-title="title"
+>
+  <h4>{{ title }}</h4>
+  <mat-accordion class="header-content">
+    <mat-expansion-panel *ngFor="let cp of selections" #matExpansionPanel>
+      <mat-expansion-panel-header
+        (click)="expandPanel(matExpansionPanel, $event)"
+      >
+        <mat-panel-title>
+          <span class="departure-hour">
+            <strong>{{ cp.heureDepart }}</strong>
+          </span>
+          <span>
+            Nb Pl. :
+            <select id="monselect">
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+              <option value="3">3</option>
+            </select>
+            <span style="color: gray">/ 4</span>
+          </span>
+        </mat-panel-title>
+
+        <mat-panel-description>
+          <div class="route">
+            <div class="row">
+              <div class="col-5">
+                <span class="color-green">
+                  {{ cp.trajet.villeDepart }}
+                </span>
+              </div>
+              <div class="col-2">
+                <span
+                  class="fa fa-long-arrow-right fa-lg color-green"
+                  aria-hidden="true"
+                ></span>
+              </div>
+              <div class="col-5 pull-right">
+                <span class="color-red pull-right">
+                  {{ cp.trajet.villeArrivee }}
+                </span>
+              </div>
+            </div>
+          </div>
+          <span>{{ cp.price }} &euro;</span>
+          <mat-icon>account_circle</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="content">
+        <div class="row detail">
+          <!-- Driver Infos -->
+          <div class="col-3 driver border rounded">
+            <driver-info [driver]="cp.driver"></driver-info>
+          </div>
+
+          <div class="col-6 route border">
+            <route [trajet]="cp.trajet" [detail]="true"></route>
+          </div>
+
+          <!-- Places -->
+          <div class="col-3 places border">
+            <places-dispo [nbPlacesRestantes]="cp.nbPlacesRestantes">
+            </places-dispo>
+          </div>
+          <!-- End Places -->
+        </div>
+
+        <div
+          *ngIf="cp.linkedEvent"
+          class="row small-font full-width selection linked-event-zone"
+        >
+          <cov-infos-barre [linkedEvent]="cp.linkedEvent"> </cov-infos-barre>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-template>

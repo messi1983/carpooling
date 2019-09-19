@@ -1,0 +1,92 @@
+<div class="starter-template paiement">
+  <div class="block">
+    <div class="title">Récapitulatif des demandes</div>
+
+    <div class="resume-table">
+      <div class="color-green">
+        <span class="fa fa-hand-o-right color-green" aria-hidden="true"></span>
+        <strong> 4</strong> choix pour l'aller :
+      </div>
+      <ng-container
+        *ngTemplateOutlet="
+          demandeTemplate;
+          context: { selections: getSelectionsAller(), isAller: true }
+        "
+      >
+      </ng-container>
+    </div>
+
+    <br />
+
+    <div class="resume-table">
+      <div class="color-red">
+        <span class="fa fa-hand-o-right color-red" aria-hidden="true"></span>
+        <strong> 4</strong> choix pour le retour :
+      </div>
+      <ng-container
+        *ngTemplateOutlet="
+          demandeTemplate;
+          context: { selections: getSelectionsRetour(), isAller: false }
+        "
+      >
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="block">
+    <div *ngIf="insufficientAccount" class="insufficient-account">
+      <p class="color-red">
+        Vous devez disposer d'au moins
+        <span style="text-decoration: underline">24,00 &euro;</span>
+        d'avoirs pour couvrir ces nouvelles demnades
+      </p>
+
+      <button
+        mat-flat-button
+        color="warn"
+        (click)="openApprovisionnementDialog()"
+      >
+        Approvisionner votre compte
+      </button>
+    </div>
+
+    <form class="cgu">
+      <div>
+        <input type="checkbox" id="cgu" name="feature" value="ok" />
+        <label
+          >Je reconnais avoir pris connissance des
+          <a href="#">conditions générérales d'utilisations</a></label
+        >
+      </div>
+      <button type="button" class="btn btn-primary">
+        Envoyer les demandes
+      </button>
+    </form>
+  </div>
+</div>
+
+<ng-template #demandeTemplate let-selections="selections">
+  <div class="demandes-container">
+    <div
+      *ngFor="let cp of selections"
+      [ngClass]="{ 'demande border rounded': true, 'demande-aller': isAller }"
+    >
+      <div class="route">
+        {{ cp.trajet.villeDepart }}
+        <span class="fa fa-long-arrow-right fa-lg" aria-hidden="true"></span>
+        {{ cp.trajet.villeArrivee }}
+      </div>
+      <div class="date-heure-depart">14 juin à {{ cp.heureDepart }}</div>
+
+      <div class="places">
+        <strong
+          >{{ cp.nbPlacesRestantes }} place(s) x {{ cp.price }} &euro;</strong
+        >
+      </div>
+
+      <div class="color-red total-amount">
+        <b>{{ cp.price }} &euro;</b>
+      </div>
+    </div>
+  </div>
+</ng-template>

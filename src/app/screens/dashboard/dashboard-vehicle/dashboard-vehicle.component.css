@@ -1,0 +1,42 @@
+.dashboard-vehicule .vehicules {
+  margin-bottom: 6px;
+  padding: 10px;
+}
+
+.dashboard-vehicule span {
+  color: red;
+}
+
+.dashboard-vehicule .no-car {
+  padding: 10px;
+}
+
+.dashboard-vehicule .buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.dashboard-vehicule .buttons button {
+  min-width: 4px;
+}
+
+.dashboard-vehicule .buttons bt-delete {
+  color: red;
+}
+
+.dashboard-vehicule .bt-add {
+  background-color: orange;
+  color: white;
+}
+
+.dashboard-vehicule .veh-principal {
+  font-style: italic;
+  font-size: small;
+  color: rgb(218, 77, 105);
+}
+
+.dashboard-vehicule .veh-principal strong {
+  position: relative;
+  top: -4px;
+}

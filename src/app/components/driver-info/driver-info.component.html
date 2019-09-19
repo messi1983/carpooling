@@ -1,0 +1,41 @@
+<div *ngIf="!mini">
+  <div class="driver-info-container">
+    <img
+      src="assets/canard.jpg"
+      alt="canard"
+      [ngClass]="{
+        'rounded-circle': true,
+        'normal-img': !mini,
+        'mini-img': mini
+      }"
+    />
+
+    <div
+      [ngClass]="{ 'small-font': !mini, 'smaller-font': mini }"
+      class="small-font"
+    >
+      {{ driver.firstname }} <br />
+      {{ driver.age }} ans <br />
+      Note: {{ driver.note }}/5
+    </div>
+  </div>
+</div>
+
+<div *ngIf="mini" class="driver-info-container color-green">
+  <img
+    src="assets/canard.jpg"
+    alt="canard"
+    [ngClass]="{
+      'rounded-circle': true,
+      'normal-img': !mini,
+      'mini-img': mini
+    }"
+  />
+  <div
+    [ngClass]="{ 'small-font': !mini, 'smaller-font': mini }"
+    class="small-font"
+  >
+    {{ driver.firstname }} <br />
+    {{ driver.age }} ans
+  </div>
+</div>

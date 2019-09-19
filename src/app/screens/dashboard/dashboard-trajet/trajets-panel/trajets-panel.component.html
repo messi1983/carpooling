@@ -1,0 +1,9 @@
+<div class="trajet">
+  <mat-tab-group>
+    <mat-tab *ngFor="let s of subTabSet; let idx = index" label="{{ s }}">
+      <div *ngFor="let carpooling of lists[idx]" class="cp">
+        <carpooling-item [carpooling]="carpooling"></carpooling-item>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

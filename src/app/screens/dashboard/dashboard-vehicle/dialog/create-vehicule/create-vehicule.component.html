@@ -1,0 +1,85 @@
+<div class="new-vehicle">
+  <h3 class="title">
+    Enregistrer un nouveau véhicule
+  </h3>
+
+  <form action="/action_page.php" class="form-group">
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        required
+        class="form-control"
+        placeholder="Marque"
+        name="marque"
+        [(ngModel)]="newCar.marque"
+        #marque="ngModel"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Modèle"
+        name="modele"
+        [(ngModel)]="newCar.modele"
+      />
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        required
+        class="form-control"
+        placeholder="Immatricule"
+        name="immatricule"
+        [(ngModel)]="newCar.matricule"
+        #immatricule="ngModel"
+      />
+    </mat-form-field>
+
+    <div class="full-width row">
+      <mat-form-field class="col-6">
+        <input
+          matInput
+          placeholder="Couleur"
+          name="couleur"
+          [(ngModel)]="newCar.couleur"
+        />
+      </mat-form-field>
+      <mat-form-field class="col-6">
+        <input
+          matInput
+          placeholder="Nombre de places dispo"
+          name="nbPlacesDispo"
+          [(ngModel)]="newCar.nbPlacesDispo"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        placeholder="Nom/Prenom mentionné sur la carte grise"
+        name="nomPrenom"
+      />
+    </mat-form-field>
+
+    <div
+      *ngIf="marque.invalid && (marque.dirty || marque.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="marque.errors.required">
+        Marque is required.
+      </div>
+    </div>
+
+    <div class="bloc-buttons-right">
+      <button  mat-button mat-dialog-close>
+        Annuler
+      </button>
+      <button  color="primary" mat-button (click)="onSubmit()">
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</div>

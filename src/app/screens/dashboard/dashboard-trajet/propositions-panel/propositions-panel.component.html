@@ -1,0 +1,7 @@
+<mat-tab-group class="proposition">
+  <mat-tab *ngFor="let s of subTabSet; let idx = index" label="{{ s }}">
+    <div *ngFor="let prop of lists[idx]" class="cp">
+      <res-prop-item [res]="prop" [type]="proposition"></res-prop-item>
+    </div>
+  </mat-tab>
+</mat-tab-group>

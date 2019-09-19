@@ -1,0 +1,36 @@
+<div>
+  <h2 mat-dialog-title class="color-red">
+    <em class="fa fa-warning"></em> Avertissement
+  </h2>
+  <mat-dialog-content>
+    <div *ngIf="data.typeWarning === 'ACC_AUTO'">
+      <alert type="warning">
+        Ce covoiturage est en
+        <span class="color-red">acceptation automatique</span>, en le
+        sélectionnant vous ne pourrez plus sélectionner d'autres covoiturages et
+        renoncez aux de facto aux covoiturages précédemment sélectionnés
+      </alert>
+      <p>Etes-vous sur de vouloir continuer ?</p>
+    </div>
+
+    <div *ngIf="data.typeWarning === 'CP_CREATE'">
+      <alert type="warning">
+        Votre heure de départ est une heure de fort affluence, nous vous
+        recommandons les heures de départ suivantes:
+        <ul>
+          <li>08h30</li>
+          <li>09h30</li>
+          <li>Entre 08h30 et 12h30</li>
+        </ul>
+        Vous pouvez également vous appuyer sur le graphe de trafic pour
+        optimiser vos chances de trouver des covoitureurs.
+      </alert>
+      <p>Souhaitez vous quand même conserver cette date heure de départ ?</p>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="ctrl-boutons">
+    <button mat-button [mat-dialog-close]="true">Oui</button>
+    <button mat-button [mat-dialog-close]="false">Non</button>
+  </mat-dialog-actions>
+</div>

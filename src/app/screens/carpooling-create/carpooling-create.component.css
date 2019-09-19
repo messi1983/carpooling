@@ -1,0 +1,95 @@
+.create {
+  padding: 0px;
+  margin: 0px;
+}
+
+.create mat-drawer-container {
+  padding: 0px;
+}
+
+.create mat-drawer-content {
+  padding: 0px 0px 0px 5px;
+  background-color: white;
+}
+
+.create form {
+  display: flex;
+  justify-content: center;
+}
+
+.create .content {
+  border-radius: 3px;
+  padding: 15px 15px 60px 15px;
+}
+
+.create .navigation {
+  position: relative;
+  bottom: 72px;
+  display: flex;
+  justify-content: center;
+}
+
+.create .title {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.create .alerts {
+  padding: 5px;
+  list-style: none;
+}
+
+.create .very-small-font {
+  font-size: 13px;
+  font-style: italic;
+}
+
+.create .restriction {
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+  border: solid 1px dodgerblue;
+}
+
+.create .date-time-zone {
+  margin-right: 5px;
+  width: 250px;
+}
+
+.create .carpoolers-list {
+  margin-top: 10px;
+  padding: 5px;
+  overflow-y: auto;
+  height: 152px;
+}
+
+.create h6 {
+  padding-top: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  height: 20px;
+  background-color: dodgerblue;
+}
+
+.create .info,
+.create .customization {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create .customization {
+  margin-top: 20px;
+}
+
+.create .notice {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.create button {
+  width: 210px;
+  padding: 0px;
+  color: rgb(133, 97, 167);
+  border: solid 1px blueviolet;
+}

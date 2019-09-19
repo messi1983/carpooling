@@ -1,0 +1,66 @@
+<div class="create-left-menu">
+  <!-- For step 1-->
+  <div *ngIf="currentStep === 1" class="full-width">
+    <!-- Information message -->
+    <alert type="primary" class="info">
+      <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i><br />
+      Pour optimiser vos chances d'avoir des covoitureurs, vérifier le trafic de
+      votre jour/heure (ou vos jours/heures) de votre départ (ou vos départs).
+    </alert>
+
+    <!-- Button for graph loading -->
+    <hr />
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="loadTrafficGraph()"
+      [disabled]="useTraffic"
+      class="rounded full-width"
+    >
+      <span *ngIf="!showGraffic">Afficher le trafic</span>
+      <span *ngIf="showGraffic">Masquer le graphe</span>
+    </button>
+    <hr />
+    <mat-checkbox [(ngModel)]="doNotUseTraffic.value"
+      >Ne pas tenir compte du trafic
+    </mat-checkbox>
+
+    <!-- Graph of traffic -->
+    <div *ngIf="showGraffic && chart" class="rounded canvas-zone">
+      <label class="title">Infos trafic:</label>
+      <canvas id="canvas" class="full-width">{{ chart }}</canvas>
+    </div>
+  </div>
+
+  <!-- For step 2-->
+  <div *ngIf="currentStep >= 2" class="resume">
+    <label class="title">Itinéraire:</label>
+
+    <div class="trajet">
+      <div class="aller">
+        <span class="fa fa-map-marker fa-lg color-green" aria-hidden="true"
+          >&nbsp;</span
+        >
+        <span class="color-green">Bordeaux&nbsp;</span>(Place de la gare)
+      </div>
+
+      <div class="retour">
+        <span class="fa fa-map-marker fa-lg color-red" aria-hidden="true"
+          >&nbsp;</span
+        >
+        <span class="color-red">Toulouse&nbsp;</span>(Gare Matabiau)
+      </div>
+    </div>
+
+    <div class="plus border rounded">
+      <div>Covoiturage <span>aller/retour</span></div>
+      <div>Date départ : <span>12/01/2018</span> à <span>15h40</span></div>
+      <div>Date retour : <span>20/01/2018</span> à <span>13h10</span></div>
+      <div>Nb places disponibles : <span>3</span></div>
+      <div>Prix place : <span>12 &euro;</span></div>
+      <div>Acc. auto Aller : <span>Oui</span></div>
+      <div>Acc. auto Retour : <span>Oui</span></div>
+      <div>Evénement lié : <span>My Kiz</span></div>
+    </div>
+  </div>
+</div>

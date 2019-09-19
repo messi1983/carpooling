@@ -1,0 +1,9 @@
+.place {
+	padding: 0px 15px 0px 0px;
+	text-align: center;
+}
+
+.place .multiple {
+	font-size: x-large;
+	color:red
+}

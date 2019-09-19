@@ -1,0 +1,70 @@
+.carpooler-user-selection {
+  padding: 0px;
+  width: 100%;
+}
+
+.carpooler-user-selection form {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-horizontal-stepper-header {
+  height: 25px;
+  border: solid 1px red;
+}
+
+.carpooler-user-selection h6 {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.carpooler-user-selection ul {
+  list-style: none;
+  padding: 0px 0px 0px 10px;
+  overflow-y: auto;
+  height: 90px;
+}
+
+.carpooler-user-selection li {
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.carpooler-user-selection .carpoolers-list {
+  margin-top: 10px;
+  padding: 0px;
+  overflow-y: auto;
+  height: 292px;
+  padding-left: 10px;
+}
+
+.carpooler-user-selection .menu-groupe {
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.carpooler-user-selection .section {
+  border: solid 1px rgb(95, 160, 100);
+  margin-bottom: 5px;
+}
+
+.carpooler-user-selection .section .title {
+  height: 25px;
+  background-color: rgb(95, 160, 100);
+}
+
+.carpooler-user-selection .selection-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.carpooler-user-selection .filters {
+  width: 200px;
+  margin: 0 8px 0 8px;
+}
+
+.carpooler-user-selection .title {
+  text-align: center;
+  text-decoration: underline;
+}
